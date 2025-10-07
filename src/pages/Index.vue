@@ -1,0 +1,37 @@
+<script setup lang="ts"></script>
+
+<template>
+    <div class="welcome">
+        <img alt="logo" src="/logo.png" />
+        <h2>Simpler, more practical</h2>
+    </div>
+</template>
+
+<style scoped lang="less">
+.welcome {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(
+        to right,
+        rebeccapurple,
+        #5454f5,
+        #6666f5,
+        #a770db,
+        #4269d9,
+        #a43af1,
+        violet
+    );
+    background-clip: text;
+    color: transparent;
+    font-style: italic;
+    img {
+        max-width: 100%;
+    }
+}
+</style>
