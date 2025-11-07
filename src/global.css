@@ -1,0 +1,96 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+:root {
+    --theme-color: #1890ff;
+}
+
+body {
+    margin: 0;
+}
+
+.mb {
+    margin-bottom: 16px !important;
+}
+
+.mr {
+    margin-right: 16px !important;
+}
+
+.mt {
+    margin-top: 16px !important;
+}
+
+.ml {
+    margin-left: 16px !important;
+}
+
+.pt {
+    padding-top: 16px !important;
+}
+
+.pl {
+    padding-left: 16px !important;
+}
+
+.pb {
+    padding-bottom: 16px !important;
+}
+
+.pr {
+    padding-right: 16px !important;
+}
+
+/*单行超出省略 */
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+/*2行超出省略 */
+.ellipsis-2 {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.disabled-box {
+    filter: grayscale(100%);
+    pointer-events: none;
+}
+.gray {
+    color: #999999;
+}
+
+.red {
+    color: #fb2828;
+}
+.blue {
+    color: var(--theme-color);
+}
+.green {
+    color: #48c35e;
+}
+.orange {
+    color: #eaa932;
+}
+.link-style {
+    color: #1890ff;
+    cursor: pointer;
+}
+
+.cp {
+    cursor: pointer;
+}
+
+.hide {
+    clip: rect(0, 0, 0, 0) !important;
+    position: fixed !important;
+}
+.pe-all {
+    pointer-events: all;
+}
