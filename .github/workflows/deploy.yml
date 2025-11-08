@@ -1,4 +1,4 @@
-# 构建 VitePress 站点并将其部署到 GitHub Pages 的示例工作流程
+# 构建站点并将其部署到 GitHub Pages 的示例工作流程
 #
 name: Deploy Swico site to Pages
 
@@ -44,8 +44,8 @@ jobs:
         uses: actions/configure-pages@v4
       - name: Install dependencies
         run: pnpm install # 或 pnpm install / yarn install / bun install
-      - name: Build with VitePress
-        run: pnpm swico:build # 或 pnpm
+      - name: Build with Swico
+        run: pnpm build # 或 pnpm
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
