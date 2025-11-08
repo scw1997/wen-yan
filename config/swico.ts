@@ -4,9 +4,10 @@ import { defineConfig } from 'swico';
 
 export default defineConfig('base', {
     template: 'vue',
+    publicPath:'/wen-yan',
     router: {
         type: 'browser',
-        base: '/',
+        base: '/wen-yan',
         routes: [
             {
                 path: '/',
