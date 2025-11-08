@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      naive-ui:
+        specifier: ^2.43.1
+        version: 2.43.1(vue@3.5.24(typescript@5.8.3))
       swico:
         specifier: 2.5.0
         version: 2.5.0(@rspack/core@1.6.1)(@types/express@4.17.23)(@types/node@22.14.1)(eslint@9.24.0(jiti@1.21.7))(react@19.2.0)(typescript@5.8.3)(vue@3.5.24(typescript@5.8.3))(webpack@5.102.0)
@@ -51,9 +54,6 @@ importers:
       lint-staged:
         specifier: 15.2.1
         version: 15.2.1
-      naive-ui:
-        specifier: ^2.43.1
-        version: 2.43.1(vue@3.5.24(typescript@5.8.3))
       prettier:
         specifier: 3.5.3
         version: 3.5.3
@@ -373,21 +373,25 @@ packages:
     resolution: {integrity: sha512-n7UGSBzv7PiX+V1Q2bY3S1XWyN3RCykCQUgfhZ+xWietCM/1349jgN7DoXKPllqlof1GPGBjziHU0sQZTC4tag==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@rspack/binding-linux-arm64-musl@1.6.1':
     resolution: {integrity: sha512-P7nx0jsKxx7g3QAnH9UnJDGVgs1M2H7ZQl68SRyrs42TKOd9Md22ynoMIgCK1zoy+skssU6MhWptluSggXqSrA==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@rspack/binding-linux-x64-gnu@1.6.1':
     resolution: {integrity: sha512-SdiurC1bV/QHnj7rmrBYJLdsat3uUDWl9KjkVjEbtc8kQV0Ri4/vZRH0nswgzx7hZNY2j0jYuCm5O8+3qeJEMg==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@rspack/binding-linux-x64-musl@1.6.1':
     resolution: {integrity: sha512-JoSJu29nV+auOePhe8x2Fzqxiga1YGNcOMWKJ5Uj8rHBZ8FPAiiE+CpLG8TwfpHsivojrY/sy6fE8JldYLV5TQ==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@rspack/binding-wasm32-wasi@1.6.1':
     resolution: {integrity: sha512-u5NiSHxM7LtIo4cebq/hQPJ9o39u127am3eVJHDzdmBVhTYYO5l7XVUnFmcU8hNHuj/4lJzkFviWFbf3SaRSYA==}
