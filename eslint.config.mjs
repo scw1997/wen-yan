@@ -50,6 +50,7 @@ export default defineConfig([
             'vue/max-attributes-per-line': 0,
             'vue/no-v-html': 0, // 允许使用 v-html 指令
             'vue/no-unused-components': 1, // 不允许存在未使用的组件
+            'vue/singleline-html-element-content-newline': 0, // 强制单行元素标签的开始和结束标签在行末
             // 关闭名称校验
             'vue/multi-word-component-names': 0,
             semi: 1, // 行末分号，根据编码习惯选择添加，这里配置的加分号

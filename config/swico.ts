@@ -13,6 +13,21 @@ export default defineConfig('base', {
                 path: '/',
                 name: 'index',
                 component: 'Index'
+            },
+            {
+                path: '/album',
+                name: 'album',
+                component: 'Album'
+            },
+            {
+                path: '/diary',
+                name: 'index',
+                component: 'Index'
+            },
+            {
+                path: '/',
+                name: 'index',
+                component: 'Index'
             }
         ]
     }

@@ -33,9 +33,10 @@
   "author": "scw",
   "license": "ISC",
   "dependencies": {
-    "swico": "2.7.0",
-    "vue": "~3.5.23",
-    "naive-ui": "^2.43.1"
+    "@vicons/fa": "^0.13.0",
+    "naive-ui": "^2.43.1",
+    "swico": "2.7.1-beta.1",
+    "vue": "~3.5.23"
   },
   "packageManager": "pnpm@10.6.0",
   "devDependencies": {

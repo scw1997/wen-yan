@@ -8,12 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@vicons/fa':
+        specifier: ^0.13.0
+        version: 0.13.0
       naive-ui:
         specifier: ^2.43.1
         version: 2.43.1(vue@3.5.24(typescript@5.8.3))
       swico:
-        specifier: 2.7.0
-        version: 2.7.0(@rspack/core@1.6.1)(@types/express@4.17.23)(@types/node@22.14.1)(eslint@9.24.0(jiti@1.21.7))(react@19.2.0)(typescript@5.8.3)(vue@3.5.24(typescript@5.8.3))(webpack@5.102.0)
+        specifier: 2.7.1-beta.1
+        version: 2.7.1-beta.1(@rspack/core@1.6.1)(@types/express@4.17.23)(@types/node@22.14.1)(eslint@9.24.0(jiti@1.21.7))(react@19.2.0)(typescript@5.8.3)(vue@3.5.24(typescript@5.8.3))(webpack@5.102.0)
       vue:
         specifier: ~3.5.23
         version: 3.5.24(typescript@5.8.3)
@@ -605,6 +608,9 @@ packages:
   '@typescript-eslint/visitor-keys@8.30.1':
     resolution: {integrity: sha512-aEhgas7aJ6vZnNFC7K4/vMGDGyOiqWcYZPpIWrTKuTAlsvDNKy2GFDqh9smL+iq069ZvR0YzEeq0B8NJlLzjFA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@vicons/fa@0.13.0':
+    resolution: {integrity: sha512-BFcDewcT78fSn4Y/fOgqlswbLUEW3+qJK2iJiNtgmkMzadBVpDXhNyVKsYM3V2uKPvDUrZT0JCWDWVRCiBXJZA==}
 
   '@vue/compiler-core@3.5.23':
     resolution: {integrity: sha512-nW7THWj5HOp085ROk65LwaoxuzDsjIxr485F4iu63BoxsXoSqKqmsUUoP4A7Gl67DgIgi0zJ8JFgHfvny/74MA==}
@@ -2951,8 +2957,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  swico@2.7.0:
-    resolution: {integrity: sha512-WDbjpRfqGyUs7Q8unhJjQw2yBp3v7Y8JvhYXGL/C32VrLWBpzd/8SagGPvJYlnj8HdIb9fPKA+EqEzRLVw1umw==}
+  swico@2.7.1-beta.1:
+    resolution: {integrity: sha512-HzRe/qT3KlD9yuEFabfL+T4oCWAVMBWHqwlgiEypi9Yp230A3YPXlgxwECx+gvnHDnIldSD99DP7y/RPbwtSIg==}
     engines: {node: '>=20.0.0'}
     hasBin: true
 
@@ -3986,6 +3992,8 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.30.1
       eslint-visitor-keys: 4.2.1
+
+  '@vicons/fa@0.13.0': {}
 
   '@vue/compiler-core@3.5.23':
     dependencies:
@@ -6355,7 +6363,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  swico@2.7.0(@rspack/core@1.6.1)(@types/express@4.17.23)(@types/node@22.14.1)(eslint@9.24.0(jiti@1.21.7))(react@19.2.0)(typescript@5.8.3)(vue@3.5.24(typescript@5.8.3))(webpack@5.102.0):
+  swico@2.7.1-beta.1(@rspack/core@1.6.1)(@types/express@4.17.23)(@types/node@22.14.1)(eslint@9.24.0(jiti@1.21.7))(react@19.2.0)(typescript@5.8.3)(vue@3.5.24(typescript@5.8.3))(webpack@5.102.0):
     dependencies:
       '@rspack/dev-server': 1.1.4(@rspack/core@1.6.1)(@types/express@4.17.23)(webpack@5.102.0)
       '@vue/compiler-sfc': 3.5.23
