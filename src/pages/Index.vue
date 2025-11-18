@@ -2,6 +2,6 @@
 import { Link } from 'swico';
 </script>
 
-<template>首页</template>
+<template>s</template>
 
 <style scoped lang="less"></style>
