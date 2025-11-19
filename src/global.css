@@ -2,6 +2,8 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 :root {
     --autumn-yellow: #ffb66a;
@@ -11,14 +13,29 @@
     --cream: #fff8dc;
     --light-orange: #ffdab9;
 }
-
+html {
+    /*750为设计稿基准*/
+    font-size: calc(100vw / 7.5) !important;
+    overflow: hidden;
+    height: 100%;
+    /*这里本应该写 100vw/750px 即750设计稿条件下某元素尺寸是a px，则css代码依然写a px，最终转换成a rem。
+    但由于px2rem插件中配置的rootValue为100，即最终转换成0.0a rem（也是为了兼容iphone），所以相应的也要改成100vw/ 7.5 */
+}
+@media (min-width: 768px) {
+    /*设置上限值，兼容pc端显示效果*/
+    html {
+        font-size: 97.66px !important;
+    }
+}
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.2;
+    overflow: hidden;
 }
 
 .mb {
-    margin-bottom: 16px !important;
+    margin-bottom: 16px;
 }
 
 .mr {

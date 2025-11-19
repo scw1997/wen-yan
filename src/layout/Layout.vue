@@ -15,7 +15,7 @@ import { Heart, Home, Book, History, Images } from '@vicons/fa';
         <header class="global-header">
             <div class="global-container">
                 <span class="global-title">
-                    <span class="title-text">文</span>
+                    <span class="title-text">传</span>
                     <Heart class="icon-heart" />
                     <span class="title-text">燕</span>
                 </span>
@@ -54,7 +54,7 @@ import { Heart, Home, Book, History, Images } from '@vicons/fa';
 
 <style scoped lang="less">
 .global-layout-root {
-    min-height: 100vh;
+    height: 100vh;
     width: 100vw;
     overflow: auto;
     background: linear-gradient(135deg, var(--cream) 0%, var(--light-orange) 100%);
@@ -64,69 +64,73 @@ import { Heart, Home, Book, History, Images } from '@vicons/fa';
     position: relative;
     .global-container {
         width: 1200px;
-        min-width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        @media (max-width: 1200px) {
+            width: 100%;
+        }
     }
 
     .global-header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 0 10px;
         .global-container {
             padding: 30px 20px;
             justify-content: space-between;
             border-bottom: 3px solid var(--autumn-yellow);
-        }
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        //width: 100%;
-        .global-title {
-            font-size: 36px;
-            color: var(--autumn-yellow);
-            display: flex;
-            align-items: center;
-            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
-            .title-text {
-                font-weight: bold;
-                &:nth-child(1) {
-                    animation-delay: 0.2s;
-                }
-                &:nth-child(3) {
-                    animation-delay: 0.4s;
-                }
-            }
-            .icon-heart {
-                color: var(--autumn-red);
-                width: 36px;
-                height: 36px;
-                margin: 0 12px;
-            }
-        }
-        .global-nav {
-            display: flex;
-            align-items: center;
-            font-size: 20px;
-            .global-nav-item {
-                padding: 8px 15px;
-                border-radius: 8px;
-                text-decoration: none;
-                color: var(--autumn-brown);
-                font-weight: bold;
-                transition: all 0.3s ease;
-                margin-left: 20px;
+            .global-title {
+                flex: none;
+                flex-wrap: wrap;
+                font-size: 36px;
+                color: var(--autumn-yellow);
                 display: flex;
                 align-items: center;
-                background: rgba(255, 250, 236, 0.5);
-                box-shadow: 0 2px 5px rgba(139, 69, 19, 0.1);
-                &:hover {
-                    background: var(--autumn-yellow);
-                    color: white;
-                    transform: translateY(-5px);
-                    box-shadow: 0 8px 15px rgba(139, 69, 19, 0.3);
+                text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+
+                .title-text {
+                    font-weight: bold;
                 }
-                &:active {
-                    transform: translateY(-2px);
+                .icon-heart {
+                    color: var(--autumn-red);
+                    width: 36px;
+                    height: 36px;
+                    margin: 0 12px;
+                }
+            }
+            .global-nav {
+                flex: none;
+                display: flex;
+                align-items: center;
+                font-size: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+                .global-nav-item {
+                    padding: 8px 15px;
+                    border-radius: 8px;
+                    text-decoration: none;
+                    color: var(--autumn-brown);
+                    font-weight: bold;
+                    transition: all 0.3s ease;
+                    margin-left: 20px;
+                    display: flex;
+                    align-items: center;
+                    background: rgba(255, 250, 236, 0.5);
+                    box-shadow: 0 2px 5px rgba(139, 69, 19, 0.1);
+                    &:hover {
+                        background: var(--autumn-yellow);
+                        color: white;
+                        transform: translateY(-5px);
+                        box-shadow: 0 8px 15px rgba(139, 69, 19, 0.3);
+                    }
+                    &:active {
+                        transform: translateY(-2px);
+                    }
                 }
             }
         }
@@ -201,50 +205,6 @@ import { Heart, Home, Book, History, Images } from '@vicons/fa';
             margin: 0 auto;
             color: var(--autumn-brown);
             font-weight: bold;
-        }
-    }
-}
-
-// 响应式设计
-@media (max-width: 768px) {
-    .global-layout-root {
-        .global-layout-container {
-            .global-header {
-                padding: 20px 10px 10px;
-                flex-direction: column;
-
-                .global-title {
-                    font-size: 28px;
-                    margin-bottom: 15px;
-                    .icon-heart {
-                        width: 28px;
-                        height: 28px;
-                    }
-                }
-                .global-nav {
-                    font-size: 16px;
-                    .global-nav-item {
-                        padding: 6px 10px;
-                        margin-left: 10px;
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media (max-width: 480px) {
-    .global-layout-root {
-        .global-layout-container {
-            .global-header {
-                .global-nav {
-                    flex-wrap: wrap;
-                    justify-content: center;
-                    .global-nav-item {
-                        margin: 5px;
-                    }
-                }
-            }
         }
     }
 }
