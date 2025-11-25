@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Outlet, Link } from 'swico';
+import { Outlet, Link } from 'swico/vue';
 import { Heart, Home, Book, History, Images } from '@vicons/fa';
 </script>
 
@@ -82,7 +82,7 @@ import { Heart, Home, Book, History, Images } from '@vicons/fa';
         .global-container {
             padding: 30px 20px;
             justify-content: space-between;
-            border-bottom: 3px solid var(--autumn-yellow);
+            //border-bottom: 3px solid var(--autumn-yellow);
 
             .global-title {
                 flex: none;
@@ -138,6 +138,7 @@ import { Heart, Home, Book, History, Images } from '@vicons/fa';
 
     .global-content {
         padding: 10px;
+        flex: 1;
     }
     .global-leaf {
         @keyframes float {
@@ -205,6 +206,7 @@ import { Heart, Home, Book, History, Images } from '@vicons/fa';
             margin: 0 auto;
             color: var(--autumn-brown);
             font-weight: bold;
+            font-size: 20px;
         }
     }
 }
