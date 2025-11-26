@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
+import indexPhoto from '@/assets/index_photo.jpg';
 
 const timeTogether = ref('0天0小时0分钟0秒');
 let intervalId: number | null = null;
@@ -73,10 +74,11 @@ function updateTime() {
             <div class="photo-frame">
                 <div class="photo-placeholder">
                     <!-- Couple photo would go here -->
-                    <div class="couple-initials">❤️</div>
+                    <!--                    <div class="couple-initials">❤️</div>-->
+                    <!--                    <img class="photo" :src="indexPhoto" title="I Love You" />-->
                 </div>
             </div>
-
+            <div class="poem-line">传枫寄文，文栖燕枝</div>
             <div class="time-display">
                 <h2>我们已经一起走过了</h2>
                 <div class="time-counter">{{ timeTogether }}</div>
@@ -274,22 +276,35 @@ function updateTime() {
             animation: pulse 2s infinite;
 
             .photo-placeholder {
-                width: 200px;
-                height: 200px;
+                width: 250px;
+                height: 250px;
                 border-radius: 50%;
-                background: linear-gradient(45deg, var(--autumn-yellow), var(--autumn-red));
+                background: url('@/assets/index_photo.jpg');
+                background-size: cover;
+                background-position: center;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
                 border: 5px solid white;
 
-                .couple-initials {
-                    font-size: 60px;
+                .photo {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
                 }
             }
         }
-
+        .poem-line {
+            font-family: '楷体', 'KaiTi', serif;
+            font-size: 24px;
+            color: var(--autumn-brown);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
         .time-display {
             text-align: center;
             background: rgba(255, 250, 236, 0.8);
