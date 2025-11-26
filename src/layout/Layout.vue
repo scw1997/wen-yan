@@ -5,13 +5,13 @@ import { Heart, Home, Book, History, Images } from '@vicons/fa';
 
 <template>
     <div class="global-layout-root">
-        <section class="global-leaf">
-            <!-- 落叶动画 -->
-            <div class="leaf leaf-1">🍂</div>
-            <div class="leaf leaf-2">🍂</div>
-            <div class="leaf leaf-3">🍁</div>
-            <div class="leaf leaf-4">🍁</div>
-        </section>
+        <!--        <section class="global-leaf">-->
+        <!--            &lt;!&ndash; 落叶动画 &ndash;&gt;-->
+        <!--            <div class="leaf leaf-1">🍂</div>-->
+        <!--            <div class="leaf leaf-2">🍂</div>-->
+        <!--            <div class="leaf leaf-3">🍁</div>-->
+        <!--            <div class="leaf leaf-4">🍁</div>-->
+        <!--        </section>-->
         <header class="global-header">
             <div class="global-container">
                 <span class="global-title">
@@ -137,8 +137,9 @@ import { Heart, Home, Book, History, Images } from '@vicons/fa';
     }
 
     .global-content {
-        padding: 10px;
+        padding: 10px 0;
         flex: 1;
+        width: 100%;
     }
     .global-leaf {
         @keyframes float {

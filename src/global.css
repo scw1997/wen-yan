@@ -24,7 +24,7 @@ html {
 @media (min-width: 768px) {
     /*设置上限值，兼容pc端显示效果*/
     html {
-        font-size: 97.66px !important;
+        font-size: 102px !important;
     }
 }
 body {

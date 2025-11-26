@@ -1,79 +1,85 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 
-// 设置相识日期和在一起的日期（请根据实际情况修改）
-const meetDate = new Date('2020-09-01'); // 相识日期
-const loveDate = new Date('2021-05-20'); // 在一起日期
-
-// 计算相识天数
-const daysSinceMeet = ref(0);
-// 计算在一起天数
-const daysSinceLove = ref(0);
-
-// 格式化日期显示
-const formatDate = (date: Date) => {
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    return `${year}.${month.toString().padStart(2, '0')}.${day.toString().padStart(2, '0')}`;
-};
-
-// 更新天数计算
-const updateDays = () => {
-    const today = new Date();
-    daysSinceMeet.value = Math.floor(
-        (today.getTime() - meetDate.getTime()) / (1000 * 60 * 60 * 24)
-    );
-    daysSinceLove.value = Math.floor(
-        (today.getTime() - loveDate.getTime()) / (1000 * 60 * 60 * 24)
-    );
-};
+const timeTogether = ref('0天0小时0分钟0秒');
+let intervalId: number | null = null;
+const startDate = new Date('2025-09-04T22:00:00'); // 这里设置你们开始的日期
 
 onMounted(() => {
-    updateDays();
-    // 每小时更新一次天数
-    setInterval(updateDays, 3600000);
+    updateTime();
+    intervalId = window.setInterval(updateTime, 1000);
 });
 
-// 相识信息
-const meetInfo = computed(() => ({
-    date: formatDate(meetDate),
-    days: daysSinceMeet.value
-}));
+onUnmounted(() => {
+    if (intervalId) {
+        clearInterval(intervalId);
+    }
+});
 
-// 恋爱信息
-const loveInfo = computed(() => ({
-    date: formatDate(loveDate),
-    days: daysSinceLove.value
-}));
+function updateTime() {
+    const now = new Date();
+    const diff = now.getTime() - startDate.getTime();
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    timeTogether.value = `${days}天${hours}小时${minutes}分钟${seconds}秒`;
+}
 </script>
 
 <template>
     <div class="home-container">
-        <!-- 背景蒙层 -->
-        <div class="background-overlay"></div>
+        <!-- Falling leaves in background -->
+        <div class="leaves-container">
+            <div class="leaf leaf-1">🍁</div>
+            <div class="leaf leaf-2">🍂</div>
+            <div class="leaf leaf-3">🍁</div>
+            <div class="leaf leaf-4">🍂</div>
+            <div class="leaf leaf-5">🍁</div>
+            <div class="leaf leaf-6">🍂</div>
+            <div class="leaf leaf-7">🍁</div>
+            <div class="leaf leaf-8">🍂</div>
+            <div class="leaf leaf-9">🍁</div>
+            <div class="leaf leaf-10">🍂</div>
+            <div class="leaf leaf-11">🍁</div>
+            <div class="leaf leaf-12">🍂</div>
+        </div>
 
-        <div class="container-wrapper">
-            <div class="photo-section">
+        <!-- Cartoon maple trees on both sides -->
+        <div class="trees-container">
+            <!-- Left tree -->
+            <div class="tree tree-left">
+                <div class="leaves-cluster cluster-1"></div>
+                <div class="leaves-cluster cluster-2"></div>
+                <div class="leaves-cluster cluster-3"></div>
+                <div class="leaves-cluster cluster-4"></div>
+                <div class="tree-trunk"></div>
+            </div>
+
+            <!-- Right tree -->
+            <div class="tree tree-right">
+                <div class="leaves-cluster cluster-1"></div>
+                <div class="leaves-cluster cluster-2"></div>
+                <div class="leaves-cluster cluster-3"></div>
+                <div class="leaves-cluster cluster-4"></div>
+                <div class="tree-trunk"></div>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <div class="photo-frame">
                 <div class="photo-placeholder">
-                    <!-- 这里放置你们的合照 -->
-                    <img src="" alt="我们的合照" class="couple-photo" />
-                    <div class="photo-text">Our Moments</div>
+                    <!-- Couple photo would go here -->
+                    <div class="couple-initials">❤️</div>
                 </div>
             </div>
 
-            <div class="timeline-section">
-                <div class="timeline-item">
-                    <div class="date">{{ meetInfo.date }}</div>
-                    <div class="event">初次相遇</div>
-                    <div class="days">{{ meetInfo.days }} days</div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="date">{{ loveInfo.date }}</div>
-                    <div class="event">在一起</div>
-                    <div class="days">{{ loveInfo.days }} days</div>
-                </div>
+            <div class="time-display">
+                <h2>我们已经一起走过了</h2>
+                <div class="time-counter">{{ timeTogether }}</div>
             </div>
         </div>
     </div>
@@ -81,194 +87,256 @@ const loveInfo = computed(() => ({
 
 <style scoped lang="less">
 .home-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100%;
-    padding: 20px 10px;
     position: relative;
+    height: 100%;
+    width: 100%;
     overflow: hidden;
+    background: linear-gradient(135deg, var(--cream) 0%, var(--light-orange) 100%);
 
-    // 背景蒙层
-    .background-overlay {
+    .leaves-container {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background:
-            radial-gradient(circle at 10% 20%, rgba(255, 182, 106, 0.15) 0%, transparent 20%),
-            radial-gradient(circle at 90% 80%, rgba(255, 107, 107, 0.15) 0%, transparent 20%),
-            radial-gradient(circle at 50% 30%, rgba(143, 188, 143, 0.1) 0%, transparent 30%);
-        z-index: -1;
+        pointer-events: none;
+        z-index: 1;
+
+        .leaf {
+            position: absolute;
+            font-size: 30px;
+            top: -50px;
+            opacity: 0.7;
+
+            &.leaf-1 {
+                left: 5%;
+                animation: falling 12s linear infinite;
+                animation-delay: 0s;
+            }
+
+            &.leaf-2 {
+                left: 15%;
+                animation: falling 10s linear infinite;
+                animation-delay: 2s;
+            }
+
+            &.leaf-3 {
+                left: 25%;
+                animation: falling 15s linear infinite;
+                animation-delay: 1s;
+            }
+
+            &.leaf-4 {
+                left: 35%;
+                animation: falling 8s linear infinite;
+                animation-delay: 3s;
+            }
+
+            &.leaf-5 {
+                left: 45%;
+                animation: falling 13s linear infinite;
+                animation-delay: 0s;
+            }
+
+            &.leaf-6 {
+                left: 55%;
+                animation: falling 11s linear infinite;
+                animation-delay: 4s;
+            }
+
+            &.leaf-7 {
+                left: 65%;
+                animation: falling 9s linear infinite;
+                animation-delay: 2s;
+            }
+
+            &.leaf-8 {
+                left: 75%;
+                animation: falling 14s linear infinite;
+                animation-delay: 1s;
+            }
+
+            &.leaf-9 {
+                left: 85%;
+                animation: falling 10s linear infinite;
+                animation-delay: 5s;
+            }
+
+            &.leaf-10 {
+                left: 95%;
+                animation: falling 12s linear infinite;
+                animation-delay: 3s;
+            }
+
+            &.leaf-11 {
+                left: 10%;
+                animation: falling 11s linear infinite;
+                animation-delay: 6s;
+            }
+
+            &.leaf-12 {
+                left: 40%;
+                animation: falling 13s linear infinite;
+                animation-delay: 7s;
+            }
+        }
     }
 
-    .container-wrapper {
-        max-width: 1200px;
+    .trees-container {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 2;
+
+        .tree {
+            position: absolute;
+            bottom: 0;
+
+            &.tree-left {
+                left: 30px;
+            }
+
+            &.tree-right {
+                right: 150px;
+            }
+
+            .leaves-cluster {
+                position: absolute;
+                background-color: var(--autumn-red);
+                border-radius: 50%;
+                box-shadow:
+                    inset -5px -5px 10px rgba(0, 0, 0, 0.1),
+                    inset 3px 3px 5px rgba(255, 255, 255, 0.2);
+
+                &.cluster-1 {
+                    width: 100px;
+                    height: 100px;
+                    top: -180px;
+                    left: -30px;
+                    background-color: var(--autumn-red);
+                }
+
+                &.cluster-2 {
+                    width: 120px;
+                    height: 120px;
+                    top: -150px;
+                    left: 20px;
+                    background-color: var(--autumn-yellow);
+                }
+
+                &.cluster-3 {
+                    width: 90px;
+                    height: 90px;
+                    top: -120px;
+                    left: 60px;
+                    background-color: var(--autumn-red);
+                }
+
+                &.cluster-4 {
+                    width: 70px;
+                    height: 70px;
+                    top: -160px;
+                    left: 70px;
+                    background-color: var(--autumn-yellow);
+                }
+            }
+
+            .tree-trunk {
+                position: absolute;
+                width: 25px;
+                height: 200px;
+                background: var(--autumn-brown);
+                top: -200px;
+                left: 45px;
+                border-radius: 5px;
+                box-shadow:
+                    inset -3px 0 5px rgba(0, 0, 0, 0.2),
+                    inset 2px 0 3px rgba(255, 255, 255, 0.1);
+            }
+        }
+    }
+
+    .content-wrapper {
+        position: relative;
+        z-index: 3;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+        height: 100%;
         padding: 20px;
 
-        .photo-section {
+        .photo-frame {
             margin-bottom: 40px;
+            animation: pulse 2s infinite;
 
             .photo-placeholder {
-                position: relative;
-                width: 220px;
-                height: 220px;
+                width: 200px;
+                height: 200px;
                 border-radius: 50%;
-                overflow: hidden;
-                background: linear-gradient(45deg, var(--autumn-yellow), var(--light-orange));
+                background: linear-gradient(45deg, var(--autumn-yellow), var(--autumn-red));
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+                box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
+                border: 5px solid white;
 
-                .couple-photo {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-
-                .photo-text {
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    background: rgba(139, 69, 19, 0.8);
-                    color: white;
-                    text-align: center;
-                    padding: 8px;
-                    font-size: 16px;
-                    font-weight: bold;
-                }
-
-                &::after {
-                    content: '请上传合照';
-                    color: var(--autumn-brown);
-                    font-size: 18px;
-                    font-weight: bold;
+                .couple-initials {
+                    font-size: 60px;
                 }
             }
         }
 
-        .timeline-section {
-            width: 100%;
-            max-width: 500px;
+        .time-display {
+            text-align: center;
+            background: rgba(255, 250, 236, 0.8);
+            padding: 25px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.2);
 
-            .timeline-item {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 20px 25px;
-                background: rgba(255, 250, 236, 0.9);
-                border-radius: 15px;
-                margin-bottom: 20px;
-                box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
-                transition: all 0.3s ease;
-                backdrop-filter: blur(5px); // 添加毛玻璃效果
+            h2 {
+                color: var(--autumn-brown);
+                font-size: 24px;
+                margin-bottom: 15px;
+                font-weight: bold;
+            }
 
-                &:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
-                }
-
-                .date {
-                    color: var(--autumn-brown);
-                    font-weight: bold;
-                    font-size: 18px;
-                    flex: 1;
-                }
-
-                .event {
-                    color: var(--autumn-red);
-                    font-weight: bold;
-                    font-size: 18px;
-                    flex: 1;
-                    text-align: center;
-                }
-
-                .days {
-                    color: var(--autumn-yellow);
-                    font-weight: bold;
-                    font-size: 18px;
-                    flex: 1;
-                    text-align: right;
-                }
+            .time-counter {
+                font-size: 28px;
+                font-weight: bold;
+                color: var(--autumn-red);
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
             }
         }
     }
 }
 
-// 移动端适配
-@media (max-width: 768px) {
-    .home-container {
-        .container-wrapper {
-            padding: 15px;
+@keyframes falling {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.7;
+    }
 
-            .photo-section {
-                margin-bottom: 30px;
-
-                .photo-placeholder {
-                    width: 180px;
-                    height: 180px;
-
-                    .photo-text {
-                        font-size: 14px;
-                        padding: 6px;
-                    }
-
-                    &::after {
-                        font-size: 16px;
-                    }
-                }
-            }
-
-            .timeline-section {
-                max-width: 100%;
-
-                .timeline-item {
-                    padding: 15px 20px;
-                    margin-bottom: 15px;
-
-                    .date,
-                    .event,
-                    .days {
-                        font-size: 16px;
-                    }
-                }
-            }
-        }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.3;
     }
 }
 
-@media (max-width: 480px) {
-    .home-container {
-        .container-wrapper {
-            .photo-section {
-                .photo-placeholder {
-                    width: 160px;
-                    height: 160px;
-                }
-            }
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
 
-            .timeline-section {
-                .timeline-item {
-                    flex-direction: column;
-                    text-align: center;
-                    gap: 10px;
+    50% {
+        transform: scale(1.05);
+    }
 
-                    .date,
-                    .event,
-                    .days {
-                        flex: none;
-                        text-align: center;
-                    }
-                }
-            }
-        }
+    100% {
+        transform: scale(1);
     }
 }
 </style>
