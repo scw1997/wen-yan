@@ -1,17 +1,46 @@
 <script setup lang="ts">
-import { Outlet, Link } from 'swico/vue';
+import { Outlet, Link, useLocation, history } from 'swico/vue';
 import { Heart, Home, Book, History, Images } from '@vicons/fa';
+import { onMounted, ref, toRef, watch } from 'vue';
+const nameRef = ref('');
+const navOptions = [
+    {
+        name: 'index',
+        title: '首页',
+        icon: Home,
+        iconClass: 'icon-home'
+    },
+    {
+        name: 'timeline',
+        title: '时光轴',
+        icon: History,
+        iconClass: 'icon-history'
+    },
+    {
+        name: 'album',
+        title: '相册',
+        icon: Images,
+        iconClass: 'icon-images'
+    },
+    {
+        name: 'diary',
+        title: '记事本',
+        icon: Book,
+        iconClass: 'icon-book'
+    }
+];
+
+watch(
+    () => history.location.name,
+    (name) => {
+        // console.log('name', name);
+        nameRef.value = name;
+    }
+);
 </script>
 
 <template>
     <div class="global-layout-root">
-        <!--        <section class="global-leaf">-->
-        <!--            &lt;!&ndash; 落叶动画 &ndash;&gt;-->
-        <!--            <div class="leaf leaf-1">🍂</div>-->
-        <!--            <div class="leaf leaf-2">🍂</div>-->
-        <!--            <div class="leaf leaf-3">🍁</div>-->
-        <!--            <div class="leaf leaf-4">🍁</div>-->
-        <!--        </section>-->
         <header class="global-header">
             <div class="global-container">
                 <span class="global-title">
@@ -20,33 +49,43 @@ import { Heart, Home, Book, History, Images } from '@vicons/fa';
                     <span class="title-text">燕</span>
                 </span>
                 <nav class="global-nav">
-                    <Link class="cp global-nav-item" :to="{ name: 'index' }">
-                        <Home class="icon-home" />
-                        首页
-                    </Link>
-                    <Link class="cp global-nav-item" :to="{ name: 'index' }">
-                        <History class="icon-history" />
-                        时光轴
-                    </Link>
-                    <Link class="cp global-nav-item" :to="{ name: 'index' }">
-                        <Images class="icon-images" />
-                        相片册
-                    </Link>
-                    <Link class="cp global-nav-item" :to="{ name: 'index' }">
-                        <Book class="icon-book" />
-                        记事本
+                    <Link
+                        v-for="{ name, title, icon, iconClass } in navOptions"
+                        :key="name"
+                        :class="`cp global-nav-item ${nameRef === name ? 'active' : ''}`"
+                        :to="{ name }"
+                    >
+                        <component :is="icon" :class="iconClass" />
+                        {{ title }}
                     </Link>
                 </nav>
             </div>
         </header>
         <main class="global-content">
+            <section class="global-leaves-container">
+                <section class="global-leaves">
+                    <div class="leaf leaf-1">🍁</div>
+                    <div class="leaf leaf-2">🍂</div>
+                    <div class="leaf leaf-3">🍁</div>
+                    <div class="leaf leaf-4">🍂</div>
+                    <div class="leaf leaf-5">🍁</div>
+                    <div class="leaf leaf-6">🍂</div>
+                    <div class="leaf leaf-7">🍁</div>
+                    <div class="leaf leaf-8">🍂</div>
+                    <div class="leaf leaf-9">🍁</div>
+                    <div class="leaf leaf-10">🍂</div>
+                    <div class="leaf leaf-11">🍁</div>
+                    <div class="leaf leaf-12">🍂</div>
+                </section>
+            </section>
+
             <!-- 全体路由在此渲染 -->
             <Outlet />
         </main>
         <!-- 新增底部 -->
         <footer class="global-footer">
             <div class="footer-content">
-                <p>© 2025 | 我在呢，一直都在呢...</p>
+                <p>© 2025 - present | 我在呢，一直都在呢...</p>
             </div>
         </footer>
     </div>
@@ -128,8 +167,9 @@ import { Heart, Home, Book, History, Images } from '@vicons/fa';
                         transform: translateY(-5px);
                         box-shadow: 0 8px 15px rgba(139, 69, 19, 0.3);
                     }
-                    &:active {
-                        transform: translateY(-2px);
+                    &.active {
+                        background: var(--autumn-yellow);
+                        color: white;
                     }
                 }
             }
@@ -140,60 +180,102 @@ import { Heart, Home, Book, History, Images } from '@vicons/fa';
         padding: 10px 0;
         flex: 1;
         width: 100%;
-    }
-    .global-leaf {
-        @keyframes float {
-            0% {
-                transform: translateY(0px) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(10deg);
-            }
-            100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-        }
-        @keyframes fall {
-            0% {
-                transform: translateY(-60px) rotate(0deg);
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-            }
-        }
-        .leaf {
-            position: fixed;
-            font-size: 40px;
-            opacity: 0.7;
-            //z-index: -1;
-        }
+        height: max-content;
+        position: relative;
+        .global-leaves-container {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            z-index: 3;
+            overflow: hidden;
+            .global-leaves {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 1;
 
-        .leaf {
-            animation: fall 15s linear infinite;
-        }
+                .leaf {
+                    position: absolute;
+                    font-size: 36px;
+                    top: -50px;
+                    opacity: 0.7;
 
-        .leaf-1 {
-            top: -60px;
-            left: 20%;
-            animation-delay: 0s;
-        }
+                    &.leaf-1 {
+                        left: 5%;
+                        animation: falling 12s linear infinite;
+                        animation-delay: 0s;
+                    }
 
-        .leaf-2 {
-            top: -60px;
-            right: 30%;
-            animation-delay: 3s;
-        }
+                    &.leaf-2 {
+                        left: 15%;
+                        animation: falling 10s linear infinite;
+                        animation-delay: 2s;
+                    }
 
-        .leaf-3 {
-            top: -60px;
-            left: 30%;
-            animation-delay: 6s;
-        }
+                    &.leaf-3 {
+                        left: 25%;
+                        animation: falling 15s linear infinite;
+                        animation-delay: 1s;
+                    }
 
-        .leaf-4 {
-            top: -60px;
-            right: 20%;
-            animation-delay: 9s;
+                    &.leaf-4 {
+                        left: 35%;
+                        animation: falling 8s linear infinite;
+                        animation-delay: 3s;
+                    }
+
+                    &.leaf-5 {
+                        left: 45%;
+                        animation: falling 13s linear infinite;
+                        animation-delay: 0s;
+                    }
+
+                    &.leaf-6 {
+                        left: 55%;
+                        animation: falling 11s linear infinite;
+                        animation-delay: 4s;
+                    }
+
+                    &.leaf-7 {
+                        left: 65%;
+                        animation: falling 9s linear infinite;
+                        animation-delay: 2s;
+                    }
+
+                    &.leaf-8 {
+                        left: 75%;
+                        animation: falling 14s linear infinite;
+                        animation-delay: 1s;
+                    }
+
+                    &.leaf-9 {
+                        left: 85%;
+                        animation: falling 10s linear infinite;
+                        animation-delay: 5s;
+                    }
+
+                    &.leaf-10 {
+                        left: 95%;
+                        animation: falling 12s linear infinite;
+                        animation-delay: 3s;
+                    }
+
+                    &.leaf-11 {
+                        left: 10%;
+                        animation: falling 11s linear infinite;
+                        animation-delay: 6s;
+                    }
+
+                    &.leaf-12 {
+                        left: 40%;
+                        animation: falling 13s linear infinite;
+                        animation-delay: 7s;
+                    }
+                }
+            }
         }
     }
 
@@ -208,6 +290,18 @@ import { Heart, Home, Book, History, Images } from '@vicons/fa';
             color: var(--autumn-brown);
             font-weight: bold;
             font-size: 20px;
+        }
+    }
+
+    @keyframes falling {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0.7;
+        }
+
+        100% {
+            transform: translateY(999px) rotate(360deg);
+            opacity: 0.3;
         }
     }
 }

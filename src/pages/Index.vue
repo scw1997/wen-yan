@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
-import indexPhoto from '@/assets/index_photo.jpg';
+import { history, useLocation } from 'swico/vue';
 
 const timeTogether = ref('0天0小时0分钟0秒');
 let intervalId: number | null = null;
 const startDate = new Date('2025-09-04T22:00:00'); // 这里设置你们开始的日期
-
+const { name } = useLocation();
 onMounted(() => {
     updateTime();
     intervalId = window.setInterval(updateTime, 1000);
@@ -32,22 +32,6 @@ function updateTime() {
 
 <template>
     <div class="home-container">
-        <!-- Falling leaves in background -->
-        <div class="leaves-container">
-            <div class="leaf leaf-1">🍁</div>
-            <div class="leaf leaf-2">🍂</div>
-            <div class="leaf leaf-3">🍁</div>
-            <div class="leaf leaf-4">🍂</div>
-            <div class="leaf leaf-5">🍁</div>
-            <div class="leaf leaf-6">🍂</div>
-            <div class="leaf leaf-7">🍁</div>
-            <div class="leaf leaf-8">🍂</div>
-            <div class="leaf leaf-9">🍁</div>
-            <div class="leaf leaf-10">🍂</div>
-            <div class="leaf leaf-11">🍁</div>
-            <div class="leaf leaf-12">🍂</div>
-        </div>
-
         <!-- Cartoon maple trees on both sides -->
         <div class="trees-container">
             <!-- Left tree -->
@@ -72,17 +56,15 @@ function updateTime() {
         <!-- Main content -->
         <div class="content-wrapper">
             <div class="photo-frame">
-                <div class="photo-placeholder">
-                    <!-- Couple photo would go here -->
-                    <!--                    <div class="couple-initials">❤️</div>-->
-                    <!--                    <img class="photo" :src="indexPhoto" title="I Love You" />-->
-                </div>
+                <div class="photo-placeholder"></div>
             </div>
-            <div class="poem-line">传枫寄文，文栖燕枝</div>
+            <div class="poem-line">🍁传枫寄文，文栖燕枝🌿</div>
+            <!--            <div class="poem-line">👦传枫寄文，文栖燕枝👧️</div>-->
             <div class="time-display">
                 <h2>我们已经一起走过了</h2>
                 <div class="time-counter">{{ timeTogether }}</div>
             </div>
+            <div class="future-message">未来很长，余生却很短...</div>
         </div>
     </div>
 </template>
@@ -94,95 +76,6 @@ function updateTime() {
     width: 100%;
     overflow: hidden;
     background: linear-gradient(135deg, var(--cream) 0%, var(--light-orange) 100%);
-
-    .leaves-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 1;
-
-        .leaf {
-            position: absolute;
-            font-size: 30px;
-            top: -50px;
-            opacity: 0.7;
-
-            &.leaf-1 {
-                left: 5%;
-                animation: falling 12s linear infinite;
-                animation-delay: 0s;
-            }
-
-            &.leaf-2 {
-                left: 15%;
-                animation: falling 10s linear infinite;
-                animation-delay: 2s;
-            }
-
-            &.leaf-3 {
-                left: 25%;
-                animation: falling 15s linear infinite;
-                animation-delay: 1s;
-            }
-
-            &.leaf-4 {
-                left: 35%;
-                animation: falling 8s linear infinite;
-                animation-delay: 3s;
-            }
-
-            &.leaf-5 {
-                left: 45%;
-                animation: falling 13s linear infinite;
-                animation-delay: 0s;
-            }
-
-            &.leaf-6 {
-                left: 55%;
-                animation: falling 11s linear infinite;
-                animation-delay: 4s;
-            }
-
-            &.leaf-7 {
-                left: 65%;
-                animation: falling 9s linear infinite;
-                animation-delay: 2s;
-            }
-
-            &.leaf-8 {
-                left: 75%;
-                animation: falling 14s linear infinite;
-                animation-delay: 1s;
-            }
-
-            &.leaf-9 {
-                left: 85%;
-                animation: falling 10s linear infinite;
-                animation-delay: 5s;
-            }
-
-            &.leaf-10 {
-                left: 95%;
-                animation: falling 12s linear infinite;
-                animation-delay: 3s;
-            }
-
-            &.leaf-11 {
-                left: 10%;
-                animation: falling 11s linear infinite;
-                animation-delay: 6s;
-            }
-
-            &.leaf-12 {
-                left: 40%;
-                animation: falling 13s linear infinite;
-                animation-delay: 7s;
-            }
-        }
-    }
 
     .trees-container {
         position: absolute;
@@ -326,18 +219,16 @@ function updateTime() {
                 text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
             }
         }
-    }
-}
 
-@keyframes falling {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0.7;
-    }
-
-    100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0.3;
+        .future-message {
+            font-family: '微软雅黑', 'Microsoft YaHei', sans-serif;
+            font-size: 20px;
+            color: var(--autumn-brown);
+            text-align: center;
+            margin-top: 20px;
+            animation: fadeInOut 3s ease-in-out infinite;
+            font-style: italic;
+        }
     }
 }
 
@@ -352,6 +243,17 @@ function updateTime() {
 
     100% {
         transform: scale(1);
+    }
+}
+
+@keyframes fadeInOut {
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
     }
 }
 </style>

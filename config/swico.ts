@@ -15,19 +15,19 @@ export default defineConfig('base', {
                 component: 'Index'
             },
             {
+                path: '/timeline',
+                name: 'timeline',
+                component: 'Timeline'
+            },
+            {
                 path: '/album',
                 name: 'album',
                 component: 'Album'
             },
             {
                 path: '/diary',
-                name: 'index',
-                component: 'Index'
-            },
-            {
-                path: '/',
-                name: 'index',
-                component: 'Index'
+                name: 'diary',
+                component: 'Diary'
             }
         ]
     }
