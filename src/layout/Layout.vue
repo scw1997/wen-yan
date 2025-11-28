@@ -300,7 +300,7 @@ watch(
         }
 
         100% {
-            transform: translateY(999px) rotate(360deg);
+            transform: translateY(1200px) rotate(360deg);
             opacity: 0.3;
         }
     }

@@ -195,9 +195,7 @@ const resetTransform = () => {
     position: relative;
     min-height: 100%;
     width: 100%;
-    background: linear-gradient(135deg, var(--cream) 0%, var(--light-orange) 100%);
     padding: 20px;
-    overflow: hidden;
 
     .timeline-content {
         position: relative;

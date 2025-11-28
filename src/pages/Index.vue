@@ -74,8 +74,6 @@ function updateTime() {
     position: relative;
     height: 100%;
     width: 100%;
-    overflow: hidden;
-    background: linear-gradient(135deg, var(--cream) 0%, var(--light-orange) 100%);
 
     .trees-container {
         position: absolute;
