@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import GlobalFalling from '@/components/GlobalFalling.vue';
 
 interface TimelineEvent {
     id: number;
@@ -120,6 +121,7 @@ const resetTransform = () => {
 </script>
 
 <template>
+    <GlobalFalling />
     <div class="timeline-container">
         <div class="timeline-content">
             <h1 class="page-title">我们的时光轴</h1>

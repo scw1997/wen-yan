@@ -30,7 +30,7 @@ html {
 @media (max-width: 360px) {
     /*设置上限值，兼容pc端显示效果*/
     html {
-        font-size: 50px !important;
+        font-size: 48px !important;
     }
 }
 body {
@@ -110,4 +110,16 @@ body {
     margin: 0 4px;
     display: inline-block;
     vertical-align: -4px;
+}
+
+@keyframes falling {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateY(var(--global-content-height)) rotate(360deg);
+        opacity: 0.3;
+    }
 }

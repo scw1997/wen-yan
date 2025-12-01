@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { Outlet, Link, useLocation, history } from 'swico/vue';
 import { Heart, Home, Book, History, Images } from '@vicons/fa';
-import { onMounted, ref, toRef, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
+import GlobalFalling from '@/components/GlobalFalling.vue';
 const nameRef = ref('');
 const navOptions = [
     {
@@ -61,24 +62,7 @@ watch(
                 </nav>
             </div>
         </header>
-        <main class="global-content">
-            <section class="global-leaves-container">
-                <section class="global-leaves">
-                    <div class="leaf leaf-1">🍁</div>
-                    <div class="leaf leaf-2">🍂</div>
-                    <div class="leaf leaf-3">🍁</div>
-                    <div class="leaf leaf-4">🍂</div>
-                    <div class="leaf leaf-5">🍁</div>
-                    <div class="leaf leaf-6">🍂</div>
-                    <div class="leaf leaf-7">🍁</div>
-                    <div class="leaf leaf-8">🍂</div>
-                    <div class="leaf leaf-9">🍁</div>
-                    <div class="leaf leaf-10">🍂</div>
-                    <div class="leaf leaf-11">🍁</div>
-                    <div class="leaf leaf-12">🍂</div>
-                </section>
-            </section>
-
+        <main id="global-content" class="global-content">
             <!-- 全体路由在此渲染 -->
             <Outlet />
         </main>
@@ -117,12 +101,9 @@ watch(
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
-        padding: 0 10px;
         .global-container {
             padding: 30px 20px;
             justify-content: space-between;
-            //border-bottom: 3px solid var(--autumn-yellow);
-
             .global-title {
                 flex: none;
                 flex-wrap: wrap;
@@ -177,106 +158,12 @@ watch(
     }
 
     .global-content {
+        --global-content-height: 100vh;
         padding: 10px 0;
         flex: 1;
         width: 100%;
         height: max-content;
         position: relative;
-        .global-leaves-container {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            z-index: 3;
-            overflow: hidden;
-            .global-leaves {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                pointer-events: none;
-                z-index: 1;
-
-                .leaf {
-                    position: absolute;
-                    font-size: 36px;
-                    top: -50px;
-                    opacity: 0.7;
-
-                    &.leaf-1 {
-                        left: 5%;
-                        animation: falling 12s linear infinite;
-                        animation-delay: 0s;
-                    }
-
-                    &.leaf-2 {
-                        left: 15%;
-                        animation: falling 10s linear infinite;
-                        animation-delay: 2s;
-                    }
-
-                    &.leaf-3 {
-                        left: 25%;
-                        animation: falling 15s linear infinite;
-                        animation-delay: 1s;
-                    }
-
-                    &.leaf-4 {
-                        left: 35%;
-                        animation: falling 8s linear infinite;
-                        animation-delay: 3s;
-                    }
-
-                    &.leaf-5 {
-                        left: 45%;
-                        animation: falling 13s linear infinite;
-                        animation-delay: 0s;
-                    }
-
-                    &.leaf-6 {
-                        left: 55%;
-                        animation: falling 11s linear infinite;
-                        animation-delay: 4s;
-                    }
-
-                    &.leaf-7 {
-                        left: 65%;
-                        animation: falling 9s linear infinite;
-                        animation-delay: 2s;
-                    }
-
-                    &.leaf-8 {
-                        left: 75%;
-                        animation: falling 14s linear infinite;
-                        animation-delay: 1s;
-                    }
-
-                    &.leaf-9 {
-                        left: 85%;
-                        animation: falling 10s linear infinite;
-                        animation-delay: 5s;
-                    }
-
-                    &.leaf-10 {
-                        left: 95%;
-                        animation: falling 12s linear infinite;
-                        animation-delay: 3s;
-                    }
-
-                    &.leaf-11 {
-                        left: 10%;
-                        animation: falling 11s linear infinite;
-                        animation-delay: 6s;
-                    }
-
-                    &.leaf-12 {
-                        left: 40%;
-                        animation: falling 13s linear infinite;
-                        animation-delay: 7s;
-                    }
-                }
-            }
-        }
     }
 
     .global-footer {
@@ -290,18 +177,6 @@ watch(
             color: var(--autumn-brown);
             font-weight: bold;
             font-size: 20px;
-        }
-    }
-
-    @keyframes falling {
-        0% {
-            transform: translateY(0) rotate(0deg);
-            opacity: 0.7;
-        }
-
-        100% {
-            transform: translateY(1200px) rotate(360deg);
-            opacity: 0.3;
         }
     }
 }

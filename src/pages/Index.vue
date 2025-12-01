@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
 import { history, useLocation } from 'swico/vue';
+import GlobalFalling from '@/components/GlobalFalling.vue';
 
 const timeTogether = ref('0天0小时0分钟0秒');
 let intervalId: number | null = null;
@@ -31,6 +32,7 @@ function updateTime() {
 </script>
 
 <template>
+    <GlobalFalling />
     <div class="home-container">
         <!-- Cartoon maple trees on both sides -->
         <div class="trees-container">
