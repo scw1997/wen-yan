@@ -124,8 +124,6 @@ const resetTransform = () => {
     <GlobalFalling />
     <div class="timeline-container">
         <div class="timeline-content">
-            <h1 class="page-title">我们的时光轴</h1>
-
             <div class="timeline-wrapper">
                 <!-- 树枝主干 -->
                 <div class="tree-branch"></div>
@@ -209,10 +207,22 @@ const resetTransform = () => {
         .page-title {
             text-align: center;
             color: var(--autumn-brown);
-            font-size: 32px;
+            font-size: 36px;
             margin-bottom: 40px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             font-weight: bold;
+            font-family: '楷体', 'STKaiti', sans-serif;
+            letter-spacing: 2px;
+            position: relative;
+
+            &::after {
+                content: '';
+                display: block;
+                width: 100px;
+                height: 2px;
+                background: linear-gradient(to right, transparent, var(--autumn-red), transparent);
+                margin: 10px auto;
+            }
         }
 
         .timeline-wrapper {
@@ -445,7 +455,7 @@ const resetTransform = () => {
             padding: 10px;
 
             .page-title {
-                font-size: 24px;
+                font-size: 28px;
                 margin-bottom: 20px;
             }
 

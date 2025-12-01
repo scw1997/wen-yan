@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
-import { history, useLocation } from 'swico/vue';
 import GlobalFalling from '@/components/GlobalFalling.vue';
 
 const timeTogether = ref('0天0小时0分钟0秒');
 let intervalId: number | null = null;
 const startDate = new Date('2025-09-04T22:00:00'); // 这里设置你们开始的日期
-const { name } = useLocation();
 onMounted(() => {
     updateTime();
     intervalId = window.setInterval(updateTime, 1000);
@@ -60,13 +58,13 @@ function updateTime() {
             <div class="photo-frame">
                 <div class="photo-placeholder"></div>
             </div>
-            <div class="poem-line">🍁传枫寄文，文栖燕枝🌿</div>
-            <!--            <div class="poem-line">👦传枫寄文，文栖燕枝👧️</div>-->
+            <div class="poem-line">🌹那时相遇，忘却孤独🌹</div>
+            <div class="poem-line">🌻与你所至，皆是旅途🌻</div>
             <div class="time-display">
                 <h2>我们已经一起走过了</h2>
                 <div class="time-counter">{{ timeTogether }}</div>
             </div>
-            <div class="future-message">未来很长，余生却很短...</div>
+            <div class="future-message">余生很短，只争朝夕</div>
         </div>
     </div>
 </template>
