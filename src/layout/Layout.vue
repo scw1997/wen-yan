@@ -18,7 +18,7 @@ const navOptions = [
     },
     {
         name: 'album',
-        title: '相册',
+        title: '相册集',
         icon: Images,
         iconClass: 'icon-images'
     },
@@ -99,7 +99,7 @@ watch(
         justify-content: center;
         flex-wrap: wrap;
         &.global-container {
-            padding: 30px 20px;
+            padding: 30px 0;
             justify-content: space-between;
             .global-title {
                 flex: none;

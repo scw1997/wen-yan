@@ -58,7 +58,7 @@ onUnmounted(() => {
     position: absolute;
     height: 100%;
     width: 100%;
-    z-index: 3;
+    z-index: 0;
     left: 0;
     top: 0;
     overflow: hidden;

@@ -202,7 +202,7 @@ const resetTransform = () => {
         z-index: 2;
         max-width: 1200px;
         margin: 0 auto;
-        padding: 20px;
+        padding: 20px 0;
 
         .page-title {
             text-align: center;

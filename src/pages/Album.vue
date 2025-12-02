@@ -7,6 +7,8 @@ interface Photo {
     title: string;
     date: string;
     url: string;
+    width?: number;
+    height?: number;
 }
 
 interface AlbumCategory {
@@ -25,19 +27,25 @@ const albumCategories = ref<AlbumCategory[]>([
                 id: 1,
                 title: '初次相遇',
                 date: '2025-09-04 18:30',
-                url: 'https://images.unsplash.com/photo-1573496358961-3c82838ef664?w=400&h=400&fit=crop'
+                url: 'https://images.unsplash.com/photo-1573496358961-3c82838ef664?w=400&h=400&fit=crop',
+                width: 400,
+                height: 400
             },
             {
                 id: 2,
                 title: '第一次约会',
                 date: '2025-10-15 14:20',
-                url: 'https://images.unsplash.com/photo-1465059520946-72d97538d8f4?w=400&h=400&fit=crop'
+                url: 'https://images.unsplash.com/photo-1465059520946-72d97538d8f4?w=400&h=400&fit=crop',
+                width: 400,
+                height: 400
             },
             {
                 id: 3,
                 title: '浪漫晚餐',
                 date: '2025-11-08 20:15',
-                url: 'https://images.unsplash.com/photo-1515544876196-0f0a18cf62fc?w=400&h=400&fit=crop'
+                url: 'https://images.unsplash.com/photo-1515544876196-0f0a18cf62fc?w=400&h=400&fit=crop',
+                width: 400,
+                height: 400
             }
         ]
     },
@@ -49,13 +57,17 @@ const albumCategories = ref<AlbumCategory[]>([
                 id: 4,
                 title: '海边漫步',
                 date: '2026-01-05 16:45',
-                url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop'
+                url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop',
+                width: 400,
+                height: 400
             },
             {
                 id: 5,
                 title: '山顶日出',
                 date: '2026-02-18 07:30',
-                url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=400&fit=crop'
+                url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=400&fit=crop',
+                width: 400,
+                height: 400
             }
         ]
     },
@@ -67,13 +79,17 @@ const albumCategories = ref<AlbumCategory[]>([
                 id: 6,
                 title: '圣诞礼物',
                 date: '2025-12-24 21:00',
-                url: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=400&h=400&fit=crop'
+                url: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=400&h=400&fit=crop',
+                width: 400,
+                height: 400
             },
             {
                 id: 7,
                 title: '情人节',
                 date: '2026-02-14 19:30',
-                url: 'https://images.unsplash.com/photo-1518681731556-00195d87d958?w=400&h=400&fit=crop'
+                url: 'https://images.unsplash.com/photo-1518681731556-00195d87d958?w=400&h=400&fit=crop',
+                width: 400,
+                height: 400
             }
         ]
     },
@@ -85,13 +101,17 @@ const albumCategories = ref<AlbumCategory[]>([
                 id: 8,
                 title: '温馨早餐',
                 date: '2026-03-10 08:15',
-                url: 'https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=400&h=400&fit=crop'
+                url: 'https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=400&h=400&fit=crop',
+                width: 400,
+                height: 400
             },
             {
                 id: 9,
                 title: '午后阳光',
                 date: '2026-04-02 15:20',
-                url: 'https://images.unsplash.com/photo-1499084733843-6aaea41dad0c?w=400&h=400&fit=crop'
+                url: 'https://images.unsplash.com/photo-1499084733843-6aaea41dad0c?w=400&h=400&fit=crop',
+                width: 400,
+                height: 400
             }
         ]
     }
@@ -110,13 +130,14 @@ const selectCategory = (category: AlbumCategory) => {
     <GlobalFalling />
     <div class="album-container">
         <div class="album-content">
-            <div class="album-layout">
-                <!-- 左侧分类 -->
-                <div class="categories-panel">
+            <!-- 统一的相册面板容器 -->
+            <div class="album-panel">
+                <!-- 顶部 Tab 栏 -->
+                <div class="categories-tabs">
                     <div
                         v-for="category in albumCategories"
                         :key="category.id"
-                        :class="['category-item', { active: category.id === selectedCategory.id }]"
+                        :class="['tab-item', { active: category.id === selectedCategory.id }]"
                         @click="selectCategory(category)"
                     >
                         {{ category.name }}
@@ -124,21 +145,31 @@ const selectCategory = (category: AlbumCategory) => {
                     </div>
                 </div>
 
-                <!-- 右侧照片列表 -->
+                <!-- 照片列表 -->
                 <div class="photos-panel">
-                    <h2 class="category-title">{{ selectedCategory.name }}</h2>
-                    <div class="photos-grid">
+                    <div class="masonry-layout">
                         <div
                             v-for="photo in selectedCategory.photos"
                             :key="photo.id"
-                            class="photo-item"
+                            class="masonry-item"
                         >
-                            <div class="photo-frame">
-                                <img :src="photo.url" :alt="photo.title" />
-                            </div>
-                            <div class="photo-info">
-                                <h3 class="photo-title">{{ photo.title }}</h3>
-                                <p class="photo-date">{{ photo.date }}</p>
+                            <div class="photo-card">
+                                <div class="photo-frame">
+                                    <img
+                                        :src="photo.url"
+                                        :alt="photo.title"
+                                        :style="{
+                                            aspectRatio:
+                                                photo.width && photo.height
+                                                    ? `${photo.width}/${photo.height}`
+                                                    : '1'
+                                        }"
+                                    />
+                                </div>
+                                <div class="photo-info">
+                                    <h3 class="photo-title">{{ photo.title }}</h3>
+                                    <p class="photo-date">{{ photo.date }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -157,30 +188,45 @@ const selectCategory = (category: AlbumCategory) => {
 
     .album-content {
         position: relative;
-        z-index: 2;
         max-width: 1200px;
         margin: 0 auto;
-        padding: 20px;
+        padding: 20px 0;
 
-        .album-layout {
-            display: flex;
-            gap: 20px;
-            min-height: 500px;
+        // 统一的相册面板容器
+        .album-panel {
+            background: rgba(255, 250, 236, 0.6);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+            border: 2px solid #d2b48c;
+            position: relative;
+            padding: 20px;
 
-            // 左侧分类面板
-            .categories-panel {
-                flex: none;
-                width: 200px;
-                background: rgba(255, 250, 236, 0.8);
+            &::before {
+                content: '';
+                position: absolute;
+                top: -5px;
+                left: -5px;
+                right: -5px;
+                bottom: -5px;
+                border: 1px solid #deb887;
+                border-radius: 20px;
+                z-index: -1;
+            }
+
+            // 顶部 Tab 栏
+            .categories-tabs {
+                display: flex;
+                justify-content: center;
                 border-radius: 10px;
-                padding: 15px;
-                box-shadow: 0 4px 10px rgba(139, 69, 19, 0.2);
-                height: fit-content;
+                padding: 10px;
+                position: relative;
+                flex-wrap: wrap;
+                margin-bottom: 20px;
 
-                .category-item {
-                    padding: 12px 15px;
-                    margin-bottom: 8px;
-                    border-radius: 6px;
+                .tab-item {
+                    padding: 15px 20px;
+                    margin: 5px;
+                    border-radius: 8px;
                     cursor: pointer;
                     transition: all 0.3s ease;
                     display: flex;
@@ -188,112 +234,180 @@ const selectCategory = (category: AlbumCategory) => {
                     align-items: center;
                     font-size: 16px;
                     color: var(--autumn-brown);
+                    background: rgba(255, 255, 255, 0.7);
+                    border: 1px solid #d2b48c;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    position: relative;
+                    overflow: hidden;
+                    z-index: 4; // 确保Tab在面板之上
 
                     &:hover {
-                        background: rgba(255, 182, 106, 0.3);
+                        background: rgba(255, 182, 106, 0.5);
+                        transform: translateY(-2px);
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
                     }
 
                     &.active {
-                        background: var(--autumn-yellow);
+                        background: linear-gradient(135deg, var(--autumn-yellow) 0%, #ff8c00 100%);
                         color: white;
                         font-weight: bold;
+                        box-shadow: 0 4px 10px rgba(139, 69, 19, 0.3);
+                        border-color: var(--autumn-brown);
                     }
 
                     .photo-count {
                         background: var(--autumn-brown);
                         color: white;
                         border-radius: 50%;
-                        width: 24px;
-                        height: 24px;
+                        width: 26px;
+                        height: 26px;
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         font-size: 12px;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                        margin-left: 8px;
                     }
                 }
             }
 
-            // 右侧照片面板
+            // 照片面板
             .photos-panel {
-                flex: 1;
-                background: rgba(255, 250, 236, 0.8);
                 border-radius: 10px;
-                padding: 20px;
-                box-shadow: 0 4px 10px rgba(139, 69, 19, 0.2);
+                padding: 15px;
 
-                .category-title {
-                    color: var(--autumn-brown);
-                    font-size: 24px;
-                    margin-bottom: 20px;
-                    padding-bottom: 10px;
-                    border-bottom: 2px solid var(--autumn-yellow);
-                }
-
-                .photos-grid {
+                .masonry-layout {
                     display: grid;
                     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                    grid-auto-rows: 10px;
                     gap: 20px;
 
-                    .photo-item {
-                        .photo-frame {
-                            width: 100%;
-                            height: 200px;
+                    .masonry-item {
+                        break-inside: avoid;
+                        grid-row-end: span 20;
+
+                        .photo-card {
                             border-radius: 8px;
                             overflow: hidden;
-                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                            margin-bottom: 10px;
+                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                            background: white;
+                            transition:
+                                transform 0.3s ease,
+                                box-shadow 0.3s ease;
 
-                            img {
-                                width: 100%;
-                                height: 100%;
-                                object-fit: cover;
-                                transition: transform 0.3s ease;
+                            &:hover {
+                                transform: translateY(-5px);
+                                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                            }
 
-                                &:hover {
-                                    transform: scale(1.05);
+                            .photo-frame {
+                                overflow: hidden;
+
+                                img {
+                                    width: 100%;
+                                    height: auto;
+                                    display: block;
+                                    transition: transform 0.3s ease;
+
+                                    &:hover {
+                                        transform: scale(1.05);
+                                    }
                                 }
                             }
-                        }
 
-                        .photo-info {
-                            .photo-title {
-                                color: var(--autumn-brown);
-                                font-size: 16px;
-                                font-weight: bold;
-                                margin: 0 0 5px 0;
-                            }
+                            .photo-info {
+                                padding: 12px;
 
-                            .photo-date {
-                                color: var(--autumn-red);
-                                font-size: 14px;
-                                margin: 0;
+                                .photo-title {
+                                    color: var(--autumn-brown);
+                                    font-size: 16px;
+                                    font-weight: bold;
+                                    margin: 0 0 6px 0;
+                                    font-family: 'Georgia', serif;
+                                }
+
+                                .photo-date {
+                                    color: var(--autumn-red);
+                                    font-size: 13px;
+                                    margin: 0;
+                                    font-style: italic;
+                                }
                             }
                         }
                     }
                 }
             }
         }
-    }
 
-    // 响应式设计
-    @media (max-width: 768px) {
-        .album-container {
+        // 响应式设计
+        @media (max-width: 768px) {
             padding: 10px;
 
             .album-content {
                 padding: 10px;
 
-                .album-layout {
-                    flex-direction: column;
+                .album-panel {
+                    padding: 15px;
 
-                    .categories-panel {
-                        width: auto;
-                        margin-bottom: 20px;
-                        flex: 0 0 auto;
+                    .categories-tabs {
+                        .tab-item {
+                            padding: 12px 15px;
+                            font-size: 14px;
+
+                            .photo-count {
+                                width: 22px;
+                                height: 22px;
+                                font-size: 10px;
+                            }
+                        }
                     }
 
                     .photos-panel {
-                        flex: 0 0 auto;
+                        .masonry-layout {
+                            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                            gap: 15px;
+                        }
+                    }
+                }
+            }
+        }
+
+        // 小屏幕进一步优化
+        @media (max-width: 480px) {
+            padding: 5px;
+
+            .album-content {
+                padding: 5px;
+
+                .album-panel {
+                    padding: 10px;
+
+                    .categories-tabs {
+                        .tab-item {
+                            padding: 10px 12px;
+                            font-size: 13px;
+                            flex: 1;
+                            min-width: calc(50% - 10px);
+                            justify-content: center;
+
+                            .photo-count {
+                                margin-left: 5px;
+                            }
+                        }
+                    }
+
+                    .photos-panel {
+                        padding: 10px;
+
+                        .category-title {
+                            font-size: 24px;
+                            margin-bottom: 15px;
+                        }
+
+                        .masonry-layout {
+                            grid-template-columns: 1fr;
+                            gap: 15px;
+                        }
                     }
                 }
             }
