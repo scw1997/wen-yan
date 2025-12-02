@@ -101,6 +101,9 @@ watch(
         &.global-container {
             padding: 30px 0;
             justify-content: space-between;
+            @media (max-width: 1200px) {
+                padding: 30px 20px;
+            }
             .global-title {
                 flex: none;
                 flex-wrap: wrap;
