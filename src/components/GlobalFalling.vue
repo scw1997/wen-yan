@@ -1,26 +1,36 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
+import { debounce } from '@/utils';
+
+const handleFallingAnimation = debounce(() => {
+    //先动态修改内容高度的变量
+    const globalContentEle = document.getElementById('global-content');
+    const height = globalContentEle.scrollHeight;
+    globalContentEle.style.setProperty('--global-content-height', height + 'px');
+
+    //根据global-content容器内容高度控制落叶下落速率基本不变
+    const globalLeavesEle = document.getElementById('global-leaves');
+    globalLeavesEle.style.setProperty(
+        '--leaf-fall-duration',
+        (height > 700 ? (height - 700) / 100 : '0') + 's'
+    );
+
+    document.querySelectorAll('.leaf').forEach((item) => {
+        // @ts-ignore
+        item.style.animationName = 'falling';
+    });
+}, 500);
 
 onMounted(() => {
     // 处理全局落叶的动画效果，保证能在global-content容器内部完整展示
     setTimeout(() => {
-        //先动态修改内容高度的变量
-        const globalContentEle = document.getElementById('global-content');
-        const height = globalContentEle.clientHeight;
-        globalContentEle.style.setProperty('--global-content-height', height + 'px');
-
-        //根据global-content容器内容高度控制落叶下落速率基本不变
-        const globalLeavesEle = document.getElementById('global-leaves');
-        globalLeavesEle.style.setProperty(
-            '--leaf-fall-duration',
-            (height > 700 ? (height - 700) / 100 : '0') + 's'
-        );
-
-        document.querySelectorAll('.leaf').forEach((item) => {
-            // @ts-ignore
-            item.style.animationName = 'falling';
-        });
+        handleFallingAnimation();
+        //监听窗口变化同步处理
+        window.addEventListener('resize', handleFallingAnimation);
     }, 500);
+});
+onUnmounted(() => {
+    window.removeEventListener('resize', handleFallingAnimation);
 });
 </script>
 

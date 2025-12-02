@@ -2,7 +2,6 @@
 import { Outlet, Link, useLocation, history } from 'swico/vue';
 import { Heart, Home, Book, History, Images } from '@vicons/fa';
 import { onMounted, ref, watch } from 'vue';
-import GlobalFalling from '@/components/GlobalFalling.vue';
 const nameRef = ref('');
 const navOptions = [
     {
@@ -42,25 +41,23 @@ watch(
 
 <template>
     <div class="global-layout-root">
-        <header class="global-header">
-            <div class="global-container">
-                <span class="global-title">
-                    <span class="title-text">传</span>
-                    <Heart class="icon-heart" />
-                    <span class="title-text">燕</span>
-                </span>
-                <nav class="global-nav">
-                    <Link
-                        v-for="{ name, title, icon, iconClass } in navOptions"
-                        :key="name"
-                        :class="`cp global-nav-item ${nameRef === name ? 'active' : ''}`"
-                        :to="{ name }"
-                    >
-                        <component :is="icon" :class="iconClass" />
-                        {{ title }}
-                    </Link>
-                </nav>
-            </div>
+        <header class="global-header global-container">
+            <span class="global-title">
+                <span class="title-text">传</span>
+                <Heart class="icon-heart" />
+                <span class="title-text">燕</span>
+            </span>
+            <nav class="global-nav">
+                <Link
+                    v-for="{ name, title, icon, iconClass } in navOptions"
+                    :key="name"
+                    :class="`cp global-nav-item ${nameRef === name ? 'active' : ''}`"
+                    :to="{ name }"
+                >
+                    <component :is="icon" :class="iconClass" />
+                    {{ title }}
+                </Link>
+            </nav>
         </header>
         <main id="global-content" class="global-content">
             <!-- 全体路由在此渲染 -->
@@ -86,7 +83,7 @@ watch(
     align-items: center;
     position: relative;
     .global-container {
-        width: 1200px;
+        max-width: 1200px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -101,7 +98,7 @@ watch(
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
-        .global-container {
+        &.global-container {
             padding: 30px 20px;
             justify-content: space-between;
             .global-title {
