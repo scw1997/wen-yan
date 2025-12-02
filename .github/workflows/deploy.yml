@@ -45,11 +45,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install # 或 pnpm install / yarn install / bun install
       - name: Build with Swico
-        run: pnpm build # 或 pnpm
+        run: |
+          pnpm build
+          cp dist/index.html dist/404.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+
 
   # 部署工作
   deploy:
