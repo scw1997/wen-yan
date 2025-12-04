@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import GlobalFalling from '@/components/GlobalFalling.vue';
+import Image from '@/components/Image.vue';
+import laoCaiChang from '@/assets/lao_cai_chang.jpg';
 
 interface TimelineEvent {
     id: number;
@@ -13,24 +14,23 @@ interface TimelineEvent {
 const timelineEvents: TimelineEvent[] = [
     {
         id: 1,
-        date: '2025-09-04',
-        title: '初识',
-        description: '那年秋天，微风轻拂，我们的故事悄然开始...',
-        image: 'https://images.unsplash.com/photo-1573496358961-3c82838ef664?w=300&h=300&fit=crop'
+        date: '2025-08-27',
+        title: '彼此加上微信',
+        description: '彼时仍是酷日盛夏，我们的故事悄然开始...'
     },
     {
         id: 2,
-        date: '2025-10-15',
-        title: '第一次约会',
-        description: '在那个咖啡馆里，你的笑容比阳光还要温暖。',
-        image: 'https://images.unsplash.com/photo-1465059520946-72d97538d8f4?w=300&h=300&fit=crop'
+        date: '2025-08-30',
+        title: '第一次组队打王者',
+        description: '这个狄仁杰，Emm...似乎有点菜🤣'
     },
     {
         id: 3,
-        date: '2025-12-24',
-        title: '圣诞节',
-        description: '雪花纷飞的日子里，我们许下了彼此的承诺。',
-        image: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=300&h=300&fit=crop'
+        date: '2025-08-31',
+        title: '第一次见面',
+        description:
+            '骑着小黄车，我在前，她在后，漫步在老菜场，听完Live版《枫》，再请教彼此的拍照技术',
+        image: laoCaiChang
     },
     {
         id: 4,
@@ -54,70 +54,6 @@ const timelineEvents: TimelineEvent[] = [
         image: 'https://images.unsplash.com/photo-1533158307914-937c4fb64d3c?w=300&h=300&fit=crop'
     }
 ];
-
-// 图片预览相关
-const isPreviewVisible = ref(false);
-const previewImage = ref('');
-const scale = ref(1);
-const translateX = ref(0);
-const translateY = ref(0);
-let isDragging = false;
-let startX = 0;
-let startY = 0;
-let startTranslateX = 0;
-let startTranslateY = 0;
-
-// 打开图片预览
-const openPreview = (imageUrl: string) => {
-    previewImage.value = imageUrl;
-    isPreviewVisible.value = true;
-    scale.value = 1;
-    translateX.value = 0;
-    translateY.value = 0;
-};
-
-// 关闭图片预览
-const closePreview = () => {
-    isPreviewVisible.value = false;
-    previewImage.value = '';
-};
-
-// 处理滚轮缩放
-const handleWheel = (e: WheelEvent) => {
-    e.preventDefault();
-    const delta = e.deltaY > 0 ? 0.9 : 1.1;
-    scale.value = Math.min(Math.max(0.5, scale.value * delta), 5);
-};
-
-// 开始拖拽
-const startDrag = (e: MouseEvent) => {
-    isDragging = true;
-    startX = e.clientX;
-    startY = e.clientY;
-    startTranslateX = translateX.value;
-    startTranslateY = translateY.value;
-    (e.target as HTMLElement).style.cursor = 'grabbing';
-};
-
-// 拖拽中
-const onDrag = (e: MouseEvent) => {
-    if (!isDragging) return;
-    translateX.value = startTranslateX + (e.clientX - startX);
-    translateY.value = startTranslateY + (e.clientY - startY);
-};
-
-// 结束拖拽
-const endDrag = (e: MouseEvent) => {
-    isDragging = false;
-    (e.target as HTMLElement).style.cursor = 'grab';
-};
-
-// 重置变换
-const resetTransform = () => {
-    scale.value = 1;
-    translateX.value = 0;
-    translateY.value = 0;
-};
 </script>
 
 <template>
@@ -143,48 +79,11 @@ const resetTransform = () => {
                         <h3 class="card-title">{{ event.title }}</h3>
 
                         <!-- 图片展示 -->
-                        <div
-                            v-if="event.image"
-                            class="card-image"
-                            @click="openPreview(event.image)"
-                        >
-                            <img :src="event.image" :alt="event.title" />
-                            <div class="image-overlay">
-                                <span class="preview-icon">🔍</span>
-                            </div>
-                        </div>
+                        <Image v-if="event.image" :url="event.image" :alt="event.title" />
 
                         <p class="card-description">{{ event.description }}</p>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- 图片预览模态框 -->
-        <div v-if="isPreviewVisible" class="image-preview" @click="closePreview">
-            <div class="preview-toolbar">
-                <button class="zoom-btn" @click.stop="scale *= 1.2">+</button>
-                <button class="zoom-btn" @click.stop="scale *= 0.8">-</button>
-                <button class="reset-btn" @click.stop="resetTransform">↺</button>
-            </div>
-
-            <div
-                class="preview-content"
-                @click.stop
-                @wheel="handleWheel"
-                @mousedown="startDrag"
-                @mousemove="onDrag"
-                @mouseup="endDrag"
-                @mouseleave="endDrag"
-            >
-                <img
-                    :src="previewImage"
-                    alt="Preview"
-                    :style="{
-                        transform: `scale(${scale}) translate(${translateX}px, ${translateY}px)`,
-                        cursor: isDragging ? 'grabbing' : 'grab'
-                    }"
-                />
             </div>
         </div>
     </div>
@@ -279,6 +178,15 @@ const resetTransform = () => {
                         margin-left: auto;
                         // 减小卡片宽度
                         max-width: 70%;
+                        :deep {
+                            .image-component {
+                                padding: 6px 0;
+                                margin-left: auto;
+                            }
+                            img {
+                                max-height: 2rem;
+                            }
+                        }
                     }
                 }
 
@@ -294,6 +202,7 @@ const resetTransform = () => {
                 }
 
                 .timeline-card {
+                    width: max-content;
                     background: rgba(255, 250, 236, 0.9);
                     border-radius: 10px;
                     padding: 12px;
@@ -322,54 +231,6 @@ const resetTransform = () => {
                         font-weight: bold;
                     }
 
-                    // 图片展示区域
-                    .card-image {
-                        width: 100%;
-                        height: 120px;
-                        border-radius: 6px;
-                        overflow: hidden;
-                        margin: 8px 0;
-                        position: relative;
-                        cursor: pointer;
-                        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-
-                        img {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                            transition: transform 0.3s ease;
-                        }
-
-                        .image-overlay {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%;
-                            background: rgba(0, 0, 0, 0.3);
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            opacity: 0;
-                            transition: opacity 0.3s ease;
-
-                            .preview-icon {
-                                color: white;
-                                font-size: 20px;
-                            }
-                        }
-
-                        &:hover {
-                            img {
-                                transform: scale(1.05);
-                            }
-
-                            .image-overlay {
-                                opacity: 1;
-                            }
-                        }
-                    }
-
                     .card-description {
                         color: var(--autumn-brown);
                         font-size: 13px;
@@ -377,71 +238,6 @@ const resetTransform = () => {
                     }
                 }
             }
-        }
-    }
-}
-
-// 图片预览模态框
-.image-preview {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-
-    .preview-toolbar {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 10px;
-        z-index: 1; // 放在背景遮罩层上方但图片下方
-
-        .zoom-btn,
-        .reset-btn {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-            transition: all 0.2s ease;
-
-            &:hover {
-                background: rgba(255, 255, 255, 0.3);
-                transform: scale(1.1);
-            }
-        }
-    }
-
-    .preview-content {
-        position: relative;
-        max-width: 90%;
-        max-height: 90%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 2; // 图片在最上层
-
-        img {
-            max-width: 90vw;
-            max-height: 90vh;
-            border-radius: 8px;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-            transition: transform 0.1s ease;
-            user-select: none;
         }
     }
 }

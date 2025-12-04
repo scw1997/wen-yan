@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import GlobalFalling from '@/components/GlobalFalling.vue';
+import Image from '@/components/Image.vue';
 
 interface Photo {
     id: number;
@@ -155,15 +156,10 @@ const selectCategory = (category: AlbumCategory) => {
                         >
                             <div class="photo-card">
                                 <div class="photo-frame">
-                                    <img
-                                        :src="photo.url"
+                                    <Image
+                                        :url="photo.url"
                                         :alt="photo.title"
-                                        :style="{
-                                            aspectRatio:
-                                                photo.width && photo.height
-                                                    ? `${photo.width}/${photo.height}`
-                                                    : '1'
-                                        }"
+                                        :size="{ width: photo.width, height: photo.height }"
                                     />
                                 </div>
                                 <div class="photo-info">

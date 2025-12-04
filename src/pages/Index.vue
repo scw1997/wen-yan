@@ -58,7 +58,7 @@ function updateTime() {
             <div class="photo-frame">
                 <div class="photo-placeholder"></div>
             </div>
-            <div class="poem-line">🌹那时相遇，忘却孤独🌹</div>
+            <div class="poem-line">🌹两人四季，不问前路🌹</div>
             <div class="poem-line">🌻与你所至，皆是旅途🌻</div>
             <div class="time-display">
                 <h2>我们已经一起走过了</h2>
