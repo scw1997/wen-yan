@@ -18,7 +18,7 @@ const navOptions = [
     },
     {
         name: 'album',
-        title: '相册集',
+        title: '光影室',
         icon: Images,
         iconClass: 'icon-images'
     },
@@ -143,8 +143,8 @@ watch(
                     background: rgba(255, 250, 236, 0.5);
                     box-shadow: 0 2px 5px rgba(139, 69, 19, 0.1);
                     &:hover {
-                        background: var(--autumn-yellow);
-                        color: white;
+                        //background: var(--autumn-yellow);
+                        //color: white;
                         transform: translateY(-5px);
                         box-shadow: 0 8px 15px rgba(139, 69, 19, 0.3);
                     }

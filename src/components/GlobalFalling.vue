@@ -19,7 +19,7 @@ const handleFallingAnimation = debounce(() => {
         // @ts-ignore
         item.style.animationName = 'falling';
     });
-}, 500);
+}, 1000);
 
 onMounted(() => {
     // 处理全局落叶的动画效果，保证能在global-content容器内部完整展示
@@ -82,25 +82,25 @@ onUnmounted(() => {
             &.leaf-1 {
                 animation-duration: calc(12s + var(--leaf-fall-duration));
                 left: 5%;
-                animation-delay: 0s;
+                animation-delay: 1s;
             }
 
             &.leaf-2 {
                 animation-duration: calc(10s + var(--leaf-fall-duration));
                 left: 15%;
-                animation-delay: 2s;
+                animation-delay: 4s;
             }
 
             &.leaf-3 {
                 animation-duration: calc(7s + var(--leaf-fall-duration));
                 left: 25%;
-                animation-delay: 1s;
+                animation-delay: 2s;
             }
 
             &.leaf-4 {
                 animation-duration: calc(8s + var(--leaf-fall-duration));
                 left: 35%;
-                animation-delay: 3s;
+                animation-delay: 6s;
             }
 
             &.leaf-5 {
@@ -112,43 +112,43 @@ onUnmounted(() => {
             &.leaf-6 {
                 animation-duration: calc(11s + var(--leaf-fall-duration));
                 left: 55%;
-                animation-delay: 4s;
+                animation-delay: 8s;
             }
 
             &.leaf-7 {
                 animation-duration: calc(9s + var(--leaf-fall-duration));
                 left: 65%;
-                animation-delay: 2s;
+                animation-delay: 5s;
             }
 
             &.leaf-8 {
                 animation-duration: calc(14s + var(--leaf-fall-duration));
                 left: 75%;
-                animation-delay: 1s;
+                animation-delay: 2s;
             }
 
             &.leaf-9 {
                 animation-duration: calc(10s + var(--leaf-fall-duration));
                 left: 85%;
-                animation-delay: 5s;
+                animation-delay: 10s;
             }
 
             &.leaf-10 {
                 animation-duration: calc(12s + var(--leaf-fall-duration));
                 left: 95%;
-                animation-delay: 3s;
+                animation-delay: 7s;
             }
 
             &.leaf-11 {
                 animation-duration: calc(11s + var(--leaf-fall-duration));
                 left: 10%;
-                animation-delay: 6s;
+                animation-delay: 12s;
             }
 
             &.leaf-12 {
                 animation-duration: calc(13s + var(--leaf-fall-duration));
                 left: 40%;
-                animation-delay: 7s;
+                animation-delay: 14s;
             }
         }
     }
