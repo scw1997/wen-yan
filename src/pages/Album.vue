@@ -4,16 +4,13 @@ import GlobalFalling from '@/components/GlobalFalling.vue';
 import Image from '@/components/Image.vue';
 
 interface Photo {
-    id: number;
     title: string;
     date: string;
     url: string;
-    width?: number;
-    height?: number;
+    style?: string;
 }
 
 interface AlbumCategory {
-    id: number;
     name: string;
     photos: Photo[];
 }
@@ -21,98 +18,52 @@ interface AlbumCategory {
 // 相册分类数据
 const albumCategories = ref<AlbumCategory[]>([
     {
-        id: 1,
-        name: '恋爱时光',
+        name: '生活',
         photos: [
             {
-                id: 1,
-                title: '初次相遇',
-                date: '2025-09-04 18:30',
-                url: 'https://images.unsplash.com/photo-1573496358961-3c82838ef664?w=400&h=400&fit=crop',
-                width: 400,
-                height: 400
-            },
-            {
-                id: 2,
-                title: '第一次约会',
-                date: '2025-10-15 14:20',
-                url: 'https://images.unsplash.com/photo-1465059520946-72d97538d8f4?w=400&h=400&fit=crop',
-                width: 400,
-                height: 400
-            },
-            {
-                id: 3,
-                title: '浪漫晚餐',
-                date: '2025-11-08 20:15',
-                url: 'https://images.unsplash.com/photo-1515544876196-0f0a18cf62fc?w=400&h=400&fit=crop',
-                width: 400,
-                height: 400
-            }
-        ]
-    },
-    {
-        id: 2,
-        name: '旅行足迹',
-        photos: [
-            {
-                id: 4,
                 title: '海边漫步',
                 date: '2026-01-05 16:45',
-                url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop',
-                width: 400,
-                height: 400
+                url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop'
             },
             {
-                id: 5,
                 title: '山顶日出',
                 date: '2026-02-18 07:30',
-                url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=400&fit=crop',
-                width: 400,
-                height: 400
+                url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=400&fit=crop'
+            },
+            {
+                title: '山顶日出',
+                date: '2026-02-18 07:30',
+                url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=400&fit=crop'
             }
         ]
     },
     {
-        id: 3,
-        name: '节日纪念',
+        name: '旅途',
         photos: [
             {
-                id: 6,
                 title: '圣诞礼物',
                 date: '2025-12-24 21:00',
-                url: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=400&h=400&fit=crop',
-                width: 400,
-                height: 400
+                url: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=400&h=400&fit=crop'
             },
             {
-                id: 7,
                 title: '情人节',
                 date: '2026-02-14 19:30',
-                url: 'https://images.unsplash.com/photo-1518681731556-00195d87d958?w=400&h=400&fit=crop',
-                width: 400,
-                height: 400
+                url: 'https://images.unsplash.com/photo-1518681731556-00195d87d958?w=400&h=400&fit=crop'
             }
         ]
     },
     {
-        id: 4,
-        name: '日常点滴',
+        name: '纪念',
         photos: [
             {
-                id: 8,
                 title: '温馨早餐',
                 date: '2026-03-10 08:15',
-                url: 'https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=400&h=400&fit=crop',
-                width: 400,
-                height: 400
+                url: 'https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=400&h=400&fit=crop'
             },
             {
-                id: 9,
                 title: '午后阳光',
                 date: '2026-04-02 15:20',
-                url: 'https://images.unsplash.com/photo-1499084733843-6aaea41dad0c?w=400&h=400&fit=crop',
-                width: 400,
-                height: 400
+                url: 'https://images.unsplash.com/photo-1499084733843-6aaea41dad0c?w=400&h=400&fit=crop'
             }
         ]
     }
@@ -137,8 +88,8 @@ const selectCategory = (category: AlbumCategory) => {
                 <div class="categories-tabs">
                     <div
                         v-for="category in albumCategories"
-                        :key="category.id"
-                        :class="['tab-item', { active: category.id === selectedCategory.id }]"
+                        :key="category.name"
+                        :class="['tab-item', { active: category.name === selectedCategory.name }]"
                         @click="selectCategory(category)"
                     >
                         {{ category.name }}
@@ -151,7 +102,7 @@ const selectCategory = (category: AlbumCategory) => {
                     <div class="masonry-layout">
                         <div
                             v-for="photo in selectedCategory.photos"
-                            :key="photo.id"
+                            :key="photo.url"
                             class="masonry-item"
                         >
                             <div class="photo-card">
@@ -159,7 +110,7 @@ const selectCategory = (category: AlbumCategory) => {
                                     <Image
                                         :url="photo.url"
                                         :alt="photo.title"
-                                        :size="{ width: photo.width, height: photo.height }"
+                                        :img-style="photo.style ?? 'width:200px;height:200px'"
                                     />
                                 </div>
                                 <div class="photo-info">
@@ -180,13 +131,15 @@ const selectCategory = (category: AlbumCategory) => {
     position: relative;
     min-height: 100%;
     width: 100%;
-    padding: 20px;
 
     .album-content {
         position: relative;
         max-width: 1200px;
         margin: 0 auto;
-        padding: 20px 0;
+        padding: 16px;
+        //@media (max-width: 1200px) {
+        //    padding: 20px;
+        //}
 
         // 统一的相册面板容器
         .album-panel {
@@ -195,7 +148,7 @@ const selectCategory = (category: AlbumCategory) => {
             box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
             border: 2px solid #d2b48c;
             position: relative;
-            padding: 20px;
+            padding: 18px;
 
             &::before {
                 content: '';
@@ -214,7 +167,6 @@ const selectCategory = (category: AlbumCategory) => {
                 display: flex;
                 justify-content: center;
                 border-radius: 10px;
-                padding: 10px;
                 position: relative;
                 flex-wrap: wrap;
                 margin-bottom: 20px;
@@ -270,18 +222,14 @@ const selectCategory = (category: AlbumCategory) => {
             // 照片面板
             .photos-panel {
                 border-radius: 10px;
-                padding: 15px;
+                //padding: 10px;
 
                 .masonry-layout {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-                    grid-auto-rows: 10px;
-                    gap: 20px;
-
+                    display: flex;
+                    flex-wrap: wrap;
                     .masonry-item {
-                        break-inside: avoid;
-                        grid-row-end: span 20;
-
+                        flex: none;
+                        padding-left: 10px;
                         .photo-card {
                             border-radius: 8px;
                             overflow: hidden;
@@ -294,21 +242,6 @@ const selectCategory = (category: AlbumCategory) => {
                             &:hover {
                                 transform: translateY(-5px);
                                 box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-                            }
-
-                            .photo-frame {
-                                overflow: hidden;
-
-                                img {
-                                    width: 100%;
-                                    height: auto;
-                                    display: block;
-                                    transition: transform 0.3s ease;
-
-                                    &:hover {
-                                        transform: scale(1.05);
-                                    }
-                                }
                             }
 
                             .photo-info {

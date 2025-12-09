@@ -4,9 +4,9 @@
 
         <img
             ref="imageRef"
+            :style="imgStyle"
             :src="isVisible ? url : placeholderUrl"
             :alt="alt || ''"
-            :style="{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }"
             @click="openPreview"
         />
 
@@ -40,10 +40,12 @@ import { ref, computed, defineProps, onMounted, onUnmounted } from 'vue';
 interface Props {
     url: string;
     alt?: string;
+    imgStyle?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    alt: ''
+    alt: '',
+    imgStyle: ''
 });
 
 // 图片预览相关
@@ -140,6 +142,7 @@ onUnmounted(() => {
 
     max-height: 100%;
     img {
+        display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
