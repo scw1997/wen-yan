@@ -135,7 +135,7 @@ const timelineEvents: TimelineEvent[] = [
     },
     {
         date: '2025-10-19',
-        title: '给咱弄了卡通画头像 + 炒馒头',
+        title: '你给咱弄了卡通画头像 + 炒馒头',
         description: '你是如此的又是如此地有才华'
     },
     {
@@ -376,51 +376,6 @@ const timelineEvents: TimelineEvent[] = [
                         font-size: 13px;
                         line-height: 1.7;
                         white-space: pre-line;
-                    }
-                }
-            }
-        }
-    }
-}
-
-// 响应式设计
-@media (max-width: 768px) {
-    .timeline-container {
-        padding: 10px;
-
-        .timeline-content {
-            padding: 10px;
-
-            .page-title {
-                font-size: 28px;
-                margin-bottom: 20px;
-            }
-
-            .timeline-wrapper {
-                .tree-branch {
-                    left: 20px;
-                }
-
-                .branch-decoration {
-                    left: 20px;
-                }
-
-                .timeline-item {
-                    width: 100%;
-                    left: 0 !important;
-                    padding: 10px 10px 10px 50px !important;
-                    text-align: left !important;
-                    margin-bottom: 20px;
-
-                    .timeline-card {
-                        margin-left: 0 !important;
-                        max-width: 85% !important;
-
-                        .card-date,
-                        .card-title,
-                        .card-description {
-                            text-align: left;
-                        }
                     }
                 }
             }

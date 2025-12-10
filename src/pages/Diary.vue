@@ -3,54 +3,22 @@ import { ref } from 'vue';
 import GlobalFalling from '@/components/GlobalFalling.vue';
 
 interface DiaryEntry {
-    id: number;
     title: string;
     date: string;
     content: string;
     weather?: string;
+    writer: string;
 }
 
 // 日记条目数据
 const diaryEntries = ref<DiaryEntry[]>([
     {
-        id: 1,
         title: '初识的美好',
-        date: '2025年9月4日',
-        weather: '晴',
+        date: '2025.09.04',
+        weather: '☀',
+        writer: '燕',
         content:
-            '今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。\n那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。'
-    },
-    {
-        id: 2,
-        title: '第一次约会',
-        date: '2025年10月15日',
-        weather: '阴',
-        content:
-            '终于等到了我们的第一次正式约会。\n一起去看了电影，吃了晚饭。\n虽然有些紧张，但和你在一起的每一刻都是那么珍贵。\n你的笑声是我听过最美的声音。'
-    },
-    {
-        id: 3,
-        title: '浪漫的晚餐',
-        date: '2025年11月8日',
-        weather: '雨',
-        content:
-            '为了庆祝我们相识两个月，我特意为你准备了一顿烛光晚餐。\n虽然手艺不怎么样，但你吃得很开心。\n饭后我们一起在雨中散步，那种感觉真的很浪漫。'
-    },
-    {
-        id: 4,
-        title: '海边的约定',
-        date: '2026年1月5日',
-        weather: '多云',
-        content:
-            '今天我们去了海边，一起走在沙滩上，听着海浪的声音。\n你说希望我们能像大海一样，无论经历什么风浪都能在一起。\n我们在海边许下了永远相爱的约定。'
-    },
-    {
-        id: 5,
-        title: '山顶看日出',
-        date: '2026年2月18日',
-        weather: '晴',
-        content:
-            '凌晨四点起床爬山，只为一起看日出。\n虽然很累，但当太阳从地平线升起的那一刻，一切都值得了。\n我们紧紧拥抱在一起，感谢这美好的时刻。'
+            '今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。'
     }
 ]);
 
@@ -72,8 +40,8 @@ const selectEntry = (entry: DiaryEntry) => {
                 <div class="entries-panel">
                     <div
                         v-for="entry in diaryEntries"
-                        :key="entry.id"
-                        :class="['entry-item', { active: entry.id === selectedEntry.id }]"
+                        :key="entry.title"
+                        :class="['entry-item', { active: entry.title === selectedEntry.title }]"
                         @click="selectEntry(entry)"
                     >
                         <div class="entry-title">{{ entry.title }}</div>
@@ -98,6 +66,7 @@ const selectEntry = (entry: DiaryEntry) => {
                         >
                             {{ line }}
                         </p>
+                        <p class="writer">{{ selectedEntry.writer }}</p>
                     </div>
                 </div>
             </div>
@@ -117,40 +86,36 @@ const selectEntry = (entry: DiaryEntry) => {
         position: relative;
         max-width: 1200px;
         margin: 0 auto;
-        padding: 20px 0;
 
         .diary-layout {
             display: flex;
             gap: 20px;
-            min-height: 500px;
+            @media (max-width: 768px) {
+                flex-direction: column;
+            }
 
             // 左侧日记目录面板
             .entries-panel {
                 flex: none;
-                width: 250px;
+                width: 220px;
                 background: rgba(255, 250, 236, 0.6);
                 border-radius: 15px;
-                padding: 15px;
+                padding: 14px;
                 box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
                 height: fit-content;
+                max-height: 500px;
+                overflow: auto;
                 border: 2px solid #d2b48c;
                 position: relative;
-
-                &::before {
-                    content: '';
-                    position: absolute;
-                    top: -5px;
-                    left: -5px;
-                    right: -5px;
-                    bottom: -5px;
-                    border: 1px solid #deb887;
-                    border-radius: 20px;
-                    z-index: -1;
+                scrollbar-width: none;
+                @media (max-width: 768px) {
+                    width: 100%;
                 }
-
+                &::-webkit-scrollbar {
+                    display: none; /* 直接隐藏滚动条 */
+                }
                 .entry-item {
-                    padding: 15px 20px;
-                    margin-bottom: 15px;
+                    padding: 12px;
                     border-radius: 10px;
                     cursor: pointer;
                     transition: all 0.3s ease;
@@ -159,7 +124,9 @@ const selectEntry = (entry: DiaryEntry) => {
                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                     position: relative;
                     overflow: hidden;
-
+                    &:not(:last-child) {
+                        margin-bottom: 15px;
+                    }
                     &:hover {
                         background: rgba(255, 182, 106, 0.5);
                         transform: translateY(-2px);
@@ -178,8 +145,7 @@ const selectEntry = (entry: DiaryEntry) => {
                     }
 
                     .entry-title {
-                        font-size: 17px;
-                        font-weight: bold;
+                        font-size: 18px;
                         color: var(--autumn-brown);
                         margin-bottom: 8px;
                         font-family: 'Georgia', serif;
@@ -198,25 +164,13 @@ const selectEntry = (entry: DiaryEntry) => {
                 flex: 1;
                 background: rgba(255, 250, 236, 0.6);
                 border-radius: 15px;
-                padding: 30px;
+                padding: 20px;
                 box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
                 border: 2px solid #d2b48c;
                 position: relative;
 
-                &::before {
-                    content: '';
-                    position: absolute;
-                    top: -5px;
-                    left: -5px;
-                    right: -5px;
-                    bottom: -5px;
-                    border: 1px solid #deb887;
-                    border-radius: 20px;
-                    z-index: -1;
-                }
-
                 .content-header {
-                    margin-bottom: 25px;
+                    margin-bottom: 16px;
                     padding-bottom: 15px;
                     border-bottom: 2px dashed var(--autumn-yellow);
 
@@ -224,17 +178,19 @@ const selectEntry = (entry: DiaryEntry) => {
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
-
+                        position: relative;
                         .date {
-                            flex: 1;
+                            flex: none;
                             color: var(--autumn-red);
                             font-size: 16px;
                             font-style: italic;
                             text-align: left;
+                            position: absolute;
+                            left: 0;
                         }
 
                         .title {
-                            flex: 2;
+                            flex: 1;
                             color: var(--autumn-brown);
                             font-size: 28px;
                             font-weight: bold;
@@ -244,126 +200,38 @@ const selectEntry = (entry: DiaryEntry) => {
                         }
 
                         .weather {
-                            flex: 1;
+                            flex: none;
                             color: var(--autumn-red);
                             font-size: 16px;
                             font-style: italic;
                             text-align: right;
+                            position: absolute;
+                            right: 0;
                         }
                     }
                 }
 
                 .content-text {
+                    scrollbar-width: none;
+                    &::-webkit-scrollbar {
+                        display: none; /* 直接隐藏滚动条 */
+                    }
                     color: var(--autumn-brown);
-                    font-size: 17px;
-                    line-height: 1.8;
+                    font-size: 20px;
+                    line-height: 1.6;
                     text-align: justify;
-                    //padding: 10px;
+                    overflow-y: auto;
                     border-radius: 8px;
-                    //background: rgba(255, 255, 255, 0.6);
                     min-height: 300px;
-
+                    font-family: '楷体', 'KaiTi', serif;
                     .content-line {
-                        margin: 0;
-                        padding: 5px 0;
-                        border-bottom: 2px solid var(--autumn-yellow);
+                        text-indent: 2em;
+                        padding-bottom: 4px;
+                        white-space: pre-line;
                     }
-                }
-            }
-        }
-    }
-
-    // 响应式设计
-    @media (max-width: 768px) {
-        padding: 10px;
-
-        .diary-content {
-            padding: 10px;
-
-            .diary-layout {
-                flex-direction: column;
-
-                .entries-panel {
-                    width: auto;
-                    margin-bottom: 20px;
-                    flex: 0 0 auto;
-
-                    .entry-item {
-                        padding: 12px 15px;
-                    }
-                }
-
-                .content-panel {
-                    flex: 0 0 auto;
-                    padding: 20px;
-
-                    .content-header {
-                        .header-row {
-                            .title {
-                                font-size: 24px;
-                            }
-                        }
-                    }
-
-                    .content-text {
-                        font-size: 16px;
-
-                        .content-line {
-                            padding: 3px 0;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    // 小屏幕进一步优化
-    @media (max-width: 480px) {
-        padding: 5px;
-
-        .diary-content {
-            padding: 5px;
-
-            .diary-layout {
-                .content-panel {
-                    padding: 15px;
-
-                    .content-header {
-                        .header-row {
-                            .title {
-                                font-size: 20px;
-                            }
-
-                            .date,
-                            .weather {
-                                font-size: 14px;
-                            }
-                        }
-                    }
-
-                    .content-text {
-                        font-size: 15px;
-                        padding: 8px 15px;
-
-                        .content-line {
-                            padding: 2px 0;
-                        }
-                    }
-                }
-
-                .entries-panel {
-                    padding: 10px;
-
-                    .entry-item {
-                        padding: 10px 12px;
-
-                        .entry-title {
-                            font-size: 16px;
-                        }
-
-                        .entry-date {
-                            font-size: 12px;
-                        }
+                    .writer {
+                        text-align: right;
+                        padding-top: 10px;
                     }
                 }
             }

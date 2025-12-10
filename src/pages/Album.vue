@@ -5,65 +5,82 @@ import Image from '@/components/Image.vue';
 
 interface Photo {
     title: string;
-    date: string;
     url: string;
     style?: string;
 }
 
+interface Item {
+    year: string;
+    photoList: Photo[];
+}
+
 interface AlbumCategory {
-    name: string;
-    photos: Photo[];
+    typeName: '生活' | '旅行' | '纪念';
+    items: Item[];
 }
 
 // 相册分类数据
 const albumCategories = ref<AlbumCategory[]>([
     {
-        name: '生活',
-        photos: [
+        typeName: '生活',
+        items: [
             {
-                title: '海边漫步',
-                date: '2026-01-05 16:45',
-                url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop'
-            },
-            {
-                title: '山顶日出',
-                date: '2026-02-18 07:30',
-                url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=400&fit=crop'
-            },
-            {
-                title: '山顶日出',
-                date: '2026-02-18 07:30',
-                url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=400&fit=crop'
+                year: '2026',
+                photoList: [
+                    {
+                        title: '海边漫步',
+                        url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop'
+                    },
+                    {
+                        title: '山顶日出',
+                        url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=400&fit=crop'
+                    },
+                    {
+                        title: '山顶日出',
+                        url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=400&fit=crop'
+                    }
+                ]
             }
         ]
     },
     {
-        name: '旅途',
-        photos: [
+        typeName: '旅行',
+        items: [
             {
-                title: '圣诞礼物',
-                date: '2025-12-24 21:00',
-                url: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=400&h=400&fit=crop'
+                year: '2026',
+                photoList: [
+                    {
+                        title: '情人节',
+                        url: 'https://images.unsplash.com/photo-1518681731556-00195d87d958?w=400&h=400&fit=crop'
+                    }
+                ]
             },
             {
-                title: '情人节',
-                date: '2026-02-14 19:30',
-                url: 'https://images.unsplash.com/photo-1518681731556-00195d87d958?w=400&h=400&fit=crop'
+                year: '2025',
+                photoList: [
+                    {
+                        title: '圣诞礼物',
+                        url: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=400&h=400&fit=crop'
+                    }
+                ]
             }
         ]
     },
     {
-        name: '纪念',
-        photos: [
+        typeName: '纪念',
+        items: [
             {
-                title: '温馨早餐',
-                date: '2026-03-10 08:15',
-                url: 'https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=400&h=400&fit=crop'
-            },
-            {
-                title: '午后阳光',
-                date: '2026-04-02 15:20',
-                url: 'https://images.unsplash.com/photo-1499084733843-6aaea41dad0c?w=400&h=400&fit=crop'
+                year: '2026',
+                photoList: [
+                    {
+                        title: '温馨早餐',
+                        url: 'https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=400&h=400&fit=crop'
+                    },
+                    {
+                        title: '午后阳光',
+                        url: 'https://images.unsplash.com/photo-1499084733843-6aaea41dad0c?w=400&h=400&fit=crop'
+                    }
+                ]
             }
         ]
     }
@@ -71,6 +88,19 @@ const albumCategories = ref<AlbumCategory[]>([
 
 // 当前选中的分类
 const selectedCategory = ref<AlbumCategory>(albumCategories.value[0]);
+
+// 展开状态记录
+const expandedYears = ref<Record<string, boolean>>({});
+
+// 切换年份展开/折叠状态
+const toggleYearExpansion = (year: string) => {
+    expandedYears.value[year] = !expandedYears.value[year];
+};
+
+// 检查年份是否展开
+const isYearExpanded = (year: string) => {
+    return expandedYears.value[year] !== false; // 默认展开
+};
 
 // 选择分类
 const selectCategory = (category: AlbumCategory) => {
@@ -88,34 +118,52 @@ const selectCategory = (category: AlbumCategory) => {
                 <div class="categories-tabs">
                     <div
                         v-for="category in albumCategories"
-                        :key="category.name"
-                        :class="['tab-item', { active: category.name === selectedCategory.name }]"
+                        :key="category.typeName"
+                        :class="[
+                            'tab-item',
+                            { active: category.typeName === selectedCategory.typeName }
+                        ]"
                         @click="selectCategory(category)"
                     >
-                        {{ category.name }}
-                        <span class="photo-count">{{ category.photos.length }}</span>
+                        {{ category.typeName }}
+                        <span class="photo-count">
+                            {{
+                                category.items.reduce(
+                                    (total, item) => total + item.photoList.length,
+                                    0
+                                )
+                            }}
+                        </span>
                     </div>
                 </div>
 
                 <!-- 照片列表 -->
                 <div class="photos-panel">
-                    <div class="masonry-layout">
-                        <div
-                            v-for="photo in selectedCategory.photos"
-                            :key="photo.url"
-                            class="masonry-item"
-                        >
-                            <div class="photo-card">
-                                <div class="photo-frame">
-                                    <Image
-                                        :url="photo.url"
-                                        :alt="photo.title"
-                                        :img-style="photo.style ?? 'width:200px;height:200px'"
-                                    />
-                                </div>
-                                <div class="photo-info">
-                                    <h3 class="photo-title">{{ photo.title }}</h3>
-                                    <p class="photo-date">{{ photo.date }}</p>
+                    <div v-for="item in selectedCategory.items" :key="item.year" class="year-group">
+                        <div class="year-header" @click="toggleYearExpansion(item.year)">
+                            <h2 class="year-title">{{ item.year }}年</h2>
+                            <span class="expand-icon">
+                                {{ isYearExpanded(item.year) ? '−' : '+' }}
+                            </span>
+                        </div>
+
+                        <div v-show="isYearExpanded(item.year)" class="masonry-layout">
+                            <div
+                                v-for="photo in item.photoList"
+                                :key="photo.url"
+                                class="masonry-item"
+                            >
+                                <div class="photo-card">
+                                    <div class="photo-frame">
+                                        <Image
+                                            :url="photo.url"
+                                            :alt="photo.title"
+                                            :img-style="photo.style ?? 'width:2rem;height:2rem'"
+                                        />
+                                    </div>
+                                    <!--                                    <div class="photo-info">-->
+                                    <!--                                        <h3 class="photo-title">{{ photo.title }}</h3>-->
+                                    <!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -172,7 +220,7 @@ const selectCategory = (category: AlbumCategory) => {
                 margin-bottom: 20px;
 
                 .tab-item {
-                    padding: 15px 20px;
+                    padding: 12px 16px;
                     margin: 5px;
                     border-radius: 8px;
                     cursor: pointer;
@@ -224,12 +272,48 @@ const selectCategory = (category: AlbumCategory) => {
                 border-radius: 10px;
                 //padding: 10px;
 
+                .year-group {
+                    margin-bottom: 20px;
+
+                    .year-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 10px 15px;
+                        background: rgba(210, 180, 140, 0.3);
+                        border-radius: 8px;
+                        cursor: pointer;
+                        margin-bottom: 15px;
+                        transition: background 0.3s ease;
+
+                        &:hover {
+                            background: rgba(210, 180, 140, 0.5);
+                        }
+
+                        .year-title {
+                            margin: 0;
+                            color: var(--autumn-brown);
+                            font-size: 20px;
+                            font-weight: bold;
+                        }
+
+                        .expand-icon {
+                            font-size: 24px;
+                            font-weight: bold;
+                            color: var(--autumn-brown);
+                        }
+                    }
+                }
+
                 .masonry-layout {
                     display: flex;
                     flex-wrap: wrap;
                     .masonry-item {
                         flex: none;
-                        padding-left: 10px;
+                        &:not(:first-child) {
+                            padding-left: 16px;
+                        }
+
                         .photo-card {
                             border-radius: 8px;
                             overflow: hidden;
@@ -262,80 +346,6 @@ const selectCategory = (category: AlbumCategory) => {
                                     font-style: italic;
                                 }
                             }
-                        }
-                    }
-                }
-            }
-        }
-
-        // 响应式设计
-        @media (max-width: 768px) {
-            padding: 10px;
-
-            .album-content {
-                padding: 10px;
-
-                .album-panel {
-                    padding: 15px;
-
-                    .categories-tabs {
-                        .tab-item {
-                            padding: 12px 15px;
-                            font-size: 14px;
-
-                            .photo-count {
-                                width: 22px;
-                                height: 22px;
-                                font-size: 10px;
-                            }
-                        }
-                    }
-
-                    .photos-panel {
-                        .masonry-layout {
-                            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                            gap: 15px;
-                        }
-                    }
-                }
-            }
-        }
-
-        // 小屏幕进一步优化
-        @media (max-width: 480px) {
-            padding: 5px;
-
-            .album-content {
-                padding: 5px;
-
-                .album-panel {
-                    padding: 10px;
-
-                    .categories-tabs {
-                        .tab-item {
-                            padding: 10px 12px;
-                            font-size: 13px;
-                            flex: 1;
-                            min-width: calc(50% - 10px);
-                            justify-content: center;
-
-                            .photo-count {
-                                margin-left: 5px;
-                            }
-                        }
-                    }
-
-                    .photos-panel {
-                        padding: 10px;
-
-                        .category-title {
-                            font-size: 24px;
-                            margin-bottom: 15px;
-                        }
-
-                        .masonry-layout {
-                            grid-template-columns: 1fr;
-                            gap: 15px;
                         }
                     }
                 }
