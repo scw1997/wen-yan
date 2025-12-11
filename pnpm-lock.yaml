@@ -12,8 +12,8 @@ importers:
         specifier: ^0.13.0
         version: 0.13.0
       swico:
-        specifier: 2.9.0-beta.3
-        version: 2.9.0-beta.3(@rspack/core@1.6.1)(@types/express@4.17.23)(@types/node@22.14.1)(eslint@9.24.0(jiti@1.21.7))(react@19.2.0)(typescript@5.8.3)(vue@3.5.24(typescript@5.8.3))(webpack@5.102.0)
+        specifier: 2.9.0-beta.4
+        version: 2.9.0-beta.4(@rspack/core@1.6.1)(@types/express@4.17.23)(@types/node@22.14.1)(eslint@9.24.0(jiti@1.21.7))(react@19.2.0)(typescript@5.8.3)(vue@3.5.24(typescript@5.8.3))(webpack@5.102.0)
       vue:
         specifier: ~3.5.23
         version: 3.5.24(typescript@5.8.3)
@@ -2947,8 +2947,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  swico@2.9.0-beta.3:
-    resolution: {integrity: sha512-HDWPep7uwEJfUfi659oNgVayee5WoCwdkvDFdCYsb7kUBtS8tYeeizUHK475/Ds2t1nIHRpg0c2Oy80OXBINOQ==}
+  swico@2.9.0-beta.4:
+    resolution: {integrity: sha512-WlHQe9AsVInjytSCtb1Vjw2aMGr7hgjMLABfrS05CnN3d3qyEcJBTal1sPsp1V3/UPnQvvCsNobWmV2shUdApg==}
     engines: {node: '>=20.0.0'}
     hasBin: true
 
@@ -6314,7 +6314,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  swico@2.9.0-beta.3(@rspack/core@1.6.1)(@types/express@4.17.23)(@types/node@22.14.1)(eslint@9.24.0(jiti@1.21.7))(react@19.2.0)(typescript@5.8.3)(vue@3.5.24(typescript@5.8.3))(webpack@5.102.0):
+  swico@2.9.0-beta.4(@rspack/core@1.6.1)(@types/express@4.17.23)(@types/node@22.14.1)(eslint@9.24.0(jiti@1.21.7))(react@19.2.0)(typescript@5.8.3)(vue@3.5.24(typescript@5.8.3))(webpack@5.102.0):
     dependencies:
       '@rspack/dev-server': 1.1.4(@rspack/core@1.6.1)(@types/express@4.17.23)(webpack@5.102.0)
       '@vue/compiler-sfc': 3.5.23
