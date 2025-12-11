@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { Outlet, Link, useLocation, history } from 'swico/vue';
+import { Outlet, Link, useNav, history } from 'swico/vue';
 import { Heart, Home, Book, History, Images } from '@vicons/fa';
 import { onMounted, ref, watch } from 'vue';
+const nav = useNav();
 const nameRef = ref('');
 const navOptions = [
     {
@@ -33,7 +34,7 @@ const navOptions = [
 watch(
     () => history.location.name,
     (name) => {
-        // console.log('name', name);
+        console.log('SWICO_STATIC_PUBLIC_PATH', history.location.state, SWICO_STATIC_PUBLIC_PATH);
         nameRef.value = name;
     }
 );

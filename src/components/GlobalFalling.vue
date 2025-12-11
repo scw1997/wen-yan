@@ -5,12 +5,12 @@ import { debounce } from '@/utils';
 const handleFallingAnimation = debounce(() => {
     //先动态修改内容高度的变量
     const globalContentEle = document.getElementById('global-content');
-    const height = globalContentEle.scrollHeight;
-    globalContentEle.style.setProperty('--global-content-height', height + 'px');
+    const height = globalContentEle?.scrollHeight || 0;
+    globalContentEle?.style.setProperty('--global-content-height', height + 'px');
 
     //根据global-content容器内容高度控制落叶下落速率基本不变
     const globalLeavesEle = document.getElementById('global-leaves');
-    globalLeavesEle.style.setProperty(
+    globalLeavesEle?.style.setProperty(
         '--leaf-fall-duration',
         (height > 700 ? (height - 700) / 100 : '0') + 's'
     );

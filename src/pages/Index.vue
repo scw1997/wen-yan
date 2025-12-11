@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
 import GlobalFalling from '@/components/GlobalFalling.vue';
-
+import { Link } from 'swico/vue';
 const timeTogether = ref('0天0小时0分钟0秒');
 let intervalId: number | null = null;
 const startDate = new Date('2025-09-04T22:00:00'); // 这里设置你们开始的日期
@@ -31,6 +31,7 @@ function updateTime() {
 
 <template>
     <GlobalFalling />
+
     <div class="home-container">
         <!-- Cartoon maple trees on both sides -->
         <div class="trees-container">
