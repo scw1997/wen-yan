@@ -34,7 +34,6 @@ const navOptions = [
 watch(
     () => history.location.name,
     (name) => {
-        console.log('SWICO_STATIC_PUBLIC_PATH', history.location.state, SWICO_STATIC_PUBLIC_PATH);
         nameRef.value = name;
     }
 );
