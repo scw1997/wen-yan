@@ -99,13 +99,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-
-export interface ImageItem {
-    url: string;
-    previewUrl?: string;
-    thumbUrl?: string;
-    alt?: string;
-}
+import type { ImageItem } from '@/types/album';
 
 interface Props {
     images: ImageItem[];

@@ -1,5 +1,5 @@
 // 相册分类数据
-import { AlbumCategory } from '@/pages/Album.vue';
+import type { AlbumCategory } from '@/typings/album';
 
 export const albumCategories: AlbumCategory[] = [
     {

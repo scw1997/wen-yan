@@ -2,17 +2,10 @@
 import { ref } from 'vue';
 import GlobalFalling from '@/components/GlobalFalling.vue';
 import { albumCategories } from '@/pages/photoList';
-import ImageList, { ImageItem } from '@/components/ImageList.vue';
+import ImageList from '@/components/ImageList.vue';
+import type { AlbumCategory, Item } from '@/types/album';
 
-interface Item {
-    year: string;
-    photoList: ImageItem[];
-}
-
-export interface AlbumCategory {
-    typeName: '生活' | '旅行' | '纪念';
-    items: Item[];
-}
+// 已移动到 src/types/album.ts 文件中
 
 // 当前选中的分类
 const selectedCategory = ref<AlbumCategory>(albumCategories[0]);
