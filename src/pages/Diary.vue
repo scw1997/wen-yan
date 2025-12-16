@@ -6,19 +6,24 @@ interface DiaryEntry {
     title: string;
     date: string;
     content: string;
-    weather?: string;
     writer: string;
 }
 
 // 日记条目数据
 const diaryEntries = ref<DiaryEntry[]>([
     {
-        title: '初识的美好',
-        date: '2025.09.04',
-        weather: '☀',
+        title: '理想的恋爱模式',
+        date: '2025.11.03',
         writer: '燕',
         content:
-            '今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。今天是我们初次相遇的日子。\n在那个阳光明媚的下午，你穿着白色的连衣裙，微笑着向我走来。那一刻，仿佛整个世界都安静了下来，只剩下我们两个人的心跳声。'
+            '有时候我会多次想象我想要的谈恋爱模式咋样的，我觉得就像我们俩所相处的这般，偶尔聊聊过往趣事，偶尔吐槽工作中的小烦恼，知道对方可能不能完全做到感同身受，但能认真听他（她）讲讲，已经很有意思了，了解彼此的饮食习惯和爱好，窝在沙发上看电影，时不时听你哼歌，真的好听，欢迎在我耳边多绕会儿，虽然你知道自己很优秀，但我还是要再夸夸你，多贴心多有生活 一男孩呀，就让我给遇见了☺️'
+    },
+    {
+        title: '都第100天了啊',
+        date: '2025.12.12',
+        writer: '传',
+        content:
+            '亲爱的小燕燕，今天已经是我们在一起的第100天了！\n 回顾这100天的历程，也不是我们一开始想象的那样一切顺利。从一开始觉得进展太过迅速而让我们彼此觉得太过不真实，到现在度过了三个月的热恋期后，已经慢慢的认识到这种感觉的真实。\n这100天里，我们一起度过了很多属于我们难忘的第一次，未来也会继续有更多这样的第一次。我们也同样有过一些争吵和矛盾，但我觉得那都是我们彼此之间了解真实的对方所必经的过程。巨蟹与处女，两个同样敏感在意细节的人，都愿意将自己的爱完全倾注于对方。那么在困难面前，我也希望我们可以携手用这份爱跨过面前的障碍！\n亲爱的燕，这只是我们的第一个百天，我期待着更多次的百天，越多越好，与你一起~'
     }
 ]);
 
@@ -45,7 +50,10 @@ const selectEntry = (entry: DiaryEntry) => {
                         @click="selectEntry(entry)"
                     >
                         <div class="entry-title">{{ entry.title }}</div>
-                        <div class="entry-date">{{ entry.date }} {{ entry.weather }}</div>
+                        <div class="entry-date">
+                            <span>{{ entry.date }}</span>
+                            <span>{{ entry.writer }}</span>
+                        </div>
                     </div>
                 </div>
 
@@ -53,9 +61,7 @@ const selectEntry = (entry: DiaryEntry) => {
                 <div class="content-panel">
                     <div class="content-header">
                         <div class="header-row">
-                            <div class="date">{{ selectedEntry.date }}</div>
                             <div class="title">{{ selectedEntry.title }}</div>
-                            <div class="weather">{{ selectedEntry.weather }}</div>
                         </div>
                     </div>
                     <div class="content-text">
@@ -67,6 +73,7 @@ const selectEntry = (entry: DiaryEntry) => {
                             {{ line }}
                         </p>
                         <p class="writer">{{ selectedEntry.writer }}</p>
+                        <p class="date">{{ selectedEntry.date }}</p>
                     </div>
                 </div>
             </div>
@@ -145,7 +152,7 @@ const selectEntry = (entry: DiaryEntry) => {
                     }
 
                     .entry-title {
-                        font-size: 18px;
+                        font-size: 16px;
                         color: var(--autumn-brown);
                         margin-bottom: 8px;
                         font-family: 'Georgia', serif;
@@ -155,6 +162,8 @@ const selectEntry = (entry: DiaryEntry) => {
                         font-size: 13px;
                         color: var(--autumn-red);
                         font-style: italic;
+                        display: flex;
+                        justify-content: space-between;
                     }
                 }
             }
@@ -176,37 +185,18 @@ const selectEntry = (entry: DiaryEntry) => {
 
                     .header-row {
                         display: flex;
-                        justify-content: space-between;
+                        justify-content: center;
                         align-items: center;
                         position: relative;
-                        .date {
-                            flex: none;
-                            color: var(--autumn-red);
-                            font-size: 16px;
-                            font-style: italic;
-                            text-align: left;
-                            position: absolute;
-                            left: 0;
-                        }
 
                         .title {
                             flex: 1;
                             color: var(--autumn-brown);
-                            font-size: 28px;
+                            font-size: 24px;
                             font-weight: bold;
                             font-family: 'Georgia', serif;
                             letter-spacing: 1px;
                             text-align: center;
-                        }
-
-                        .weather {
-                            flex: none;
-                            color: var(--autumn-red);
-                            font-size: 16px;
-                            font-style: italic;
-                            text-align: right;
-                            position: absolute;
-                            right: 0;
                         }
                     }
                 }
@@ -217,7 +207,7 @@ const selectEntry = (entry: DiaryEntry) => {
                         display: none; /* 直接隐藏滚动条 */
                     }
                     color: var(--autumn-brown);
-                    font-size: 20px;
+                    font-size: 19px;
                     line-height: 1.6;
                     text-align: justify;
                     overflow-y: auto;
@@ -231,7 +221,12 @@ const selectEntry = (entry: DiaryEntry) => {
                     }
                     .writer {
                         text-align: right;
-                        padding-top: 10px;
+                        padding: 10px 32px 0 0;
+                    }
+                    .date {
+                        font-family: 'Georgia', 'Times New Roman', serif;
+                        text-align: right;
+                        font-style: italic;
                     }
                 }
             }

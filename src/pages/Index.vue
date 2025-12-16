@@ -3,9 +3,18 @@ import { onMounted, onUnmounted, ref } from 'vue';
 import GlobalFalling from '@/components/GlobalFalling.vue';
 import { Link } from 'swico/vue';
 const timeTogether = ref('0天0小时0分钟0秒');
+const currentMonthImage = ref('');
 let intervalId: number | null = null;
 const startDate = new Date('2025-09-04T22:00:00'); // 这里设置你们开始的日期
+
+// 设置当前月份图片
+function setCurrentMonthImage() {
+    const month = new Date().getMonth() + 1; // getMonth() 返回 0-11，所以需要 +1
+    currentMonthImage.value = `${SWICO_STATIC_PUBLIC_PATH}logoPhotoList/${month}.png`;
+}
+
 onMounted(() => {
+    setCurrentMonthImage();
     updateTime();
     intervalId = window.setInterval(updateTime, 1000);
 });
@@ -57,7 +66,9 @@ function updateTime() {
         <!-- Main content -->
         <div class="content-wrapper">
             <div class="photo-frame">
-                <div class="photo-placeholder"></div>
+                <div class="photo-placeholder">
+                    <img :src="currentMonthImage" alt="Monthly Photo" class="photo" />
+                </div>
             </div>
             <div class="poem-line">🌹两人四季，不问前路🌹</div>
             <div class="poem-line">🌻与你所至，皆是旅途🌻</div>
@@ -171,7 +182,6 @@ function updateTime() {
                 width: 250px;
                 height: 250px;
                 border-radius: 50%;
-                background: url('@/assets/index_photo.jpg');
                 background-size: cover;
                 background-position: center;
                 display: flex;
@@ -179,11 +189,12 @@ function updateTime() {
                 justify-content: center;
                 box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
                 border: 5px solid white;
+                overflow: hidden;
 
                 .photo {
                     width: 100%;
                     height: 100%;
-                    border-radius: 50%;
+                    object-fit: cover;
                 }
             }
         }
