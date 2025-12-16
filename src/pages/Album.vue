@@ -1,93 +1,21 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import GlobalFalling from '@/components/GlobalFalling.vue';
-import Image from '@/components/Image.vue';
-
-interface Photo {
-    title: string;
-    url: string;
-    style?: string;
-}
+import { albumCategories } from '@/pages/photoList';
+import ImageList, { ImageItem } from '@/components/ImageList.vue';
 
 interface Item {
     year: string;
-    photoList: Photo[];
+    photoList: ImageItem[];
 }
 
-interface AlbumCategory {
+export interface AlbumCategory {
     typeName: '生活' | '旅行' | '纪念';
     items: Item[];
 }
 
-// 相册分类数据
-const albumCategories = ref<AlbumCategory[]>([
-    {
-        typeName: '生活',
-        items: [
-            {
-                year: '2026',
-                photoList: [
-                    {
-                        title: '海边漫步',
-                        url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop'
-                    },
-                    {
-                        title: '山顶日出',
-                        url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=400&fit=crop'
-                    },
-                    {
-                        title: '山顶日出',
-                        url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=400&fit=crop'
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        typeName: '旅行',
-        items: [
-            {
-                year: '2026',
-                photoList: [
-                    {
-                        title: '情人节',
-                        url: 'https://images.unsplash.com/photo-1518681731556-00195d87d958?w=400&h=400&fit=crop'
-                    }
-                ]
-            },
-            {
-                year: '2025',
-                photoList: [
-                    {
-                        title: '圣诞礼物',
-                        url: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=400&h=400&fit=crop'
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        typeName: '纪念',
-        items: [
-            {
-                year: '2026',
-                photoList: [
-                    {
-                        title: '温馨早餐',
-                        url: 'https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=400&h=400&fit=crop'
-                    },
-                    {
-                        title: '午后阳光',
-                        url: 'https://images.unsplash.com/photo-1499084733843-6aaea41dad0c?w=400&h=400&fit=crop'
-                    }
-                ]
-            }
-        ]
-    }
-]);
-
 // 当前选中的分类
-const selectedCategory = ref<AlbumCategory>(albumCategories.value[0]);
+const selectedCategory = ref<AlbumCategory>(albumCategories[0]);
 
 // 展开状态记录
 const expandedYears = ref<Record<string, boolean>>({});
@@ -148,24 +76,25 @@ const selectCategory = (category: AlbumCategory) => {
                         </div>
 
                         <div v-show="isYearExpanded(item.year)" class="masonry-layout">
-                            <div
-                                v-for="photo in item.photoList"
-                                :key="photo.url"
-                                class="masonry-item"
-                            >
-                                <div class="photo-card">
-                                    <div class="photo-frame">
-                                        <Image
-                                            :url="photo.url"
-                                            :alt="photo.title"
-                                            :img-style="photo.style ?? 'width:2rem;height:2rem'"
-                                        />
-                                    </div>
-                                    <!--                                    <div class="photo-info">-->
-                                    <!--                                        <h3 class="photo-title">{{ photo.title }}</h3>-->
-                                    <!--                                    </div>-->
-                                </div>
-                            </div>
+                            <ImageList :images="item.photoList" />
+                            <!--                            <div-->
+                            <!--                                v-for="photo in item.photoList"-->
+                            <!--                                :key="photo.url"-->
+                            <!--                                class="masonry-item"-->
+                            <!--                            >-->
+                            <!--                                <div class="photo-card">-->
+                            <!--                                    <div class="photo-frame">-->
+                            <!--                                        <Image-->
+                            <!--                                            :url="photo.url"-->
+                            <!--                                            alt=""-->
+                            <!--                                            :img-style="photo.style ?? 'width:2rem;height:2rem'"-->
+                            <!--                                        />-->
+                            <!--                                    </div>-->
+                            <!--                                    &lt;!&ndash;                                    <div class="photo-info">&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                        <h3 class="photo-title">{{ photo.title }}</h3>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                    </div>&ndash;&gt;-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
                         </div>
                     </div>
                 </div>
