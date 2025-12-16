@@ -249,27 +249,6 @@ const timelineEvents: TimelineEvent[] = [
         margin: 0 auto;
         padding: 20px 0;
 
-        .page-title {
-            text-align: center;
-            color: var(--autumn-brown);
-            font-size: 36px;
-            margin-bottom: 40px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            font-weight: bold;
-            font-family: '楷体', 'STKaiti', sans-serif;
-            letter-spacing: 2px;
-            position: relative;
-
-            &::after {
-                content: '';
-                display: block;
-                width: 100px;
-                height: 2px;
-                background: linear-gradient(to right, transparent, var(--autumn-red), transparent);
-                margin: 10px auto;
-            }
-        }
-
         .timeline-wrapper {
             position: relative;
             padding: 60px 0;
@@ -322,15 +301,6 @@ const timelineEvents: TimelineEvent[] = [
 
                     .timeline-card {
                         margin-left: auto;
-                        //:deep {
-                        //    .image-component {
-                        //        padding: 6px 0;
-                        //        margin-left: auto;
-                        //    }
-                        //    img {
-                        //        max-height: 2rem;
-                        //    }
-                        //}
                     }
                 }
 
@@ -341,7 +311,7 @@ const timelineEvents: TimelineEvent[] = [
                 }
 
                 .timeline-card {
-                    max-width: 80%;
+                    max-width: 90%;
                     width: max-content;
                     background: rgba(255, 250, 236, 0.9);
                     border-radius: 10px;
@@ -358,7 +328,7 @@ const timelineEvents: TimelineEvent[] = [
                     }
 
                     .card-date {
-                        font-size: 12px;
+                        font-size: 14px;
                         color: var(--autumn-brown);
                         font-weight: bold;
                         margin-bottom: 5px;
@@ -366,14 +336,14 @@ const timelineEvents: TimelineEvent[] = [
 
                     .card-title {
                         color: var(--autumn-red);
-                        font-size: 16px;
+                        font-size: 19px;
                         margin: 6px 0;
                         font-weight: bold;
                     }
 
                     .card-description {
                         color: var(--autumn-brown);
-                        font-size: 13px;
+                        font-size: 16px;
                         line-height: 1.7;
                         white-space: pre-line;
                     }

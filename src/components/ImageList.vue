@@ -304,7 +304,9 @@ onBeforeUnmount(() => {
         grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
         gap: 16px;
         padding: 10px 0;
-
+        @media (max-width: 768px) {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
         .media-item {
             aspect-ratio: 1;
             overflow: hidden;

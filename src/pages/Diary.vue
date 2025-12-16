@@ -152,14 +152,14 @@ const selectEntry = (entry: DiaryEntry) => {
                     }
 
                     .entry-title {
-                        font-size: 16px;
+                        font-size: 18px;
                         color: var(--autumn-brown);
                         margin-bottom: 8px;
                         font-family: 'Georgia', serif;
                     }
 
                     .entry-date {
-                        font-size: 13px;
+                        font-size: 16px;
                         color: var(--autumn-red);
                         font-style: italic;
                         display: flex;
