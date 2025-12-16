@@ -207,7 +207,7 @@ const selectEntry = (entry: DiaryEntry) => {
                         display: none; /* 直接隐藏滚动条 */
                     }
                     color: var(--autumn-brown);
-                    font-size: 19px;
+                    font-size: 20px;
                     line-height: 1.6;
                     text-align: justify;
                     overflow-y: auto;

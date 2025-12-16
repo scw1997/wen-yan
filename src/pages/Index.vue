@@ -179,8 +179,8 @@ function updateTime() {
             animation: pulse 2s infinite;
 
             .photo-placeholder {
-                width: 250px;
-                height: 250px;
+                width: 280px;
+                height: 280px;
                 border-radius: 50%;
                 background-size: cover;
                 background-position: center;

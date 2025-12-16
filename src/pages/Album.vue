@@ -177,8 +177,8 @@ const selectCategory = (category: AlbumCategory) => {
                         background: var(--autumn-brown);
                         color: white;
                         border-radius: 50%;
-                        width: 30px;
-                        height: 30px;
+                        width: 34px;
+                        height: 34px;
                         display: flex;
                         align-items: center;
                         justify-content: center;

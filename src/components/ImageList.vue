@@ -4,7 +4,7 @@
         <div class="image-grid">
             <div
                 v-for="(image, index) in images"
-                :key="index"
+                :key="image.url"
                 class="media-item"
                 @click="openPreview(index)"
             >
@@ -410,7 +410,7 @@ onBeforeUnmount(() => {
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             color: white;
-            font-size: 16px;
+            font-size: 20px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -450,7 +450,7 @@ onBeforeUnmount(() => {
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             color: white;
-            font-size: 16px;
+            font-size: 20px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -458,6 +458,20 @@ onBeforeUnmount(() => {
             backdrop-filter: blur(5px);
             transition: all 0.2s ease;
             z-index: 3;
+            @media (max-width: 768px) {
+                top: unset;
+                transform: none;
+                &.prev-btn {
+                    left: 50%;
+                    bottom: 0;
+                    transform: translateX(-100%);
+                }
+
+                &.next-btn {
+                    left: calc(50% + 20px);
+                    bottom: 0;
+                }
+            }
 
             &:hover:not(:disabled) {
                 background: rgba(255, 255, 255, 0.1);
@@ -467,14 +481,6 @@ onBeforeUnmount(() => {
             &:disabled {
                 opacity: 0.3;
                 cursor: not-allowed;
-            }
-
-            &.prev-btn {
-                left: -70px;
-            }
-
-            &.next-btn {
-                right: -70px;
             }
         }
         .image-info {
