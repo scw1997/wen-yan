@@ -124,11 +124,11 @@ watch(
                 flex: none;
                 display: flex;
                 align-items: center;
-                font-size: 20px;
+                font-size: 22px;
                 justify-content: center;
                 flex-wrap: wrap;
                 .global-nav-item {
-                    padding: 8px 15px;
+                    padding: 8px 12px;
                     border-radius: 8px;
                     text-decoration: none;
                     color: var(--autumn-brown);
@@ -142,7 +142,7 @@ watch(
                     &:hover {
                         //background: var(--autumn-yellow);
                         //color: white;
-                        transform: translateY(-5px);
+                        //transform: translateY(-5px);
                         box-shadow: 0 8px 15px rgba(139, 69, 19, 0.3);
                     }
                     &.active {

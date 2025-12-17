@@ -96,7 +96,7 @@ const selectEntry = (entry: DiaryEntry) => {
 
         .diary-layout {
             display: flex;
-            gap: 20px;
+            gap: 14px;
             @media (max-width: 768px) {
                 flex-direction: column;
             }
@@ -104,7 +104,7 @@ const selectEntry = (entry: DiaryEntry) => {
             // 左侧日记目录面板
             .entries-panel {
                 flex: none;
-                width: 220px;
+                width: 230px;
                 background: rgba(255, 250, 236, 0.6);
                 border-radius: 15px;
                 padding: 14px;
@@ -152,7 +152,7 @@ const selectEntry = (entry: DiaryEntry) => {
                     }
 
                     .entry-title {
-                        font-size: 18px;
+                        font-size: 19px;
                         color: var(--autumn-brown);
                         margin-bottom: 8px;
                         font-family: 'Georgia', serif;
@@ -207,7 +207,7 @@ const selectEntry = (entry: DiaryEntry) => {
                         display: none; /* 直接隐藏滚动条 */
                     }
                     color: var(--autumn-brown);
-                    font-size: 20px;
+                    font-size: 21px;
                     line-height: 1.6;
                     text-align: justify;
                     overflow-y: auto;

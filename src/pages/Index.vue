@@ -200,7 +200,7 @@ function updateTime() {
         }
         .poem-line {
             font-family: '楷体', 'KaiTi', serif;
-            font-size: 24px;
+            font-size: 26px;
             color: var(--autumn-brown);
             margin-bottom: 20px;
             text-align: center;
@@ -232,7 +232,7 @@ function updateTime() {
 
         .future-message {
             font-family: '微软雅黑', 'Microsoft YaHei', sans-serif;
-            font-size: 20px;
+            font-size: 22px;
             color: var(--autumn-brown);
             text-align: center;
             margin-top: 20px;

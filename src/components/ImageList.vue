@@ -29,7 +29,7 @@
                             class="play-overlay show"
                             :class="{ 'with-thumbnail': image.thumbUrl }"
                         >
-                            <div class="play-button">▶</div>
+                            <div class="play-button"><Play /></div>
                         </div>
                     </div>
                     <!-- 加载动画 -->
@@ -112,7 +112,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue';
 import type { ImageItem } from '@/typings/album';
-
+import { Play } from '@vicons/fa';
 interface Props {
     images: ImageItem[];
 }
@@ -406,19 +406,14 @@ onBeforeUnmount(() => {
                             rgba(0, 0, 0, 0.3) 30%,
                             transparent 100%
                         );
-
-                        .play-button {
-                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-                        }
                     }
 
                     .play-button {
-                        font-size: 40px;
+                        font-size: 36px;
                         color: white;
-                        background: rgba(0, 0, 0, 0.5);
                         border-radius: 50%;
-                        width: 70px;
-                        height: 70px;
+                        width: 60px;
+                        height: 60px;
                         display: flex;
                         align-items: center;
                         justify-content: center;
@@ -459,7 +454,7 @@ onBeforeUnmount(() => {
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             color: white;
-            font-size: 20px;
+            font-size: 22px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -467,11 +462,6 @@ onBeforeUnmount(() => {
             backdrop-filter: blur(5px);
             transition: all 0.2s ease;
             z-index: 4;
-
-            &:hover:not(:disabled) {
-                background: rgba(255, 255, 255, 0.3);
-                transform: scale(1.1);
-            }
 
             &:disabled {
                 opacity: 0.5;
@@ -497,7 +487,7 @@ onBeforeUnmount(() => {
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             color: white;
-            font-size: 20px;
+            font-size: 22px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -527,11 +517,6 @@ onBeforeUnmount(() => {
                 }
             }
 
-            &:hover:not(:disabled) {
-                background: rgba(255, 255, 255, 0.1);
-                transform: scale(1.1) translateY(-50%);
-            }
-
             &:disabled {
                 opacity: 0.3;
                 cursor: not-allowed;
@@ -546,7 +531,7 @@ onBeforeUnmount(() => {
             background: rgba(0, 0, 0, 0.5);
             padding: 5px 15px;
             border-radius: 20px;
-            font-size: 14px;
+            font-size: 18px;
             z-index: 3;
         }
 

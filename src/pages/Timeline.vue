@@ -328,7 +328,7 @@ const timelineEvents: TimelineEvent[] = [
                     }
 
                     .card-date {
-                        font-size: 14px;
+                        font-size: 16px;
                         color: var(--autumn-brown);
                         font-weight: bold;
                         margin-bottom: 5px;
@@ -336,14 +336,14 @@ const timelineEvents: TimelineEvent[] = [
 
                     .card-title {
                         color: var(--autumn-red);
-                        font-size: 19px;
+                        font-size: 22px;
                         margin: 6px 0;
                         font-weight: bold;
                     }
 
                     .card-description {
                         color: var(--autumn-brown);
-                        font-size: 16px;
+                        font-size: 18px;
                         line-height: 1.7;
                         white-space: pre-line;
                     }

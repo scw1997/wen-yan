@@ -150,7 +150,7 @@ const selectCategory = (category: AlbumCategory) => {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    font-size: 18px;
+                    font-size: 20px;
                     color: var(--autumn-brown);
                     background: rgba(255, 255, 255, 0.7);
                     border: 1px solid #d2b48c;
@@ -177,12 +177,12 @@ const selectCategory = (category: AlbumCategory) => {
                         background: var(--autumn-brown);
                         color: white;
                         border-radius: 50%;
-                        width: 34px;
-                        height: 34px;
+                        width: 36px;
+                        height: 36px;
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        font-size: 14px;
+                        font-size: 16px;
                         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
                         margin-left: 8px;
                     }
@@ -215,12 +215,12 @@ const selectCategory = (category: AlbumCategory) => {
                         .year-title {
                             margin: 0;
                             color: var(--autumn-brown);
-                            font-size: 20px;
+                            font-size: 22px;
                             font-weight: bold;
                         }
 
                         .expand-icon {
-                            font-size: 24px;
+                            font-size: 26px;
                             font-weight: bold;
                             color: var(--autumn-brown);
                         }
