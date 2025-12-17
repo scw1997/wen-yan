@@ -8,25 +8,32 @@
                 class="media-item"
                 @click="openPreview(index)"
             >
-                <img
-                    v-if="!isVideo(image.url)"
-                    :src="transparentPlaceholder"
-                    :data-src="image.url"
-                    :data-thumb="image.thumbUrl"
-                    :alt="image.alt || ''"
-                    class="lazy-image"
-                />
-                <div v-else class="video-wrapper">
+                <div class="image-container">
                     <img
+                        v-if="!isVideo(image.url)"
                         :src="transparentPlaceholder"
                         :data-src="image.url"
                         :data-thumb="image.thumbUrl"
                         :alt="image.alt || ''"
-                        class="lazy-video-thumb"
+                        class="lazy-image"
                     />
-                    <div class="play-overlay show" :class="{ 'with-thumbnail': image.thumbUrl }">
-                        <div class="play-button">▶</div>
+                    <div v-else class="video-wrapper">
+                        <img
+                            :src="transparentPlaceholder"
+                            :data-src="image.url"
+                            :data-thumb="image.thumbUrl"
+                            :alt="image.alt || ''"
+                            class="lazy-video-thumb"
+                        />
+                        <div
+                            class="play-overlay show"
+                            :class="{ 'with-thumbnail': image.thumbUrl }"
+                        >
+                            <div class="play-button">▶</div>
+                        </div>
                     </div>
+                    <!-- 加载动画 -->
+                    <div class="loading-spinner"></div>
                 </div>
             </div>
         </div>
@@ -234,9 +241,14 @@ const handleIntersection = (entries: IntersectionObserverEntry[]) => {
             const thumbSrc = img.getAttribute('data-thumb');
             const dataSrc = img.getAttribute('data-src');
 
+            // 图片加载完成的回调函数
+            const onLoad = () => {
+                img.classList.add('loaded');
+            };
+
             if (thumbSrc) {
                 img.src = thumbSrc;
-                img.classList.add('loaded');
+                img.onload = onLoad;
 
                 // 如果有原图地址，预加载原图
                 if (dataSrc && thumbSrc !== dataSrc) {
@@ -248,7 +260,7 @@ const handleIntersection = (entries: IntersectionObserverEntry[]) => {
                 }
             } else if (dataSrc) {
                 img.src = dataSrc;
-                img.classList.add('loaded');
+                img.onload = onLoad;
             }
         }
     });
@@ -315,16 +327,48 @@ onBeforeUnmount(() => {
             transition: transform 0.2s ease;
             position: relative;
 
-            img {
+            .image-container {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
-                object-position: center;
-                opacity: 0;
-                transition: opacity 0.3s ease;
+                position: relative;
 
-                &.loaded {
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+
+                    &.loaded {
+                        opacity: 1;
+                    }
+                }
+
+                .loading-spinner {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 30px;
+                    height: 30px;
+                    border: 3px solid rgba(255, 255, 255, 0.3);
+                    border-top: 3px solid #fff;
+                    border-radius: 50%;
+                    animation: spin 1s linear infinite;
+                    transform: translate(-50%, -50%);
                     opacity: 1;
+                    transition: opacity 0.3s ease;
+                    z-index: 1; /* 确保加载动画在图片上方 */
+                }
+
+                /* 当图片加载完成时隐藏加载动画 */
+                img.loaded + .loading-spinner {
+                    opacity: 0;
+                }
+
+                /* 特殊处理视频缩略图加载完成的情况 */
+                img.lazy-video-thumb.loaded + .loading-spinner {
+                    opacity: 0;
                 }
             }
 
@@ -349,6 +393,7 @@ onBeforeUnmount(() => {
                     background: rgba(0, 0, 0, 0.3);
                     opacity: 0;
                     transition: opacity 0.3s ease;
+                    z-index: 2; /* 确保播放按钮在最上层 */
 
                     &.show {
                         opacity: 1;
@@ -379,6 +424,7 @@ onBeforeUnmount(() => {
                         justify-content: center;
                         padding-left: 10px;
                         pointer-events: none;
+                        z-index: 3; /* 确保播放按钮图标在最上层 */
                     }
                 }
             }
@@ -402,6 +448,9 @@ onBeforeUnmount(() => {
         top: 20px;
         right: 20px;
         display: flex;
+        @media (max-width: 768px) {
+            display: none;
+        }
         [class*='-btn'] {
             width: 30px;
             height: 30px;
@@ -433,8 +482,6 @@ onBeforeUnmount(() => {
 
     .preview-content {
         position: relative;
-        max-width: 95%;
-        max-height: 95%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -458,18 +505,25 @@ onBeforeUnmount(() => {
             backdrop-filter: blur(5px);
             transition: all 0.2s ease;
             z-index: 3;
+            &.prev-btn {
+                left: -50px;
+            }
+            &.next-btn {
+                right: -50px;
+            }
             @media (max-width: 768px) {
                 top: unset;
                 transform: none;
                 &.prev-btn {
                     left: 50%;
-                    bottom: 0;
+                    bottom: 20px;
                     transform: translateX(-100%);
                 }
 
                 &.next-btn {
                     left: calc(50% + 20px);
-                    bottom: 0;
+                    right: unset;
+                    bottom: 20px;
                 }
             }
 
@@ -513,6 +567,15 @@ onBeforeUnmount(() => {
                 opacity: 1;
             }
         }
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
     }
 }
 </style>
