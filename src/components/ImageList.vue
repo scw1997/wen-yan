@@ -25,6 +25,7 @@
                             :alt="image.alt || ''"
                             class="lazy-video-thumb"
                         />
+                        <div class="loading-spinner"></div>
                         <div
                             class="play-overlay show"
                             :class="{ 'with-thumbnail': image.thumbUrl }"
@@ -33,7 +34,7 @@
                         </div>
                     </div>
                     <!-- 加载动画 -->
-                    <div class="loading-spinner"></div>
+                    <div v-if="!isVideo(image.url)" class="loading-spinner"></div>
                 </div>
             </div>
         </div>
@@ -351,8 +352,8 @@ onBeforeUnmount(() => {
                     left: 50%;
                     width: 30px;
                     height: 30px;
-                    border: 3px solid rgba(255, 255, 255, 0.3);
-                    border-top: 3px solid #fff;
+                    border: 3px solid rgba(0, 0, 0, 0.3);
+                    border-top: 3px solid #fffcef8c;
                     border-radius: 50%;
                     animation: spin 1s linear infinite;
                     transform: translate(-50%, -50%);
@@ -361,13 +362,8 @@ onBeforeUnmount(() => {
                     z-index: 1; /* 确保加载动画在图片上方 */
                 }
 
-                /* 当图片加载完成时隐藏加载动画 */
+                /* 当图片或视频缩略图加载完成时隐藏加载动画 */
                 img.loaded + .loading-spinner {
-                    opacity: 0;
-                }
-
-                /* 特殊处理视频缩略图加载完成的情况 */
-                img.lazy-video-thumb.loaded + .loading-spinner {
                     opacity: 0;
                 }
             }
