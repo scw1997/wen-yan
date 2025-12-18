@@ -342,7 +342,10 @@ onBeforeUnmount(() => {
                     object-position: center;
                     opacity: 0;
                     transition: opacity 0.3s ease;
-
+                    position: absolute;
+                    z-index: 0;
+                    left: 0;
+                    top: 0;
                     &.loaded {
                         opacity: 1;
                     }
@@ -473,18 +476,19 @@ onBeforeUnmount(() => {
         align-items: center;
         justify-content: center;
         z-index: 2;
-
+        width: 80%;
+        height: 90%;
         .nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             background: rgba(255, 255, 255, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             color: white;
-            font-size: 22px;
+            font-size: 24px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -493,10 +497,10 @@ onBeforeUnmount(() => {
             transition: all 0.2s ease;
             z-index: 3;
             &.prev-btn {
-                left: -50px;
+                left: -70px;
             }
             &.next-btn {
-                right: -50px;
+                right: -70px;
             }
             @media (max-width: 768px) {
                 top: unset;

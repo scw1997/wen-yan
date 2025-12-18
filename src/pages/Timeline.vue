@@ -194,6 +194,11 @@ const timelineEvents: TimelineEvent[] = [
         description: '埋怨我睡觉没抱你，还是个尼克🦊🐰朱迪风格双语版'
     },
     {
+        date: '2025-11-26',
+        title: '你的手被我的切药器划伤了',
+        description: '安慰你的同时我在劝你以后小心点，你看我咋就没划伤过'
+    },
+    {
         date: '2025-11-29',
         title: '终南山南五台一日爬',
         description: '你天天都在想着去，没想到脚力确实不错啊，成功登顶⛰！'
@@ -202,6 +207,11 @@ const timelineEvents: TimelineEvent[] = [
         date: '2025-12-06',
         title: '海德小镇的夜晚',
         description: '”那是圣诞老人🎅，不是雪人⛄！“欧式圣诞风格真不错。'
+    },
+    {
+        date: '2025-12-17',
+        title: '我的手《也》被我的切药器划伤了😭',
+        description: '这回旋镖，啪啪打脸啊~'
     }
 ];
 </script>

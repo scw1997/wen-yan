@@ -371,52 +371,52 @@ export const albumCategories: AlbumCategory[] = [
                         thumbUrl: `${SWICO_STATIC_PUBLIC_PATH}journey/0082_thumb.png`
                     },
                     {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0083.JPG`
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0083.jpg`
                     },
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}journey/0084.jpg`
                     },
                     {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0085.JPG`
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0085.jpg`
                     },
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}journey/0086.jpg`
                     },
                     {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0087.JPG`
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0087.jpg`
                     },
                     {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0088.JPG`
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0088.jpg`
                     },
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}journey/0089.jpg`
                     },
                     {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0090.JPG`
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0090.jpg`
                     },
                     {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0091.JPG`
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0091.jpg`
                     },
                     {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0092.JPG`
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0092.jpg`
                     },
                     {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0093.JPG`
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0093.jpg`
                     },
                     {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0094.JPG`
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0094.jpg`
                     },
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}journey/0095.jpg`
                     },
                     {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0096.JPG`
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0096.jpg`
                     },
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}journey/0097.jpg`
                     },
                     {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0098.JPG`
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0098.jpg`
                     },
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}journey/0099.jpg`
@@ -425,7 +425,7 @@ export const albumCategories: AlbumCategory[] = [
                         url: `${SWICO_STATIC_PUBLIC_PATH}journey/0100.jpg`
                     },
                     {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0101.JPG`
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0101.jpg`
                     },
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}journey/0102.jpg`
@@ -470,16 +470,16 @@ export const albumCategories: AlbumCategory[] = [
                         url: `${SWICO_STATIC_PUBLIC_PATH}journey/0115.jpg`
                     },
                     {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0116.JPG`
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0116.jpg`
                     },
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}journey/0117.jpg`
                     },
                     {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0118.JPG`
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0118.jpg`
                     },
                     {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0119.JPG`
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0119.jpg`
                     },
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}journey/0120.jpg`
@@ -494,7 +494,7 @@ export const albumCategories: AlbumCategory[] = [
                         url: `${SWICO_STATIC_PUBLIC_PATH}journey/0123.jpg`
                     },
                     {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0124.JPG`
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0124.jpg`
                     },
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}journey/0125.jpg`
