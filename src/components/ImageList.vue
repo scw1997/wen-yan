@@ -397,7 +397,7 @@ onBeforeUnmount(() => {
                     z-index: 2; /* 确保播放按钮在最上层 */
 
                     &.show {
-                        opacity: 1;
+                        opacity: 1 !important;
                     }
 
                     &.with-thumbnail {
@@ -477,7 +477,7 @@ onBeforeUnmount(() => {
         justify-content: center;
         z-index: 2;
         width: 80%;
-        height: 90%;
+        height: 70%;
         .nav-btn {
             position: absolute;
             top: 50%;
