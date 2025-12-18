@@ -366,7 +366,7 @@ onBeforeUnmount(() => {
 
                 /* 当图片或视频缩略图加载完成时隐藏加载动画 */
                 img.loaded + .loading-spinner {
-                    opacity: 0;
+                    display: none;
                 }
             }
 
@@ -417,7 +417,6 @@ onBeforeUnmount(() => {
                         justify-content: center;
                         padding-left: 10px;
                         pointer-events: none;
-                        z-index: 3; /* 确保播放按钮图标在最上层 */
                     }
                 }
             }

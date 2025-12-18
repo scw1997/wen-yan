@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Outlet, Link, useNav, history } from 'swico/vue';
-import { Heart, Home, Play, Book, History, Images } from '@vicons/fa';
+import { Heart, Home, Book, History, Images } from '@vicons/fa';
 import { onMounted, ref, watch } from 'vue';
 const nav = useNav();
 const nameRef = ref('');
@@ -8,7 +8,7 @@ const navOptions = [
     {
         name: 'index',
         title: '首页',
-        icon: Play,
+        icon: Home,
         iconClass: 'icon-home'
     },
     {
