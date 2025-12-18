@@ -31,8 +31,7 @@
                             :class="{ 'with-thumbnail': image.thumbUrl }"
                         >
                             <div class="play-button">
-                                大师傅
-                                <component :is="Play" />
+                                <component :is="Play" class="icon-play" />
                             </div>
                         </div>
                     </div>
@@ -421,6 +420,10 @@ onBeforeUnmount(() => {
                         justify-content: center;
                         padding-left: 10px;
                         pointer-events: none;
+                        .icon-play {
+                            width: 50px;
+                            height: 50px;
+                        }
                     }
                 }
             }
