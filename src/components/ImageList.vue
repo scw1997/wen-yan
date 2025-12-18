@@ -31,6 +31,7 @@
                             :class="{ 'with-thumbnail': image.thumbUrl }"
                         >
                             <div class="play-button">
+                                大师傅
                                 <component :is="Play" />
                             </div>
                         </div>
@@ -411,7 +412,7 @@ onBeforeUnmount(() => {
 
                     .play-button {
                         font-size: 36px;
-                        color: #ff0707;
+                        color: #fff;
                         border-radius: 50%;
                         width: 60px;
                         height: 60px;
@@ -471,13 +472,13 @@ onBeforeUnmount(() => {
     }
 
     .preview-content {
-        position: relative;
+        //position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
         z-index: 2;
-        width: 80%;
-        height: 70%;
+        width: 85%;
+        height: 80%;
         .nav-btn {
             position: absolute;
             top: 50%;
@@ -497,10 +498,10 @@ onBeforeUnmount(() => {
             transition: all 0.2s ease;
             z-index: 3;
             &.prev-btn {
-                left: -70px;
+                left: 50px;
             }
             &.next-btn {
-                right: -70px;
+                right: 50px;
             }
             @media (max-width: 768px) {
                 top: unset;
@@ -538,8 +539,10 @@ onBeforeUnmount(() => {
 
         .preview-image,
         .preview-video {
-            max-width: 95vw;
-            max-height: 100vh;
+            //max-width: 80vw;
+            //max-height: 80vh;
+            max-width: 100%;
+            max-height: 100%;
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
         }
