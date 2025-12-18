@@ -397,7 +397,7 @@ onBeforeUnmount(() => {
                     z-index: 2; /* 确保播放按钮在最上层 */
 
                     &.show {
-                        opacity: 1 !important;
+                        opacity: 1;
                     }
 
                     &.with-thumbnail {
@@ -411,7 +411,7 @@ onBeforeUnmount(() => {
 
                     .play-button {
                         font-size: 36px;
-                        color: white;
+                        color: #ff0707;
                         border-radius: 50%;
                         width: 60px;
                         height: 60px;
