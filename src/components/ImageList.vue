@@ -111,13 +111,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue';
+import { ref, computed, onMounted, onBeforeUnmount, watch, defineComponent } from 'vue';
 import type { ImageItem } from '@/typings/album';
-import { Play } from '@vicons/fa';
+// import { Play } from '@vicons/fa';
 interface Props {
     images: ImageItem[];
 }
 
+const Play = defineComponent({
+    template:
+        '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 448 512"><path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z" fill="currentColor"></path></svg>'
+});
 const props = defineProps<Props>();
 
 // 透明占位图
@@ -443,8 +447,8 @@ onBeforeUnmount(() => {
             display: none;
         }
         [class*='-btn'] {
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             margin-left: 10px;
             background: rgba(255, 255, 255, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -477,8 +481,8 @@ onBeforeUnmount(() => {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             background: rgba(255, 255, 255, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
@@ -527,7 +531,7 @@ onBeforeUnmount(() => {
             background: rgba(0, 0, 0, 0.5);
             padding: 5px 15px;
             border-radius: 20px;
-            font-size: 18px;
+            font-size: 24px;
             z-index: 3;
         }
 

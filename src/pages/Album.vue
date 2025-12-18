@@ -215,12 +215,12 @@ const selectCategory = (category: AlbumCategory) => {
                         .year-title {
                             margin: 0;
                             color: var(--autumn-brown);
-                            font-size: 22px;
+                            font-size: 24px;
                             font-weight: bold;
                         }
 
                         .expand-icon {
-                            font-size: 26px;
+                            font-size: 28px;
                             font-weight: bold;
                             color: var(--autumn-brown);
                         }
@@ -228,8 +228,6 @@ const selectCategory = (category: AlbumCategory) => {
                 }
 
                 .masonry-layout {
-                    display: flex;
-                    flex-wrap: wrap;
                     .masonry-item {
                         flex: none;
                         &:not(:first-child) {
