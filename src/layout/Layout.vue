@@ -2,7 +2,13 @@
 import { Outlet, Link, useNav, history } from 'swico/vue';
 import { Heart, Home, Book, History, Images } from '@vicons/fa';
 import { onMounted, ref, watch } from 'vue';
+import BgmPlayer from '@/components/BgmPlayer.vue';
 const nav = useNav();
+const bgmUrlList = [
+    `${SWICO_STATIC_PUBLIC_PATH}bgm/Bicycle_Terdsak_Janpan.mp3`,
+    `${SWICO_STATIC_PUBLIC_PATH}bgm/Michael Tai - Bicycle from Secret.mp3`,
+    `${SWICO_STATIC_PUBLIC_PATH}bgm/Reach Me- Lu Xiao Yu-From Secret.mp3`
+];
 const nameRef = ref('');
 const navOptions = [
     {
@@ -41,6 +47,7 @@ watch(
 
 <template>
     <div class="global-layout-root">
+        <!--        <BgmPlayer :url-list="bgmUrlList" />-->
         <header class="global-header global-container">
             <span class="global-title">
                 <span class="title-text">传</span>
