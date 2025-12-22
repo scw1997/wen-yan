@@ -113,7 +113,7 @@ export const albumCategories: AlbumCategory[] = [
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}daily/0034.png`
                     }
-                ]
+                ].reverse()
             }
         ]
     },
@@ -523,7 +523,7 @@ export const albumCategories: AlbumCategory[] = [
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}journey/0132.png`
                     }
-                ]
+                ].reverse()
             }
         ]
     },
@@ -563,7 +563,7 @@ export const albumCategories: AlbumCategory[] = [
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}commemory/0010.png`
                     }
-                ]
+                ].reverse()
             }
         ]
     }
