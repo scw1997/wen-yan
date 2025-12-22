@@ -109,6 +109,9 @@ export const albumCategories: AlbumCategory[] = [
                     },
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}daily/0033.png`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}daily/0034.png`
                     }
                 ]
             }

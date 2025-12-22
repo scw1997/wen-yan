@@ -1,26 +1,35 @@
 <template>
-    <!-- 无界面组件，仅在后台播放音乐 -->
-    <div></div>
+    <!-- 使用隐藏的audio标签 -->
+    <audio ref="audioRef" style="display: none"></audio>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch, computed } from 'vue';
+import { ref, onMounted, onUnmounted, computed, watch } from 'vue';
 
-// 定义props
 interface Props {
-    urlList: string[];
+    urlList?: string[];
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+    urlList: () => [
+        `${SWICO_STATIC_PUBLIC_PATH}bgm/1.mp3`,
+        `${SWICO_STATIC_PUBLIC_PATH}bgm/2.mp3`,
+        `${SWICO_STATIC_PUBLIC_PATH}bgm/3.mp3`
+    ]
+});
 
-// 音频对象引用
-const audio = ref<HTMLAudioElement | null>(null);
+// 音频元素引用
+const audioRef = ref<HTMLAudioElement | null>(null);
 // 当前播放索引
 const currentIndex = ref(0);
 // 播放状态
 const isPlaying = ref(false);
-// 已加载的音频索引集合
-const loadedIndices = new Set<number>();
+// 失败计数器，用于跟踪连续播放失败次数
+const failureCount = ref(0);
+// 用户是否已交互标志
+const userInteracted = ref(false);
+// 是否已初始化音频源
+const isInitialized = ref(false);
 
 // 检查URL是否为音频格式
 const isAudioFormat = (url: string): boolean => {
@@ -28,103 +37,126 @@ const isAudioFormat = (url: string): boolean => {
     return audioExtensions.test(url);
 };
 
-// 过滤出有效的音频URL
-const validUrls = computed(() => {
+// 获取有效的音频URL列表
+const validUrlList = computed(() => {
     return props.urlList.filter((url) => isAudioFormat(url));
 });
 
-// 获取当前索引在有效URL列表中的实际索引
-const getCurrentValidIndex = () => {
-    let validIndex = 0;
-    for (let i = 0; i < props.urlList.length; i++) {
-        if (isAudioFormat(props.urlList[i])) {
-            if (validIndex === currentIndex.value) {
-                return i;
-            }
-            validIndex++;
-        }
+// 监听有效URL列表变化，重置播放状态
+watch(validUrlList, () => {
+    currentIndex.value = 0;
+    failureCount.value = 0;
+    isInitialized.value = false;
+    if (validUrlList.value.length > 0 && audioRef.value) {
+        // 不再立即设置音频源，改为按需加载
+        audioRef.value.src = '';
     }
-    return -1;
-};
+});
 
 // 播放下一首
 const playNext = () => {
-    if (validUrls.value.length === 0) return;
+    if (validUrlList.value.length === 0) return;
 
-    currentIndex.value = (currentIndex.value + 1) % validUrls.value.length;
+    // 如果所有URL都已尝试失败，则停止播放
+    if (failureCount.value >= validUrlList.value.length) {
+        console.log('所有音频URL都播放失败，停止循环播放');
+        stop();
+        return;
+    }
+
+    currentIndex.value = (currentIndex.value + 1) % validUrlList.value.length;
     playCurrent();
 };
 
 // 播放当前歌曲
 const playCurrent = () => {
-    if (validUrls.value.length === 0) return;
+    if (validUrlList.value.length === 0 || !audioRef.value) return;
 
-    if (!audio.value) {
-        audio.value = new Audio();
-        audio.value.addEventListener('ended', playNext);
+    // 按需加载：仅在需要播放时设置音频源
+    if (!isInitialized.value || audioRef.value.src !== validUrlList.value[currentIndex.value]) {
+        audioRef.value.src = validUrlList.value[currentIndex.value];
+        isInitialized.value = true;
     }
 
-    // 只有当对应音乐第一次播放时才设置src加载资源
-    const actualIndex = getCurrentValidIndex();
-    if (!loadedIndices.has(actualIndex)) {
-        audio.value.src = validUrls.value[currentIndex.value];
-        loadedIndices.add(actualIndex);
+    // 如果用户尚未交互，不尝试播放
+    if (!userInteracted.value) {
+        console.log('等待用户交互后开始播放');
+        return;
     }
 
-    audio.value
+    audioRef.value
         .play()
         .then(() => {
             isPlaying.value = true;
+            // 重置失败计数
+            failureCount.value = 0;
         })
         .catch((error) => {
             console.error('播放失败:', error);
+            // 增加失败计数
+            failureCount.value++;
             // 如果当前音频播放失败，尝试下一首
             playNext();
         });
 };
 
+// 处理曲目结束事件
+const handleTrackEnd = () => {
+    // 重置失败计数
+    failureCount.value = 0;
+    playNext();
+};
+
 // 停止播放
 const stop = () => {
-    if (audio.value) {
-        audio.value.pause();
+    if (audioRef.value) {
+        audioRef.value.pause();
         isPlaying.value = false;
     }
 };
 
-// 监听urlList变化
-watch(
-    () => props.urlList,
-    (newUrls) => {
-        // 清空已加载索引集合
-        loadedIndices.clear();
+// 用户交互处理
+const handleUserInteraction = () => {
+    userInteracted.value = true;
+    // 移除所有相关的事件监听器
+    document.removeEventListener('click', handleUserInteraction);
+    document.removeEventListener('keydown', handleUserInteraction);
+    document.removeEventListener('touchstart', handleUserInteraction);
 
-        const validNewUrls = newUrls.filter((url) => isAudioFormat(url));
-        if (validNewUrls.length > 0) {
-            currentIndex.value = 0;
-            playCurrent();
-        } else {
-            stop();
-        }
-    },
-    { deep: true }
-);
+    // 用户交互后开始播放
+    playCurrent();
+};
 
-// 组件挂载时开始播放
+// 组件挂载时监听用户交互
 onMounted(() => {
-    if (validUrls.value.length > 0) {
-        playCurrent();
+    // 添加用户交互事件监听器
+    document.addEventListener('click', handleUserInteraction);
+    document.addEventListener('keydown', handleUserInteraction);
+    document.addEventListener('touchstart', handleUserInteraction);
+
+    if (validUrlList.value.length > 0 && audioRef.value) {
+        // 不再初始化音频源，改为按需加载
+        audioRef.value.src = '';
+        // 添加播放结束事件监听器
+        audioRef.value.addEventListener('ended', handleTrackEnd);
     }
 });
 
 // 组件卸载时停止播放并清理
 onUnmounted(() => {
-    if (audio.value) {
-        audio.value.pause();
-        audio.value.removeEventListener('ended', playNext);
-        audio.value = null;
+    // 移除事件监听器
+    document.removeEventListener('click', handleUserInteraction);
+    document.removeEventListener('keydown', handleUserInteraction);
+    document.removeEventListener('touchstart', handleUserInteraction);
+
+    if (audioRef.value) {
+        audioRef.value.pause();
+        audioRef.value.removeEventListener('ended', handleTrackEnd);
     }
 
-    // 清空已加载索引集合
-    loadedIndices.clear();
+    // 重置状态
+    isPlaying.value = false;
+    userInteracted.value = false;
+    isInitialized.value = false;
 });
 </script>
