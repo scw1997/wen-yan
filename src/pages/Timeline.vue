@@ -214,7 +214,7 @@ const timelineEvents: TimelineEvent[] = [
         title: '我的手也被我的切药器划伤了😭',
         description: '这回旋镖，啪啪打脸啊~'
     }
-];
+].reverse();
 </script>
 
 <template>
