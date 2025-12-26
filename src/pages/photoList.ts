@@ -112,6 +112,9 @@ export const albumCategories: AlbumCategory[] = [
                     },
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}daily/0034.png`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}daily/0035.jpg`
                     }
                 ].reverse()
             }
@@ -522,6 +525,57 @@ export const albumCategories: AlbumCategory[] = [
                     },
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}journey/0132.png`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0133.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0133.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0134.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0135.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0136.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0137.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0138.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0139.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0140.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0141.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0142.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0143.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0144.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0145.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0146.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0147.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0133.jpg`
                     }
                 ].reverse()
             }
@@ -562,6 +616,9 @@ export const albumCategories: AlbumCategory[] = [
                     },
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}commemory/0010.png`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}commemory/0011.jpg`
                     }
                 ].reverse()
             }
