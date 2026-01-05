@@ -221,8 +221,13 @@ const timelineEvents: TimelineEvent[] = [
     },
     {
         date: '2025-12-31',
-        title: '第一次跨年',
-        description: '可惜今年西安限流封禁了，赶到诗经里却已经提前结束了😭，看把娃给冻得'
+        title: '第一次一起跨年',
+        description: '可惜今年西安限流封禁了，赶到诗经里却已经提前结束了😭，看把娃给冻得！'
+    },
+    {
+        date: '2025-01-01',
+        title: '第一次一起见了我爸',
+        description: '哈哈，称赞我爸脚力太强了，走路把娃给走晕了😵'
     }
 ].reverse();
 </script>
