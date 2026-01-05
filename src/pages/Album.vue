@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import GlobalFalling from '@/components/GlobalFalling.vue';
 import { albumCategories } from '@/pages/photoList';
 import ImageList from '@/components/ImageList.vue';
-import type { AlbumCategory, Item } from '@/types/album';
-
-// 已移动到 src/types/album.ts 文件中
+import { AlbumCategory } from '@/typings/album';
 
 // 当前选中的分类
 const selectedCategory = ref<AlbumCategory>(albumCategories[0]);
@@ -13,14 +11,45 @@ const selectedCategory = ref<AlbumCategory>(albumCategories[0]);
 // 展开状态记录
 const expandedYears = ref<Record<string, boolean>>({});
 
+// 初始化展开状态，默认展开第一个年份
+const initializeExpandedYears = () => {
+    // 重置所有展开状态
+    Object.keys(expandedYears.value).forEach((year) => {
+        delete expandedYears.value[year];
+    });
+    // 只展开当前分类的第一个年份
+    if (selectedCategory.value.items.length > 0) {
+        expandedYears.value[selectedCategory.value.items[0].year] = true;
+    }
+};
+
+// 初始化展开状态
+initializeExpandedYears();
+
+// 监听选中分类变化，更新展开状态
+watch(selectedCategory, () => {
+    initializeExpandedYears();
+});
+
 // 切换年份展开/折叠状态
 const toggleYearExpansion = (year: string) => {
-    expandedYears.value[year] = !expandedYears.value[year];
+    // 如果是展开操作，需要关闭其他年份
+    if (!expandedYears.value[year]) {
+        // 重置所有状态
+        Object.keys(expandedYears.value).forEach((y) => {
+            expandedYears.value[y] = false;
+        });
+        // 展开当前年份
+        expandedYears.value[year] = true;
+    } else {
+        // 如果是折叠当前年份，则全部折叠
+        expandedYears.value[year] = false;
+    }
 };
 
 // 检查年份是否展开
 const isYearExpanded = (year: string) => {
-    return expandedYears.value[year] !== false; // 默认展开
+    return expandedYears.value[year] === true;
 };
 
 // 选择分类

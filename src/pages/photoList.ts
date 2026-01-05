@@ -6,6 +6,17 @@ export const albumCategories: AlbumCategory[] = [
         typeName: '生活',
         items: [
             {
+                year: '2026',
+                photoList: [
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}daily/0036.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}daily/0037.jpg`
+                    }
+                ]
+            },
+            {
                 year: '2025',
                 photoList: [
                     {
@@ -123,6 +134,56 @@ export const albumCategories: AlbumCategory[] = [
     {
         typeName: '旅行',
         items: [
+            {
+                year: '2026',
+                photoList: [
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0148.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0149.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0150.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0151.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0152.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0153.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0154.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0155.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0156.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0157.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0158.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0159.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0160.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0161.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0162.jpg`
+                    }
+                ].reverse()
+            },
             {
                 year: '2025',
                 photoList: [
@@ -573,9 +634,6 @@ export const albumCategories: AlbumCategory[] = [
                     },
                     {
                         url: `${SWICO_STATIC_PUBLIC_PATH}journey/0147.jpg`
-                    },
-                    {
-                        url: `${SWICO_STATIC_PUBLIC_PATH}journey/0133.jpg`
                     }
                 ].reverse()
             }
@@ -584,6 +642,20 @@ export const albumCategories: AlbumCategory[] = [
     {
         typeName: '纪念',
         items: [
+            {
+                year: '2026',
+                photoList: [
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}commemory/0012.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}commemory/0013.jpg`
+                    },
+                    {
+                        url: `${SWICO_STATIC_PUBLIC_PATH}commemory/0014.jpg`
+                    }
+                ].reverse()
+            },
             {
                 year: '2025',
                 photoList: [
