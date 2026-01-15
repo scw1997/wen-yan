@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { Outlet, Link, useNav, history } from 'swico/vue';
 import { Heart, Home, Book, History, Images } from '@vicons/fa';
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, onUnmounted, ref, watch } from 'vue';
 import BgmPlayer from '@/components/BgmPlayer.vue';
+import { debounce } from '@/utils';
 const nav = useNav();
 
 const nameRef = ref('');
@@ -39,10 +40,29 @@ watch(
         nameRef.value = name;
     }
 );
+
+const handleGlobalHeight = debounce(() => {
+    //先动态修改内容高度的变量
+    const globalRootEle = document.getElementById('global-layout-root');
+    const height = globalRootEle?.scrollHeight || 0;
+    globalRootEle?.style.setProperty('--global-root-height', height + 'px');
+}, 1000);
+
+onMounted(() => {
+    // 处理全局落叶的动画效果，保证能在global-content容器内部完整展示
+    setTimeout(() => {
+        handleGlobalHeight();
+        //监听窗口变化同步处理
+        window.addEventListener('resize', handleGlobalHeight);
+    }, 500);
+});
+onUnmounted(() => {
+    window.removeEventListener('resize', handleGlobalHeight);
+});
 </script>
 
 <template>
-    <div class="global-layout-root">
+    <div id="global-layout-root" class="global-layout-root">
         <BgmPlayer />
         <header class="global-header global-container">
             <span class="global-title">
@@ -77,7 +97,8 @@ watch(
 
 <style scoped lang="less">
 .global-layout-root {
-    height: calc(100vh - env(safe-area-inset-bottom));
+    --global-root-height: 100vh;
+    height: calc(var(--global-root-height) - env(safe-area-inset-bottom));
     width: 100vw;
     overflow: auto;
     background: linear-gradient(135deg, var(--cream) 0%, var(--light-orange) 100%);
