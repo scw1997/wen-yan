@@ -77,7 +77,7 @@ watch(
 
 <style scoped lang="less">
 .global-layout-root {
-    height: 100vh;
+    height: calc(100vh - env(safe-area-inset-bottom));
     width: 100vw;
     overflow: auto;
     background: linear-gradient(135deg, var(--cream) 0%, var(--light-orange) 100%);
