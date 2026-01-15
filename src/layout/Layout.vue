@@ -44,7 +44,7 @@ watch(
 const handleGlobalHeight = debounce(() => {
     //先动态修改内容高度的变量
     const globalRootEle = document.getElementById('global-layout-root');
-    const height = globalRootEle?.scrollHeight || 0;
+    const height = window?.innerHeight || 0;
     globalRootEle?.style.setProperty('--global-root-height', height + 'px');
 }, 1000);
 
