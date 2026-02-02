@@ -74,24 +74,9 @@ const timelineEvents: TimelineEvent[] = [
         description: '“太阳都晒屁股啦，再不起床打你屁股！”'
     },
     {
-        date: '2025-09-14',
-        title: '第一次尝到你的炒面片',
-        description: '哎呀，不愧是面食女厨神，味道真不赖😋'
-    },
-    {
-        date: '2025-09-20',
-        title: '第一次用你的建议给我妈送花',
-        description: '我妈不敢相信😮，直言这肯定是你的主意'
-    },
-    {
         date: '2025-09-24',
         title: '第一次陪你过生日🍰',
         description: '0点的文字祝福，生日祝福网页，玫瑰花，动物奶油蛋糕，文房四宝组成了难忘的一天'
-    },
-    {
-        date: '2025-09-26',
-        title: '第一次去吃牛排自助',
-        description: '单人99元的肉质真不错，吃不动了人家西部牛仔小哥还在投喂呢...'
     },
     {
         date: '2025-09-28',
@@ -104,20 +89,14 @@ const timelineEvents: TimelineEvent[] = [
         description: '你记得我妈腰背不好，买了两种按摩仪，晚上一起试试哪种好用'
     },
     {
-        date: '2025-09-30',
-        title: '我说错了话，脑子瓦特了😔',
-        description: '因为按摩仪的事我不该这样处理，都是我的问题，忽视了你的付出'
-    },
-    {
         date: '2025-10-02',
         title: '你第一次来见了我的家人',
         description: '太自然了，朵朵第一天就黏上了你，之前礼物选的真是棒🤪~'
     },
     {
         date: '2025-10-03',
-        title: '太平国家森林公园一日游',
-        description:
-            '中途赶上了蒙蒙细雨，不过为了飞天瀑布出片也是拼了😎\n晚上一起制作了我们的干花相框'
+        title: '第一次制作了我们的干花相框',
+        description: '我这一点经验都没有，全程给你打下手'
     },
     {
         date: '2025-10-09',
@@ -136,18 +115,13 @@ const timelineEvents: TimelineEvent[] = [
     },
     {
         date: '2025-10-19',
-        title: '你给咱弄了卡通画头像 + 炒馒头',
+        title: '你给咱弄了卡通画头像',
         description: '你是如此的又是如此地有才华'
     },
     {
         date: '2025-10-24',
         title: '你第一次给我留了早餐纸条',
         description: '”要吃早餐哟！晚上见“'
-    },
-    {
-        date: '2025-10-26',
-        title: '昆明池一日游',
-        description: '一张张的粉黛🌸丽人大片！'
     },
     {
         date: '2025-10-30',
@@ -170,13 +144,8 @@ const timelineEvents: TimelineEvent[] = [
         description: '好在第二天陪你把手机卡都办妥了，有我在呢'
     },
     {
-        date: '2025-11-11',
-        title: '你帮我同事开了个养生药方',
-        description: '"谢谢孙总对象"——来自同事的感谢之情'
-    },
-    {
         date: '2025-11-13',
-        title: '你陪我加班到了晚上8点半',
+        title: '你第一次陪我加班到了晚上8点半',
         description: '这孩子，真傻'
     },
     {
@@ -186,13 +155,8 @@ const timelineEvents: TimelineEvent[] = [
     },
     {
         date: '2025-11-22',
-        title: '潮玩社区一日游',
-        description: '打台球 + K歌 + 小新佛爷手工DIY。你的手工配色调的不错啊'
-    },
-    {
-        date: '2025-11-25',
-        title: '你又留了小作文，',
-        description: '埋怨我睡觉没抱你，还是个尼克🦊🐰朱迪风格双语版'
+        title: '第一次一起做DIY',
+        description: '蜡笔小新佛爷版手工DIY。你的手工配色调的不错啊'
     },
     {
         date: '2025-11-26',
@@ -228,6 +192,18 @@ const timelineEvents: TimelineEvent[] = [
         date: '2025-01-01',
         title: '第一次一起见了我爸',
         description: '哈哈，称赞我爸脚力太强了，走路把你给走迷糊了😵'
+    },
+    {
+        date: '2025-01-17',
+        title: '偷偷溜进某高校 + 第一次现场观看职业篮球比赛',
+        description:
+            '大操场把我们又带回了大学时光，临别之际又邂逅了几只黑天鹅🦢。晚上的篮球比赛很精彩，双方战至最后一刻！'
+    },
+    {
+        date: '2025-01-24',
+        title: '广仁寺的祈福墙',
+        description:
+            '在广仁寺的祈福墙留下我们的愿望，晚上欣赏完不夜城灯光秀，又漫无目的地在广场一起游荡~~'
     }
 ].reverse();
 </script>

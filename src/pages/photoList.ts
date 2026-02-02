@@ -45,17 +45,11 @@ export const albumCategories: AlbumCategory[] = [
         items: [
             {
                 year: '2026',
-                photoList: getPhotoList('daily', 36, 40)
+                photoList: getPhotoList('daily', 19, 22)
             },
             {
                 year: '2025',
-                photoList: getPhotoList(
-                    'daily',
-                    1,
-                    35,
-                    [1, 2, 3, 4, 5, 8, 9, 19, 24, 27, 28, 30, 31, 32, 33, 34],
-                    [6, 20, 22]
-                )
+                photoList: getPhotoList('daily', 1, 18, [1, 3, 8, 12, 15, 16, 17, 18], [2, 9, 10])
             }
         ]
     },
@@ -64,20 +58,17 @@ export const albumCategories: AlbumCategory[] = [
         items: [
             {
                 year: '2026',
-                photoList: getPhotoList('journey', 148, 198, [], [190, 196], [189])
+                photoList: getPhotoList('journey', 63, 94, [], [84], [82])
             },
             {
                 year: '2025',
                 photoList: getPhotoList(
                     'journey',
                     1,
-                    147,
-                    [
-                        2, 10, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36,
-                        37, 38, 39, 40, 41, 42, 43, 44, 46, 47, 48, 55, 56, 113, 132
-                    ],
+                    62,
+                    [4, 8, 9, 10, 11, 12, 13, 14],
                     [],
-                    [13, 15, 17, 82]
+                    [5, 6, 35]
                 )
             }
         ]
@@ -87,11 +78,11 @@ export const albumCategories: AlbumCategory[] = [
         items: [
             {
                 year: '2026',
-                photoList: getPhotoList('commemorate', 12, 14)
+                photoList: getPhotoList('commemorate', 8, 9)
             },
             {
                 year: '2025',
-                photoList: getPhotoList('commemorate', 1, 11, [10])
+                photoList: getPhotoList('commemorate', 1, 7, [7])
             }
         ]
     }
