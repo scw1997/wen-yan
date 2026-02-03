@@ -44,7 +44,7 @@
         <!-- 图片预览模态框 -->
         <Teleport to="body">
             <div v-if="isPreviewVisible" class="image-preview" @click="closePreview">
-                <div class="preview-content" @click.stop @wheel="handleWheel">
+                <div class="preview-content" @wheel="handleWheel">
                     <div class="image-info">{{ currentIndex + 1 }} / {{ images.length }}</div>
 
                     <!-- 当前预览的视频 -->
