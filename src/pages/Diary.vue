@@ -129,7 +129,7 @@ const selectEntry = (entry: DiaryEntry) => {
                 padding: 14px;
                 box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
                 height: fit-content;
-                max-height: 500px;
+                max-height: 4rem;
                 overflow: auto;
                 border: 2px solid #d2b48c;
                 position: relative;

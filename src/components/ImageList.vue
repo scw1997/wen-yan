@@ -54,6 +54,7 @@
                         controls
                         class="preview-video"
                         :autoplay="shouldAutoPlayVideo"
+                        @click.stop
                     ></video>
 
                     <!-- 当前预览的图片 -->
