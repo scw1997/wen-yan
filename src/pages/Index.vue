@@ -113,7 +113,7 @@ function updateTime() {
 
             .leaves-cluster {
                 position: absolute;
-                background-color: var(--autumn-red);
+                background-color: var(--theme-secondary-color);
                 border-radius: 50%;
                 box-shadow:
                     inset -5px -5px 10px rgba(0, 0, 0, 0.1),
@@ -124,7 +124,7 @@ function updateTime() {
                     height: 100px;
                     top: -180px;
                     left: -30px;
-                    background-color: var(--autumn-red);
+                    background-color: var(--theme-secondary-color);
                 }
 
                 &.cluster-2 {
@@ -132,7 +132,7 @@ function updateTime() {
                     height: 120px;
                     top: -150px;
                     left: 20px;
-                    background-color: var(--autumn-yellow);
+                    background-color: var(--theme-main-color);
                 }
 
                 &.cluster-3 {
@@ -140,7 +140,7 @@ function updateTime() {
                     height: 90px;
                     top: -120px;
                     left: 60px;
-                    background-color: var(--autumn-red);
+                    background-color: var(--theme-secondary-color);
                 }
 
                 &.cluster-4 {
@@ -148,7 +148,7 @@ function updateTime() {
                     height: 70px;
                     top: -160px;
                     left: 70px;
-                    background-color: var(--autumn-yellow);
+                    background-color: var(--theme-main-color);
                 }
             }
 
@@ -156,7 +156,7 @@ function updateTime() {
                 position: absolute;
                 width: 25px;
                 height: 200px;
-                background: var(--autumn-brown);
+                background: var(--theme-text-color);
                 top: -200px;
                 left: 45px;
                 border-radius: 5px;
@@ -204,7 +204,7 @@ function updateTime() {
         .poem-line {
             font-family: '楷体', 'KaiTi', serif;
             font-size: 26px;
-            color: var(--autumn-brown);
+            color: var(--theme-text-color);
             margin-bottom: 20px;
             text-align: center;
             font-weight: bold;
@@ -219,7 +219,7 @@ function updateTime() {
             box-shadow: 0 8px 20px rgba(139, 69, 19, 0.2);
 
             h2 {
-                color: var(--autumn-brown);
+                color: var(--theme-text-color);
                 font-size: 24px;
                 margin-bottom: 15px;
                 font-weight: bold;
@@ -228,7 +228,7 @@ function updateTime() {
             .time-counter {
                 font-size: 28px;
                 font-weight: bold;
-                color: var(--autumn-red);
+                color: var(--theme-secondary-color);
                 text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
             }
         }
@@ -236,7 +236,7 @@ function updateTime() {
         .future-message {
             font-family: '微软雅黑', 'Microsoft YaHei', sans-serif;
             font-size: 22px;
-            color: var(--autumn-brown);
+            color: var(--theme-text-color);
             text-align: center;
             margin-top: 20px;
             animation: fadeInOut 3s ease-in-out infinite;

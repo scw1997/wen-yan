@@ -93,9 +93,19 @@ onUnmounted(() => {
 
 <style scoped lang="less">
 .global-layout-root {
+    --leaf-green: #8fbc8f;
+    --theme-main-color: #ffb66a;
+    --theme-secondary-color: #ff6b6b;
+    --theme-text-color: #8b4513;
+    --theme-bg-main-color: #8b4513;
+    --theme-bg-secondary-color: #ffdab9;
     width: 100vw;
     overflow: auto;
-    background: linear-gradient(135deg, var(--cream) 0%, var(--light-orange) 100%);
+    background: linear-gradient(
+        135deg,
+        var(--theme-bg-main-color) 0%,
+        var(--theme-bg-secondary-color) 100%
+    );
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -123,7 +133,7 @@ onUnmounted(() => {
                 flex: none;
                 flex-wrap: wrap;
                 font-size: 36px;
-                color: var(--autumn-yellow);
+                color: var(--theme-main-color);
                 display: flex;
                 align-items: center;
                 text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
@@ -132,7 +142,7 @@ onUnmounted(() => {
                     font-weight: bold;
                 }
                 .icon-heart {
-                    color: var(--autumn-red);
+                    color: var(--theme-secondary-color);
                     width: 36px;
                     height: 36px;
                     margin: 0 8px;
@@ -149,7 +159,7 @@ onUnmounted(() => {
                     padding: 8px 12px;
                     border-radius: 8px;
                     text-decoration: none;
-                    color: var(--autumn-brown);
+                    color: var(--theme-text-color);
                     font-weight: bold;
                     transition: all 0.3s ease;
                     margin-left: 14px;
@@ -158,13 +168,13 @@ onUnmounted(() => {
                     background: rgba(255, 250, 236, 0.5);
                     box-shadow: 0 2px 5px rgba(139, 69, 19, 0.1);
                     &:hover {
-                        //background: var(--autumn-yellow);
+                        //background: var(--theme-main-color);
                         //color: white;
                         //transform: translateY(-5px);
                         box-shadow: 0 8px 15px rgba(139, 69, 19, 0.3);
                     }
                     &.active {
-                        background: var(--autumn-yellow);
+                        background: var(--theme-main-color);
                         color: white;
                     }
                 }
@@ -188,7 +198,7 @@ onUnmounted(() => {
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
-            color: var(--autumn-brown);
+            color: var(--theme-text-color);
             font-weight: bold;
             font-size: 16px;
         }

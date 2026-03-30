@@ -269,7 +269,7 @@ const timelineEvents: TimelineEvent[] = [
                 transform: translateX(-50%);
                 width: 8px;
                 height: 100%;
-                background: var(--autumn-brown);
+                background: var(--theme-text-color);
                 border-radius: 4px;
                 z-index: 1;
                 box-shadow:
@@ -337,20 +337,20 @@ const timelineEvents: TimelineEvent[] = [
 
                     .card-date {
                         font-size: 16px;
-                        color: var(--autumn-brown);
+                        color: var(--theme-text-color);
                         font-weight: bold;
                         margin-bottom: 5px;
                     }
 
                     .card-title {
-                        color: var(--autumn-red);
+                        color: var(--theme-secondary-color);
                         font-size: 22px;
                         margin: 6px 0;
                         font-weight: bold;
                     }
 
                     .card-description {
-                        color: var(--autumn-brown);
+                        color: var(--theme-text-color);
                         font-size: 18px;
                         line-height: 1.7;
                         white-space: pre-line;

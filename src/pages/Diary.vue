@@ -160,10 +160,14 @@ const selectEntry = (entry: DiaryEntry) => {
                     }
 
                     &.active {
-                        background: linear-gradient(135deg, var(--autumn-yellow) 0%, #ff8c00 100%);
+                        background: linear-gradient(
+                            135deg,
+                            var(--theme-main-color) 0%,
+                            #ff8c00 100%
+                        );
                         color: white;
                         box-shadow: 0 4px 10px rgba(139, 69, 19, 0.3);
-                        border-color: var(--autumn-brown);
+                        border-color: var(--theme-text-color);
 
                         .entry-date {
                             color: rgba(255, 255, 255, 0.9);
@@ -172,14 +176,14 @@ const selectEntry = (entry: DiaryEntry) => {
 
                     .entry-title {
                         font-size: 19px;
-                        color: var(--autumn-brown);
+                        color: var(--theme-text-color);
                         margin-bottom: 8px;
                         font-family: 'Georgia', serif;
                     }
 
                     .entry-date {
                         font-size: 16px;
-                        color: var(--autumn-red);
+                        color: var(--theme-secondary-color);
                         font-style: italic;
                         display: flex;
                         justify-content: space-between;
@@ -200,7 +204,7 @@ const selectEntry = (entry: DiaryEntry) => {
                 .content-header {
                     margin-bottom: 16px;
                     padding-bottom: 15px;
-                    border-bottom: 2px dashed var(--autumn-yellow);
+                    border-bottom: 2px dashed var(--theme-main-color);
 
                     .header-row {
                         display: flex;
@@ -210,7 +214,7 @@ const selectEntry = (entry: DiaryEntry) => {
 
                         .title {
                             flex: 1;
-                            color: var(--autumn-brown);
+                            color: var(--theme-text-color);
                             font-size: 26px;
                             font-weight: bold;
                             font-family: 'Georgia', serif;
@@ -225,7 +229,7 @@ const selectEntry = (entry: DiaryEntry) => {
                     &::-webkit-scrollbar {
                         display: none; /* 直接隐藏滚动条 */
                     }
-                    color: var(--autumn-brown);
+                    color: var(--theme-text-color);
                     font-size: 22px;
                     line-height: 1.6;
                     text-align: justify;

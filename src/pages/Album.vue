@@ -180,7 +180,7 @@ const selectCategory = (category: AlbumCategory) => {
                     justify-content: space-between;
                     align-items: center;
                     font-size: 20px;
-                    color: var(--autumn-brown);
+                    color: var(--theme-text-color);
                     background: rgba(255, 255, 255, 0.7);
                     border: 1px solid #d2b48c;
                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -195,15 +195,19 @@ const selectCategory = (category: AlbumCategory) => {
                     }
 
                     &.active {
-                        background: linear-gradient(135deg, var(--autumn-yellow) 0%, #ff8c00 100%);
+                        background: linear-gradient(
+                            135deg,
+                            var(--theme-main-color) 0%,
+                            #ff8c00 100%
+                        );
                         color: white;
                         font-weight: bold;
                         box-shadow: 0 4px 10px rgba(139, 69, 19, 0.3);
-                        border-color: var(--autumn-brown);
+                        border-color: var(--theme-text-color);
                     }
 
                     .photo-count {
-                        background: var(--autumn-brown);
+                        background: var(--theme-text-color);
                         color: white;
                         border-radius: 50%;
                         width: 36px;
@@ -243,7 +247,7 @@ const selectCategory = (category: AlbumCategory) => {
 
                         .year-title {
                             margin: 0;
-                            color: var(--autumn-brown);
+                            color: var(--theme-text-color);
                             font-size: 24px;
                             font-weight: bold;
                         }
@@ -251,7 +255,7 @@ const selectCategory = (category: AlbumCategory) => {
                         .expand-icon {
                             font-size: 28px;
                             font-weight: bold;
-                            color: var(--autumn-brown);
+                            color: var(--theme-text-color);
                         }
                     }
                 }

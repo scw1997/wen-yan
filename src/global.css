@@ -5,14 +5,7 @@
     margin: 0;
     padding: 0;
 }
-:root {
-    --autumn-yellow: #ffb66a;
-    --autumn-red: #ff6b6b;
-    --autumn-brown: #8b4513;
-    --leaf-green: #8fbc8f;
-    --cream: #fff8dc;
-    --light-orange: #ffdab9;
-}
+
 html {
     /*750为设计稿基准*/
     font-size: calc(100vw / 7.5) !important;
