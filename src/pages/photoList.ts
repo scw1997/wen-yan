@@ -45,7 +45,7 @@ export const albumCategories: AlbumCategory[] = [
         items: [
             {
                 year: '2026',
-                photoList: getPhotoList('daily', 19, 22)
+                photoList: getPhotoList('daily', 19, 23)
             },
             {
                 year: '2025',

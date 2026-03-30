@@ -9,6 +9,17 @@ interface TimelineEvent {
 
 const timelineEvents: TimelineEvent[] = [
     {
+        title: '第一次一起做包子',
+        date: '2026.03.28',
+        description: '我和馅来你擀皮~最后相当成功！'
+    },
+    {
+        title: '重庆之旅',
+        date: '2026.03.18',
+        description:
+            '山城雾都，逛街堪比爬山！仙女山，天生三桥，九黎城，乌江，十八梯，李子坝...洪崖洞人忒多,火锅都吃了两顿'
+    },
+    {
         date: '2026-02-19',
         title: '第一次来到你老家',
         description:
