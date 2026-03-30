@@ -46,9 +46,29 @@ const handleGlobalHeight = debounce(() => {
     globalRootHeight.value = window.innerHeight;
 }, 100);
 
+const handleThemeChange = () => {
+    const globalLayoutEle = document.getElementById('global-layout-root');
+    const curMonth = new Date().getMonth() + 1;
+    switch (true) {
+        case curMonth >= 3 && curMonth <= 5:
+            globalLayoutEle.classList.add('spring');
+            break;
+        case curMonth >= 6 && curMonth <= 8:
+            globalLayoutEle.classList.add('summer');
+            break;
+        case curMonth >= 9 && curMonth <= 11:
+            globalLayoutEle.classList.add('autumn');
+            break;
+        case curMonth >= 12 && curMonth <= 2:
+            globalLayoutEle.classList.add('winter');
+            break;
+    }
+};
 onMounted(() => {
     // 处理全局落叶的动画效果，保证能在global-content容器内部完整展示
     handleGlobalHeight();
+    //处理全局四季主题
+    handleThemeChange();
     //监听窗口变化同步处理
     window.addEventListener('resize', handleGlobalHeight);
 });
@@ -94,11 +114,6 @@ onUnmounted(() => {
 <style scoped lang="less">
 .global-layout-root {
     --leaf-green: #8fbc8f;
-    --theme-main-color: #ffb66a;
-    --theme-secondary-color: #ff6b6b;
-    --theme-text-color: #8b4513;
-    --theme-bg-main-color: #8b4513;
-    --theme-bg-secondary-color: #ffdab9;
     width: 100vw;
     overflow: auto;
     background: linear-gradient(
@@ -110,6 +125,35 @@ onUnmounted(() => {
     flex-direction: column;
     align-items: center;
     position: relative;
+    &.spring {
+        --theme-main-color: #63d76c;
+        --theme-secondary-color: #1ca02d;
+        --theme-text-color: #287e4ad9;
+        --theme-bg-main-color: #c4e9d240;
+        --theme-bg-secondary-color: #1fb946;
+    }
+    .summer {
+        --theme-main-color: #ffb66a;
+        --theme-secondary-color: #ff6b6b;
+
+        --theme-text-color: #8b4513;
+        --theme-bg-main-color: #8b4513;
+        --theme-bg-secondary-color: #ffdab9;
+    }
+    .autumn {
+        --theme-main-color: #ffb66a;
+        --theme-secondary-color: #ff6b6b;
+        --theme-text-color: #8b4513;
+        --theme-bg-main-color: #8b4513;
+        --theme-bg-secondary-color: #ffdab9;
+    }
+    .winter {
+        --theme-main-color: #ffb66a;
+        --theme-secondary-color: #ff6b6b;
+        --theme-text-color: #8b4513;
+        --theme-bg-main-color: #8b4513;
+        --theme-bg-secondary-color: #ffdab9;
+    }
     .global-container {
         max-width: 1200px;
         display: flex;
@@ -142,7 +186,7 @@ onUnmounted(() => {
                     font-weight: bold;
                 }
                 .icon-heart {
-                    color: var(--theme-secondary-color);
+                    color: #ff6b6b;
                     width: 36px;
                     height: 36px;
                     margin: 0 8px;

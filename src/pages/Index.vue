@@ -156,7 +156,7 @@ function updateTime() {
                 position: absolute;
                 width: 25px;
                 height: 200px;
-                background: var(--theme-text-color);
+                background: #8b4513;
                 top: -200px;
                 left: 45px;
                 border-radius: 5px;
