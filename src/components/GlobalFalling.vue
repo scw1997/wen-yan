@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import { debounce } from '@/utils';
+
+const season = ref<'spring' | 'summer' | 'autumn' | 'winter'>(null);
 
 const handleFallingAnimation = debounce(() => {
     //先动态修改内容高度的变量
@@ -21,9 +23,24 @@ const handleFallingAnimation = debounce(() => {
     });
 }, 1000);
 
+const handleSeasonChange = () => {
+    const curMonth = new Date().getMonth() + 1;
+    // const curMonth = 8;
+    if (curMonth >= 3 && curMonth <= 5) {
+        season.value = 'spring';
+    } else if (curMonth >= 6 && curMonth <= 8) {
+        season.value = 'summer';
+    } else if (curMonth >= 9 && curMonth <= 11) {
+        season.value = 'autumn';
+    } else {
+        season.value = 'winter';
+    }
+};
+
 onMounted(() => {
     // 处理全局落叶的动画效果，保证能在global-content容器内部完整展示
     setTimeout(() => {
+        handleSeasonChange();
         handleFallingAnimation();
         //监听窗口变化同步处理
         window.addEventListener('resize', handleFallingAnimation);
@@ -37,18 +54,16 @@ onUnmounted(() => {
 <template>
     <section class="global-leaves-container">
         <section id="global-leaves" class="global-leaves">
-            <div class="leaf leaf-1">🍁</div>
-            <div class="leaf leaf-2">🍂</div>
-            <div class="leaf leaf-3">🍁</div>
-            <div class="leaf leaf-4">🍂</div>
-            <div class="leaf leaf-5">🍁</div>
-            <div class="leaf leaf-6">🍂</div>
-            <div class="leaf leaf-7">🍁</div>
-            <div class="leaf leaf-8">🍂</div>
-            <div class="leaf leaf-9">🍁</div>
-            <div class="leaf leaf-10">🍂</div>
-            <div class="leaf leaf-11">🍁</div>
-            <div class="leaf leaf-12">🍂</div>
+            <div
+                v-for="(item, index) in Array.from({ length: 12 }, (_, i) => i + 1)"
+                :key="index"
+                :class="`leaf leaf-${item}`"
+            >
+                <div v-if="season === 'spring'">🌸</div>
+                <div v-if="season === 'summer'">🌞</div>
+                <div v-if="season === 'autumn'">🍁</div>
+                <div v-if="season === 'winter'" style="color: #718bac">❄</div>
+            </div>
         </section>
     </section>
 </template>

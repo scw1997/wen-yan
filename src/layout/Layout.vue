@@ -59,7 +59,7 @@ const handleThemeChange = () => {
         case curMonth >= 9 && curMonth <= 11:
             globalLayoutEle.classList.add('autumn');
             break;
-        case curMonth >= 12 && curMonth <= 2:
+        default:
             globalLayoutEle.classList.add('winter');
             break;
     }
@@ -126,33 +126,32 @@ onUnmounted(() => {
     align-items: center;
     position: relative;
     &.spring {
-        --theme-main-color: #63d76c;
-        --theme-secondary-color: #1ca02d;
-        --theme-text-color: #287e4ad9;
-        --theme-bg-main-color: #c4e9d240;
-        --theme-bg-secondary-color: #1fb946;
+        --theme-main-color: #fb658ef5;
+        --theme-secondary-color: #ff7e7e;
+        --theme-text-color: #c94f65e0;
+        --theme-bg-main-color: #f193dd59;
+        --theme-bg-secondary-color: #db4949b8;
     }
-    .summer {
-        --theme-main-color: #ffb66a;
-        --theme-secondary-color: #ff6b6b;
-
-        --theme-text-color: #8b4513;
-        --theme-bg-main-color: #8b4513;
-        --theme-bg-secondary-color: #ffdab9;
+    &.summer {
+        --theme-main-color: #66b9f3de;
+        --theme-secondary-color: #34cb9ae8;
+        --theme-text-color: #4e8cc1de;
+        --theme-bg-main-color: #64ede1a3;
+        --theme-bg-secondary-color: #39d3f561;
     }
-    .autumn {
-        --theme-main-color: #ffb66a;
-        --theme-secondary-color: #ff6b6b;
-        --theme-text-color: #8b4513;
-        --theme-bg-main-color: #8b4513;
-        --theme-bg-secondary-color: #ffdab9;
+    &.autumn {
+        --theme-main-color: #ff9c56;
+        --theme-secondary-color: #ff701bd9;
+        --theme-text-color: #bd6526;
+        --theme-bg-main-color: #ffc9b0f0;
+        --theme-bg-secondary-color: #f5941b9e;
     }
-    .winter {
-        --theme-main-color: #ffb66a;
-        --theme-secondary-color: #ff6b6b;
-        --theme-text-color: #8b4513;
-        --theme-bg-main-color: #8b4513;
-        --theme-bg-secondary-color: #ffdab9;
+    &.winter {
+        --theme-main-color: #bfd0db;
+        --theme-secondary-color: #838383;
+        --theme-text-color: #818181;
+        --theme-bg-main-color: #f1f1f1a3;
+        --theme-bg-secondary-color: #dae7ffb8;
     }
     .global-container {
         max-width: 1200px;
@@ -180,7 +179,7 @@ onUnmounted(() => {
                 color: var(--theme-main-color);
                 display: flex;
                 align-items: center;
-                text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+                text-shadow: 2px 2px 4px var(--theme-main-color);
 
                 .title-text {
                     font-weight: bold;
@@ -215,7 +214,7 @@ onUnmounted(() => {
                         //background: var(--theme-main-color);
                         //color: white;
                         //transform: translateY(-5px);
-                        box-shadow: 0 8px 15px rgba(139, 69, 19, 0.3);
+                        //box-shadow: 0 8px 15px var(--theme-bg-main-color);
                     }
                     &.active {
                         background: var(--theme-main-color);

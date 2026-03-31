@@ -131,7 +131,7 @@ const selectEntry = (entry: DiaryEntry) => {
                 height: fit-content;
                 max-height: 4rem;
                 overflow: auto;
-                border: 2px solid #d2b48c;
+                border: 2px solid var(--theme-bg-main-color);
                 position: relative;
                 scrollbar-width: none;
                 @media (max-width: 768px) {
@@ -146,7 +146,7 @@ const selectEntry = (entry: DiaryEntry) => {
                     cursor: pointer;
                     transition: all 0.3s ease;
                     background: rgba(255, 255, 255, 0.5);
-                    border: 1px solid #d2b48c;
+                    border: 1px solid var(--theme-main-color);
                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                     position: relative;
                     overflow: hidden;
@@ -154,7 +154,7 @@ const selectEntry = (entry: DiaryEntry) => {
                         margin-bottom: 15px;
                     }
                     &:hover {
-                        background: rgba(255, 182, 106, 0.5);
+                        background: var(--theme-bg-main-color);
                         transform: translateY(-2px);
                         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
                     }
@@ -162,8 +162,8 @@ const selectEntry = (entry: DiaryEntry) => {
                     &.active {
                         background: linear-gradient(
                             135deg,
-                            var(--theme-main-color) 0%,
-                            #ff8c00 100%
+                            var(--theme-bg-main-color) 0%,
+                            var(--theme-main-color) 100%
                         );
                         color: white;
                         box-shadow: 0 4px 10px rgba(139, 69, 19, 0.3);
@@ -198,7 +198,7 @@ const selectEntry = (entry: DiaryEntry) => {
                 border-radius: 15px;
                 padding: 20px;
                 box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
-                border: 2px solid #d2b48c;
+                border: 2px solid var(--theme-bg-main-color);
                 position: relative;
 
                 .content-header {

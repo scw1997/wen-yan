@@ -145,7 +145,7 @@ const selectCategory = (category: AlbumCategory) => {
             background: rgba(255, 250, 236, 0.6);
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
-            border: 2px solid #d2b48c;
+            border: 2px solid var(--theme-bg-main-color);
             position: relative;
             padding: 18px;
 
@@ -182,14 +182,15 @@ const selectCategory = (category: AlbumCategory) => {
                     font-size: 20px;
                     color: var(--theme-text-color);
                     background: rgba(255, 255, 255, 0.7);
-                    border: 1px solid #d2b48c;
+                    border: 1px solid var(--theme-main-color);
                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                     position: relative;
                     overflow: hidden;
                     z-index: 4; // 确保Tab在面板之上
 
                     &:hover {
-                        background: rgba(255, 182, 106, 0.5);
+                        background-color: rgba(var(--theme-main-color), 0.5);
+
                         transform: translateY(-2px);
                         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
                     }
@@ -198,7 +199,7 @@ const selectCategory = (category: AlbumCategory) => {
                         background: linear-gradient(
                             135deg,
                             var(--theme-main-color) 0%,
-                            #ff8c00 100%
+                            var(--theme-secondary-color) 100%
                         );
                         color: white;
                         font-weight: bold;
