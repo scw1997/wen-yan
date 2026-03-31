@@ -54,11 +54,7 @@ onUnmounted(() => {
 <template>
     <section class="global-leaves-container">
         <section id="global-leaves" class="global-leaves">
-            <div
-                v-for="(item, index) in Array.from({ length: 12 }, (_, i) => i + 1)"
-                :key="index"
-                :class="`leaf leaf-${item}`"
-            >
+            <div v-for="(item, index) in 12" :key="index" :class="`leaf leaf-${item}`">
                 <div v-if="season === 'spring'">🌸</div>
                 <div v-if="season === 'summer'">🌞</div>
                 <div v-if="season === 'autumn'">🍁</div>
