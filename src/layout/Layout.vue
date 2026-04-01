@@ -48,7 +48,8 @@ const handleGlobalHeight = debounce(() => {
 
 const handleThemeChange = () => {
     const globalLayoutEle = document.getElementById('global-layout-root');
-    const curMonth = new Date().getMonth() + 1;
+    // const curMonth = new Date().getMonth() + 1;
+    const curMonth = 12;
     switch (true) {
         case curMonth >= 3 && curMonth <= 5:
             globalLayoutEle.classList.add('spring');
@@ -126,8 +127,8 @@ onUnmounted(() => {
     align-items: center;
     position: relative;
     &.spring {
-        --theme-main-color: #fb658ef5;
-        --theme-secondary-color: #ff7e7e;
+        --theme-main-color: #ff90c4f5;
+        --theme-secondary-color: #ef7195;
         --theme-text-color: #c94f65e0;
         --theme-bg-main-color: #f193dd59;
         --theme-bg-secondary-color: #db4949b8;
@@ -150,7 +151,7 @@ onUnmounted(() => {
         --theme-main-color: #bfd0db;
         --theme-secondary-color: #838383;
         --theme-text-color: #818181;
-        --theme-bg-main-color: #f1f1f1a3;
+        --theme-bg-main-color: #fffcfca3;
         --theme-bg-secondary-color: #dae7ffb8;
     }
     .global-container {
