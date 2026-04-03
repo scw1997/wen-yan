@@ -48,8 +48,8 @@ const handleGlobalHeight = debounce(() => {
 
 const handleThemeChange = () => {
     const globalLayoutEle = document.getElementById('global-layout-root');
-    // const curMonth = new Date().getMonth() + 1;
-    const curMonth = 12;
+    const curMonth = new Date().getMonth() + 1;
+    // const curMonth = 12;
     switch (true) {
         case curMonth >= 3 && curMonth <= 5:
             globalLayoutEle.classList.add('spring');
