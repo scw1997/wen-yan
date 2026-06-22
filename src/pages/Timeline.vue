@@ -9,6 +9,11 @@ interface TimelineEvent {
 
 const timelineEvents: TimelineEvent[] = [
     {
+        title: '第一次同船共游汉城湖',
+        date: '2026.06.19',
+        description: '让你别偷人家柳树枝，你看你编的头环跟野人一样！😄'
+    },
+    {
         title: '第一次520',
         date: '2026.05.20',
         description: '"这花选到我心坎上了!🤭"啧啧'
