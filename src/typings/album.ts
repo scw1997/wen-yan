@@ -11,6 +11,6 @@ export interface ImageItem {
 }
 
 export interface AlbumCategory {
-    typeName: '生活' | '旅行' | '纪念';
+    typeName: '生活' | '游玩' | '纪念';
     items: Item[];
 }

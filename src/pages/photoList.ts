@@ -54,7 +54,7 @@ export const albumCategories: AlbumCategory[] = [
         ]
     },
     {
-        typeName: '旅行',
+        typeName: '游玩',
         items: [
             {
                 year: '2026',
