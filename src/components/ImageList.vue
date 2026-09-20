@@ -43,8 +43,16 @@
 
         <!-- 图片预览模态框 -->
         <Teleport to="body">
-            <div v-if="isPreviewVisible" class="image-preview" @click="closePreview">
-                <div class="preview-content" @wheel="handleWheel">
+            <div v-if="isPreviewVisible" class="image-preview" @click="handlePreviewClick">
+                <div
+                    class="preview-content"
+                    :class="{ 'touch-zoom-enabled': !isCurrentVideo() }"
+                    @wheel="handleWheel"
+                    @touchstart="handleTouchStart"
+                    @touchmove="handleTouchMove"
+                    @touchend="handleTouchEnd"
+                    @touchcancel="handleTouchEnd"
+                >
                     <div class="image-info">{{ currentIndex + 1 }} / {{ images.length }}</div>
 
                     <!-- 当前预览的视频 -->
@@ -92,14 +100,14 @@
                     <button
                         v-if="!isCurrentVideo()"
                         class="zoom-btn"
-                        @click.stop="scaleValue *= 1.2"
+                        @click.stop="setScaleValue(scaleValue * 1.2)"
                     >
                         +
                     </button>
                     <button
                         v-if="!isCurrentVideo()"
                         class="zoom-btn"
-                        @click.stop="scaleValue *= 0.8"
+                        @click.stop="setScaleValue(scaleValue * 0.8)"
                     >
                         -
                     </button>
@@ -144,6 +152,9 @@ const isPreviewVisible = ref(false);
 const currentIndex = ref(0);
 const scaleValue = ref(1);
 const shouldAutoPlayVideo = ref(false);
+const touchStartDistance = ref<number | null>(null);
+const touchStartScale = ref(1);
+const shouldIgnoreNextPreviewClick = ref(false);
 
 // 获取当前图片对象
 const currentImage = computed(() => props.images[currentIndex.value]);
@@ -167,6 +178,8 @@ const openPreview = (index: number) => {
     currentIndex.value = index;
     isPreviewVisible.value = true;
     scaleValue.value = 1;
+    resetTouchGesture();
+    shouldIgnoreNextPreviewClick.value = false;
     shouldAutoPlayVideo.value = true;
     document.body.style.overflow = 'hidden';
 };
@@ -175,7 +188,18 @@ const openPreview = (index: number) => {
 const closePreview = () => {
     isPreviewVisible.value = false;
     shouldAutoPlayVideo.value = false;
+    resetTouchGesture();
+    shouldIgnoreNextPreviewClick.value = false;
     document.body.style.overflow = '';
+};
+
+const handlePreviewClick = () => {
+    if (shouldIgnoreNextPreviewClick.value) {
+        shouldIgnoreNextPreviewClick.value = false;
+        return;
+    }
+
+    closePreview();
 };
 
 // 上一张图片
@@ -200,12 +224,67 @@ const handleWheel = (e: WheelEvent) => {
 
     e.preventDefault();
     const delta = e.deltaY > 0 ? 0.9 : 1.1;
-    scaleValue.value = Math.min(Math.max(0.5, scaleValue.value * delta), 5);
+    setScaleValue(scaleValue.value * delta);
+};
+
+const setScaleValue = (value: number) => {
+    scaleValue.value = Math.min(Math.max(0.5, value), 5);
+};
+
+// 获取双指之间的距离
+const getTouchDistance = (touches: TouchList) => {
+    const firstTouch = touches[0];
+    const secondTouch = touches[1];
+
+    return Math.hypot(
+        secondTouch.clientX - firstTouch.clientX,
+        secondTouch.clientY - firstTouch.clientY
+    );
+};
+
+// 开始双指缩放
+const handleTouchStart = (e: TouchEvent) => {
+    if (isCurrentVideo() || e.touches.length !== 2) return;
+
+    touchStartDistance.value = getTouchDistance(e.touches);
+    touchStartScale.value = scaleValue.value;
+};
+
+// 根据双指距离变化缩放图片
+const handleTouchMove = (e: TouchEvent) => {
+    if (isCurrentVideo() || e.touches.length !== 2 || touchStartDistance.value === null) {
+        return;
+    }
+
+    e.preventDefault();
+    const distance = getTouchDistance(e.touches);
+    const scaleRatio = distance / touchStartDistance.value;
+    setScaleValue(touchStartScale.value * scaleRatio);
+};
+
+// 结束或取消双指缩放
+const handleTouchEnd = (e: TouchEvent) => {
+    if (e.touches.length < 2) {
+        if (touchStartDistance.value !== null) {
+            shouldIgnoreNextPreviewClick.value = true;
+            window.setTimeout(() => {
+                shouldIgnoreNextPreviewClick.value = false;
+            }, 350);
+        }
+
+        resetTouchGesture();
+    }
+};
+
+const resetTouchGesture = () => {
+    touchStartDistance.value = null;
+    touchStartScale.value = 1;
 };
 
 // 重置变换
 const resetTransform = () => {
     scaleValue.value = 1;
+    resetTouchGesture();
 };
 
 // 预览图片加载完成事件
@@ -483,6 +562,11 @@ onBeforeUnmount(() => {
         z-index: 2;
         width: 85%;
         height: 80%;
+
+        &.touch-zoom-enabled {
+            touch-action: none;
+        }
+
         .nav-btn {
             position: absolute;
             top: 50%;
