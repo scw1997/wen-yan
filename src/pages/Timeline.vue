@@ -9,6 +9,21 @@ interface TimelineEvent {
 
 const timelineEvents: TimelineEvent[] = [
     {
+        title: '白鹿原影视城一日游',
+        date: '2026.10.07',
+        description: '天气太好了，二虎守长安挺震撼，黑娃演义过了把群众演员的瘾哈哈~'
+    },
+    {
+        title: '第一次陪你全家给你妈妈过生日',
+        date: '2026.10.03',
+        description: '据说第一次阿姨在国庆假期过生日。吃完火锅吃蛋糕（减个🔨的肥），一起再唱生日歌~'
+    },
+    {
+        title: '你陪我提人生第一辆车啦',
+        date: '2026.09.22',
+        description: '当晚就开始接受我舅的魔鬼特训，这倒车也太难了~😡。一倒一个不吱声'
+    },
+    {
         title: '第二次陪你过生日',
         date: '2026.09.13',
         description:

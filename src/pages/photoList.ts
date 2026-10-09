@@ -58,7 +58,7 @@ export const albumCategories: AlbumCategory[] = [
         items: [
             {
                 year: '2026',
-                photoList: getPhotoList('journey', 63, 148, [], [84, 99, 114, 115], [82])
+                photoList: getPhotoList('journey', 63, 162, [], [84, 99, 114, 115], [82])
             },
             {
                 year: '2025',
