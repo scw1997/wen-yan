@@ -15,7 +15,7 @@ const getPhotoList = (
 ) => {
     const photoList: PhotoListType = [];
     for (let i = end; i >= start; i--) {
-        const noAffixPath = `${SWICO_STATIC_PUBLIC_PATH}${type}/${i.toString().padStart(4, '0')}`;
+        const noAffixPath = `${SWICO_PUBLIC_PATH}${type}/${i.toString().padStart(4, '0')}`;
         if (movNumList?.includes(i)) {
             photoList.push({
                 url: `${noAffixPath}.mov`,

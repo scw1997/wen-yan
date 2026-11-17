@@ -12,9 +12,9 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
     urlList: () => [
-        `${SWICO_STATIC_PUBLIC_PATH}bgm/1.mp3`,
-        `${SWICO_STATIC_PUBLIC_PATH}bgm/2.mp3`,
-        `${SWICO_STATIC_PUBLIC_PATH}bgm/3.mp3`
+        `${SWICO_PUBLIC_PATH}bgm/1.mp3`,
+        `${SWICO_PUBLIC_PATH}bgm/2.mp3`,
+        `${SWICO_PUBLIC_PATH}bgm/3.mp3`
     ]
 });
 

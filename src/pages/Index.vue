@@ -6,14 +6,13 @@ const timeTogether = ref('0天0小时0分钟0秒');
 const currentMonthImage = ref('');
 let intervalId: number | null = null;
 const startDate = new Date('2025-09-04T22:00:00'); // 这里设置你们开始的日期
-
 // 设置当前日期的图片
 function setCurrentMonthImage() {
     const month = new Date().getMonth() + 1; // getMonth() 返回 0-11，所以需要 +1
     const day = new Date().getDate();
     const imgPath = `${month}-${day <= 10 ? 1 : day <= 20 ? 2 : 3}`;
     // console.log(`当前月份图片为：${imgPath}`);
-    currentMonthImage.value = `${SWICO_STATIC_PUBLIC_PATH}logoPhotoList/${imgPath}.png`;
+    currentMonthImage.value = `${SWICO_PUBLIC_PATH}logoPhotoList/${imgPath}.png`;
 }
 
 onMounted(() => {

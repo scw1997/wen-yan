@@ -71,7 +71,9 @@
                         :src="getPreviewUrl()"
                         :alt="currentImage?.alt || ''"
                         :style="{
-                            transform: `scale(${scaleValue})`,
+                            transform: isMobilePreview
+                                ? `translate3d(${translateX}px, ${translateY}px, 0) scale(${scaleValue})`
+                                : `scale(${scaleValue})`,
                             cursor: 'default'
                         }"
                         class="preview-image"
@@ -151,9 +153,17 @@ const getVideoPlaceholder = () => {
 const isPreviewVisible = ref(false);
 const currentIndex = ref(0);
 const scaleValue = ref(1);
+const translateX = ref(0);
+const translateY = ref(0);
 const shouldAutoPlayVideo = ref(false);
 const touchStartDistance = ref<number | null>(null);
 const touchStartScale = ref(1);
+const touchStartCenter = ref<{ x: number; y: number } | null>(null);
+const touchStartTranslate = ref({ x: 0, y: 0 });
+const touchStartPoint = ref<{ x: number; y: number } | null>(null);
+const previewImageElement = ref<HTMLImageElement | null>(null);
+const isMobilePreview =
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
 const shouldIgnoreNextPreviewClick = ref(false);
 
 // 获取当前图片对象
@@ -170,6 +180,7 @@ const isCurrentVideo = () => {
 // 获取当前预览图片的URL
 const getPreviewUrl = () => {
     if (!currentImage.value) return '';
+    if (isMobilePreview) return currentImage.value.url;
     return currentImage.value.previewUrl || currentImage.value.url;
 };
 
@@ -229,7 +240,23 @@ const handleWheel = (e: WheelEvent) => {
 
 const setScaleValue = (value: number) => {
     scaleValue.value = Math.min(Math.max(0.5, value), 5);
+    clampTranslation();
 };
+
+const clampTranslation = () => {
+    const image = previewImageElement.value;
+    const container = image?.parentElement;
+    if (!image || !container) return;
+    const maxX = Math.max(0, (image.offsetWidth * scaleValue.value - container.clientWidth) / 2);
+    const maxY = Math.max(0, (image.offsetHeight * scaleValue.value - container.clientHeight) / 2);
+    translateX.value = Math.min(maxX, Math.max(-maxX, translateX.value));
+    translateY.value = Math.min(maxY, Math.max(-maxY, translateY.value));
+};
+
+const getTouchCenter = (touches: TouchList) => ({
+    x: (touches[0].clientX + touches[1].clientX) / 2,
+    y: (touches[0].clientY + touches[1].clientY) / 2
+});
 
 // 获取双指之间的距离
 const getTouchDistance = (touches: TouchList) => {
@@ -244,28 +271,46 @@ const getTouchDistance = (touches: TouchList) => {
 
 // 开始双指缩放
 const handleTouchStart = (e: TouchEvent) => {
-    if (isCurrentVideo() || e.touches.length !== 2) return;
-
-    touchStartDistance.value = getTouchDistance(e.touches);
-    touchStartScale.value = scaleValue.value;
+    if (!isMobilePreview || isCurrentVideo()) return;
+    if (e.touches.length === 2) {
+        touchStartDistance.value = getTouchDistance(e.touches);
+        touchStartScale.value = scaleValue.value;
+        touchStartCenter.value = getTouchCenter(e.touches);
+        touchStartTranslate.value = { x: translateX.value, y: translateY.value };
+        touchStartPoint.value = null;
+    } else if (e.touches.length === 1 && scaleValue.value > 1) {
+        touchStartPoint.value = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        touchStartTranslate.value = { x: translateX.value, y: translateY.value };
+    }
 };
 
 // 根据双指距离变化缩放图片
 const handleTouchMove = (e: TouchEvent) => {
-    if (isCurrentVideo() || e.touches.length !== 2 || touchStartDistance.value === null) {
-        return;
+    if (!isMobilePreview || isCurrentVideo()) return;
+    if (e.touches.length === 2 && touchStartDistance.value !== null) {
+        e.preventDefault();
+        const center = getTouchCenter(e.touches);
+        const distance = getTouchDistance(e.touches);
+        setScaleValue(touchStartScale.value * (distance / touchStartDistance.value));
+        if (touchStartCenter.value) {
+            translateX.value = touchStartTranslate.value.x + center.x - touchStartCenter.value.x;
+            translateY.value = touchStartTranslate.value.y + center.y - touchStartCenter.value.y;
+        }
+        clampTranslation();
+    } else if (e.touches.length === 1 && touchStartPoint.value && scaleValue.value > 1) {
+        e.preventDefault();
+        translateX.value =
+            touchStartTranslate.value.x + e.touches[0].clientX - touchStartPoint.value.x;
+        translateY.value =
+            touchStartTranslate.value.y + e.touches[0].clientY - touchStartPoint.value.y;
+        clampTranslation();
     }
-
-    e.preventDefault();
-    const distance = getTouchDistance(e.touches);
-    const scaleRatio = distance / touchStartDistance.value;
-    setScaleValue(touchStartScale.value * scaleRatio);
 };
 
 // 结束或取消双指缩放
 const handleTouchEnd = (e: TouchEvent) => {
     if (e.touches.length < 2) {
-        if (touchStartDistance.value !== null) {
+        if (touchStartDistance.value !== null || touchStartPoint.value !== null) {
             shouldIgnoreNextPreviewClick.value = true;
             window.setTimeout(() => {
                 shouldIgnoreNextPreviewClick.value = false;
@@ -279,17 +324,23 @@ const handleTouchEnd = (e: TouchEvent) => {
 const resetTouchGesture = () => {
     touchStartDistance.value = null;
     touchStartScale.value = 1;
+    touchStartCenter.value = null;
+    touchStartPoint.value = null;
+    touchStartTranslate.value = { x: 0, y: 0 };
 };
 
 // 重置变换
 const resetTransform = () => {
     scaleValue.value = 1;
+    translateX.value = 0;
+    translateY.value = 0;
     resetTouchGesture();
 };
 
 // 预览图片加载完成事件
 const onPreviewImageLoad = (e: Event) => {
     const img = e.target as HTMLImageElement;
+    previewImageElement.value = img;
     img.classList.add('loaded');
 };
 

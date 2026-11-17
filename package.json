@@ -1,63 +1,62 @@
 {
-  "name": "wen-yan",
-  "version": "1.0.0",
-  "description": "Vue template for front-end framework Swico",
-  "main": "index.js",
-  "scripts": {
-    "start": "swico start",
-    "build": "swico build",
-    "build:analyze": "cross-env ANALYZE=true swico build",
-    "lint:fix": "eslint --fix src/**/*.{js,ts,vue} && prettier --write src/**/*.{js,ts,vue,css,less,scss,json,html,md}",
-    "husky:init": "npx husky init",
-    "test": "lint-staged",
-    "prepare": "husky"
-  },
-  "lint-staged": {
-    "src/**/*.{js,ts,vue}": [
-      "prettier --write",
-      "eslint --fix"
+    "name": "wen-yan",
+    "version": "1.0.0",
+    "description": "Vue template for front-end framework Swico",
+    "main": "index.js",
+    "scripts": {
+        "start": "swico start",
+        "build": "swico build",
+        "build:analyze": "cross-env ANALYZE=true swico build",
+        "lint:fix": "eslint --fix src/**/*.{js,ts,vue} && prettier --write src/**/*.{js,ts,vue,css,less,scss,json,html,md}",
+        "husky:init": "npx husky init",
+        "test": "lint-staged",
+        "prepare": "husky"
+    },
+    "lint-staged": {
+        "src/**/*.{js,ts,vue}": [
+            "prettier --write",
+            "eslint --fix"
+        ],
+        "src/**/*.{css,less,scss,json,html,md}": "prettier --write"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/scw1997/swico.git"
+    },
+    "keywords": [
+        "swico",
+        "typescript",
+        "vue",
+        "javascript",
+        "rspack"
     ],
-    "src/**/*.{css,less,scss,json,html,md}": "prettier --write"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scw1997/swico.git"
-  },
-  "keywords": [
-    "swico",
-    "typescript",
-    "vue",
-    "javascript",
-    "rspack"
-  ],
-  "author": "scw",
-  "license": "ISC",
-  "dependencies": {
-    "@vicons/fa": "^0.13.0",
-    "swico": "2.9.0",
-    "vue": "~3.5.23"
-  },
-  "packageManager": "pnpm@10.6.0",
-  "devDependencies": {
-    "@commitlint/cli": "18.5.0",
-    "@commitlint/config-conventional": "18.5.0",
-    "@eslint/js": "9.24.0",
-    "@rspack/core": "1.6.1",
-    "@types/node": "22.14.1",
-    "autoprefixer": "10.3.7",
-    "cross-env": "7.0.3",
-    "eslint": "9.24.0",
-    "eslint-plugin-vue": "10.0.0",
-    "globals": "16.0.0",
-    "husky": "9.0.10",
-    "lint-staged": "15.2.1",
-    "postcss-plugin-px2rem": "~0.8.1",
-    "prettier": "3.5.3",
-    "typescript": "5.8.3",
-    "typescript-eslint": "8.30.1",
-    "vue-eslint-parser": "10.1.3"
-  },
-  "engines": {
-    "node": ">=20.0.0"
-  }
+    "author": "scw",
+    "license": "ISC",
+    "dependencies": {
+        "@vicons/fa": "^0.13.0",
+        "swico": "3.3.0-beta.1",
+        "vue": "~3.5.23"
+    },
+    "packageManager": "pnpm@10.6.0",
+    "devDependencies": {
+        "@commitlint/cli": "18.5.0",
+        "@commitlint/config-conventional": "18.5.0",
+        "@eslint/js": "10.0.1",
+        "@rsbuild/core": "~2.1.13",
+        "@types/node": "22.14.1",
+        "cross-env": "7.0.3",
+        "eslint": "10.11.0",
+        "eslint-plugin-vue": "10.9.1",
+        "globals": "17.6.0",
+        "husky": "9.0.10",
+        "lint-staged": "15.2.1",
+        "postcss-plugin-px2rem": "~0.8.1",
+        "prettier": "3.5.3",
+        "typescript": "5.8.3",
+        "typescript-eslint": "8.59.2",
+        "vue-eslint-parser": "^10.4.1"
+    },
+    "engines": {
+        "node": "^20.19.0 || >=22.12.0"
+    }
 }
