@@ -5,7 +5,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed, watch } from 'vue';
-
 interface Props {
     urlList?: string[];
 }

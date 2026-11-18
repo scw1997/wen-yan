@@ -12,8 +12,8 @@ importers:
         specifier: ^0.13.0
         version: 0.13.0
       swico:
-        specifier: 3.3.0-beta.1
-        version: 3.3.0-beta.1(@emnapi/core@1.11.3)(@emnapi/runtime@1.11.3)(@rsbuild/core@2.1.13)(@rspack/core@2.1.10(@swc/helpers@0.5.24))(@types/node@22.14.1)(eslint@10.11.0(jiti@1.21.7))(react@19.3.1)(typescript@5.8.3)(vue@3.5.45(typescript@5.8.3))
+        specifier: 3.3.0
+        version: 3.3.0(@emnapi/core@1.11.3)(@emnapi/runtime@1.11.3)(@rsbuild/core@2.1.13)(@rspack/core@2.1.10(@swc/helpers@0.5.24))(@types/node@22.14.1)(eslint@10.11.0(jiti@1.21.7))(react@19.3.1)(typescript@5.8.3)(vue@3.5.45(typescript@5.8.3))
       vue:
         specifier: ~3.5.23
         version: 3.5.45(typescript@5.8.3)
@@ -2602,8 +2602,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  swico@3.3.0-beta.1:
-    resolution: {integrity: sha512-C4TOuN0sEh83YWiBGLKi8sbZovJO4ToPkmfBoROOpwz9jpmlG9pLKRXpGXAVNyJqEyrv0hIxvrbDHNK9SAmB5w==}
+  swico@3.3.0:
+    resolution: {integrity: sha512-ZDUur3vK1ZFrBTCPJcIclG0XZFzaMi3SOHvZPfOaiMWWOhMywiRxHIABdDuYqoWjc6iUQ/xDCJftGPAvD8e9JQ==}
     engines: {node: '>=20.19.0'}
     hasBin: true
 
@@ -5434,7 +5434,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  swico@3.3.0-beta.1(@emnapi/core@1.11.3)(@emnapi/runtime@1.11.3)(@rsbuild/core@2.1.13)(@rspack/core@2.1.10(@swc/helpers@0.5.24))(@types/node@22.14.1)(eslint@10.11.0(jiti@1.21.7))(react@19.3.1)(typescript@5.8.3)(vue@3.5.45(typescript@5.8.3)):
+  swico@3.3.0(@emnapi/core@1.11.3)(@emnapi/runtime@1.11.3)(@rsbuild/core@2.1.13)(@rspack/core@2.1.10(@swc/helpers@0.5.24))(@types/node@22.14.1)(eslint@10.11.0(jiti@1.21.7))(react@19.3.1)(typescript@5.8.3)(vue@3.5.45(typescript@5.8.3)):
     dependencies:
       '@esctn/vue-tsc-api': 1.0.1(typescript@5.8.3)(vue-tsc@3.0.3(typescript@5.8.3))
       '@rsbuild/plugin-basic-ssl': 1.2.3(@rsbuild/core@2.1.13)
